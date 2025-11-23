@@ -6,3 +6,4 @@ Sistema de reservas genérico.
 - `database/`: Scripts y herramientas para la gestión de la base de datos.
 - `docs/`: Documentación del proyecto.
 - `src/`: Código fuente de la aplicación.
+- 
