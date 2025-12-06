@@ -1,0 +1,127 @@
+:root {
+  --color-primario: #f4f6f9;
+  --color-secundario: #003366;
+  --color-terciario: #28a745;
+  --color-acento: #28a745;
+  --fuente-principal: "Merriweather", serif;
+  --color-fuente: #333333;
+}
+html {
+  box-sizing: border-box;
+}
+
+* {
+  font-family: var(--fuente-principal);
+  box-sizing: inherit;
+  margin: 0;
+  @media screen {
+  }
+}
+body {
+  background-color: var(--color-primario);
+  margin: 0;
+  padding: 0;
+}
+nav a {
+  color: var(--color-acento);
+  text-decoration: none;
+  font-weight: bold;
+}
+nav {
+  background-color: var(--color-secundario);
+  color: var(--color-acento);
+  overflow: hidden;
+  height: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.5rem 2rem;
+  list-style: none;
+  width: 35%;
+}
+#logo {
+  height: 3em;
+  width: 6em;
+  margin-left: 2em;
+  align-items: flex-start;
+  border-radius: 20px 0 20px 0;
+  padding: 0.2em 0.5em;
+  background-color: white;
+}
+
+a {
+  color: var(--color-acento);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero-content {
+  background-image: url("../img/Portada.png");
+  height: 60vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 2rem;
+}
+.hero-content:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Capa oscura */
+  z-index: 0;
+}
+.hero-text {
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  color: white;
+}
+#titulo-index {
+  font-size: 3rem;
+}
+#content-index {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 5rem 0 8rem 0;
+}
+#content-index p {
+  font-size: 1.5rem;
+}
+.btn-cta {
+  background-color: var(--color-acento);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+.btn-cta:hover {
+  background-color: #218838;
+}
+.section-portada {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.div-section-portada {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--color-primario);
+  text-align: center;
+  list-style: none;
+}
