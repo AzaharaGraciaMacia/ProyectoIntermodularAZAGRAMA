@@ -221,6 +221,7 @@ a {
 
 .hero-content {
   background-image: url("../img/Portada.png");
+  background-attachment: fixed;
   height: 60vh;
   width: 100%;
   position: relative;
