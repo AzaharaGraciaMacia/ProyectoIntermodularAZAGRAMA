@@ -22,13 +22,17 @@
   <body>
     <header>
       <nav>
-        <img id="logo" src="./img/logo.png" alt="Logo de Consultora ZaTech" />
-        <ul>
-          <li><a href="./proyecto-reservas.html">Reservas</a></li>
-          <li><a href="./cronologia.html">Cronología</a></li>
-          <li><a href="./contacto.html">Contacto</a></li>
-          <li><a href="./index.html">Inicio</a></li>
-        </ul>
+        <div class="nav-logo">
+          <img id="logo" src="./img/logo.png" alt="Logo de Consultora ZaTech" />
+        </div>
+        <div class="nav-ul">
+          <ul>
+            <li><a href="./proyecto-reservas.html">Reservas</a></li>
+            <li><a href="./cronologia.html">Cronología</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+            <li><a href="./index.html">Inicio</a></li>
+          </ul>
+        </div>
       </nav>
     </header>
     <main>
@@ -45,23 +49,26 @@
       </section>
       <section>
         <h2 class="section-portada">Nuestros Servicios</h2>
-        <ul>
+        <ul class="ul-sinPadding">
           <div class="div-section-portada">
-            <div>
+            <div class="inner-div-portada">
+              <p class="iconos-portada">💻</p>
               <li>Desarrollo Web</li>
               <p>
                 Creación de sitios web modernos y funcionales adaptados a tus
                 necesidades.
               </p>
             </div>
-            <div>
+            <div class="inner-div-portada">
+              <p class="iconos-portada">☁️</p>
               <li>Cloud Computing</li>
               <p>
                 Soluciones en la nube para mejorar la eficiencia y escalabilidad
                 de tu negocio.
               </p>
             </div>
-            <div>
+            <div class="inner-div-portada">
+              <p class="iconos-portada">🔐</p>
               <li>Ciberseguridad</li>
               <p>
                 Protege tus datos y sistemas con nuestras soluciones de
@@ -73,10 +80,18 @@
       </section>
     </main>
     <footer>
-      <p>&copy; 2025 Consultora ZaTech. All rights reserved.</p>
-      <a target="_blank" href="./privacy-policy.html">Privacy Policy</a>
-      <a target="_blank" href="./aviso-legal.html">Aviso Legal</a>
-      <a target="_blank" href="https:/www.facebook.com">Facebook</a>
+      <div class="footer">
+        <p>&copy; 2025 Consultora ZaTech. All rights reserved.</p>
+        <a target="_blank" href="./privacy-policy.html">Privacy Policy</a>
+        <a target="_blank" href="./aviso-legal.html">Aviso Legal</a>
+        <div class="redes-sociales">
+          <img
+            id="facebook"
+            src="./img/facebook.svg"
+            alt="Logo de facebook"
+          /><a target="_blank" href="https:/www.facebook.com"> Facebook</a>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
