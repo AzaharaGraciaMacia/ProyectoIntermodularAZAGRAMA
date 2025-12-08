@@ -1,77 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
-    <link rel="stylesheet" href="./css/styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Página de cronología de Consultora ZaTech - Tu consultora de confianza en tecnología y negocios. Ofrecemos soluciones innovadoras para impulsar tu empresa hacia el éxito.">
-    <title>Cronología del proyecto de la consultora ZaTech, un negocio innovador.</title>
-</head>
-<body>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Página de cronología de Consultora ZaTech - Tu consultora de confianza en tecnología y negocios. Ofrecemos soluciones innovadoras para impulsar tu empresa hacia el éxito."
+    />
+    <title>
+      Cronología del proyecto de la consultora ZaTech, un negocio innovador.
+    </title>
+  </head>
+  <body class="crono-body">
     <header>
       <nav>
         <div class="nav-logo">
-        <img id="logo" src="./img/logo.png" alt="Logo de Consultora ZaTech" />
+          <img id="logo" src="./img/logo.png" alt="Logo de Consultora ZaTech" />
         </div>
         <div class="nav-ul">
-        <ul>
-          <li><a href="./proyecto-reservas.html">Reservas</a></li>
-          <li><a href="./cronologia.html">Cronología</a></li>
-          <li><a href="./contacto.html">Contacto</a></li>
-          <li><a href="./index.html">Inicio</a></li>
-        </ul>
+          <ul>
+            <li><a href="./proyecto-reservas.html">Reservas</a></li>
+            <li><a href="./cronologia.html">Cronología</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+            <li><a href="./index.html">Inicio</a></li>
+          </ul>
         </div>
       </nav>
     </header>
-    <main> 
-       <h1>Cronología del proyecto</h1>
-       <table>
-        <caption>Tabla de las fases del proyeto</caption>
+    <main class="main-crono">
+      <h1 class="crono-title">Cronología del proyecto</h1>
+      <table class="crono-table">
+        <caption class="table-title">
+          Tabla de las fases del proyecto
+        </caption>
+
         <thead>
-        <tr>
-            <th scope="col" id="fase">Fase</th>
-            <th scope="col" id="descripcion">Descripción</th>
-            <th scope="col" id="inicio">Fecha de Inicio</th>
-            <th scope="col" id="fin">Fecha de Fin</th>
-            <th scope="col" id="estado">Estado</th>
-        </tr>
+          <tr class="rejilla-head">
+            <th scope="col">Fase</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Fecha de Inicio</th>
+            <th scope="col">Fecha de Fin</th>
+            <th scope="col">Estado</th>
+          </tr>
         </thead>
         <tbody>
-        <tr>
-            <td headers="fase">Diagnóstico y Planificación</td>
-            <td headers="descripcion">Análisis de necesidades, definición de objetivos y aprobación del plan de trabajo.</td>
-            <td headers="inicio">01/10/2025</td>
-            <td headers="fin">22/11/2025</td>
-            <td headers="estado">Completado</td>
-        </tr>
-        <tr>
-            <td headers="fase">Ejecución y Desarrollo</td>
-            <td headers="descripcion">Puesta en marcha de la solución, diseño y configuración técnica.</td>
-            <td headers="inicio">23/11/2025</td>
-            <td headers="fin">15/01/2026</td>
-            <td headers="estado">En Progreso</td>
-        </tr>
-        <tr>
-            <td headers="fase">Cierre y Entrega</td>
-            <td headers="descripcion">Validación final, formación al equipo del cliente y entrega del proyecto.</td>
-            <td headers="inicio">16/01/2026</td>
-            <td headers="fin">30/01/2026</td>
-            <td headers="estado">Pendiente</td>
-        </tr>
+          <tr class="rejilla">
+            <td>Diagnóstico y Planificación</td>
+            <td>
+              Análisis de necesidades, definición de objetivos y aprobación del
+              plan de trabajo.
+            </td>
+            <td>01/10/2025</td>
+            <td>22/11/2025</td>
+            <td>Completado</td>
+          </tr>
+          <tr class="rejilla">
+            <td>Ejecución y Desarrollo</td>
+            <td>
+              Puesta en marcha de la solución, diseño y configuración técnica.
+            </td>
+            <td>23/11/2025</td>
+            <td>15/01/2026</td>
+            <td>En Progreso</td>
+          </tr>
+          <tr class="rejilla">
+            <td>Cierre y Entrega</td>
+            <td>
+              Validación final, formación al equipo del cliente y entrega del
+              proyecto.
+            </td>
+            <td>16/01/2026</td>
+            <td>30/01/2026</td>
+            <td>Pendiente</td>
+          </tr>
         </tbody>
-        </table>
+      </table>
     </main>
     <footer>
-         <div class="footer">
-      <p>&copy; 2025 Consultora ZaTech. All rights reserved.</p>
-      <a target="_blank" href="./privacy-policy.html">Privacy Policy</a>
-      <a target="_blank" href="./aviso-legal.html">Aviso Legal</a>
-      <a target="_blank" href="https:/www.facebook.com">Facebook</a>
+      <div class="footer">
+        <p>&copy; 2025 Consultora ZaTech. All rights reserved.</p>
+        <a target="_blank" href="./privacy-policy.html">Privacy Policy</a>
+        <a target="_blank" href="./aviso-legal.html">Aviso Legal</a>
+        <a target="_blank" href="https:/www.facebook.com">Facebook</a>
       </div>
     </footer>
-</body>
+  </body>
 </html>
