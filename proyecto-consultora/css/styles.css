@@ -707,3 +707,21 @@ form textarea:valid {
     padding: 0.5vh 1vw;
   }
 }
+/* Contenido extra */
+.privacidad-aviso {
+  color: var(--color-fuente);
+}
+.privacidad-aviso h1 {
+  text-align: center;
+  padding: 2em;
+}
+.actualizacion {
+  text-align: right;
+  margin: 1em 10vw;
+}
+.privacidad-aviso section {
+  margin: 0 10vw;
+}
+.privacidad-aviso h2 {
+  margin: 0.5em;
+}
