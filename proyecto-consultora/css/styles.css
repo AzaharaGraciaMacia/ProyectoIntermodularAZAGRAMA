@@ -122,17 +122,22 @@ nav a:hover {
   cursor: pointer;
   @media (min-width: 600px) {
     padding: 0.75rem 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     margin-top: 1rem;
+    @media (max-height: 600px) {
+      /* Ajustes para cuando gire la pantalla*/
+      margin-top: 0.2rem;
+      font-size: 1em;
+    }
   }
   @media (min-width: 390px) and (max-width: 599px) {
     padding: 0.5rem 1rem;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     margin-top: 0.5rem;
   }
   @media (max-width: 389px) {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 1em;
     margin-top: 0.5rem;
   }
 }
@@ -144,22 +149,33 @@ nav a:hover {
   /* Estilos para pantallas mayores a 600px */
 
   #titulo-index {
-    font-size: 3rem;
+    font-size: 3em;
     margin-top: 5rem;
+    @media (max-height: 600px) {
+      margin-top: 1rem;
+      font-size: 2em;
+    }
   }
   #content-index {
     margin-bottom: 2rem;
     gap: 5vh;
+    @media (max-height: 600px) {
+      margin-bottom: 1rem;
+      gap: 3vh;
+    }
   }
   #content-index p {
-    font-size: 1.5rem;
+    font-size: 1.5em;
+    @media (max-height: 600px) {
+      font-size: 1em;
+    }
   }
 }
 @media (min-width: 390px) and (max-width: 599px) {
   /* Tablets pequeñas y smartphones grandes */
 
   #titulo-index {
-    font-size: 3rem;
+    font-size: 3em;
   }
   #content-index {
     margin-bottom: 1rem;
@@ -167,14 +183,14 @@ nav a:hover {
     padding: 2.5rem 0 4rem 0;
   }
   #content-index p {
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
 }
 @media (max-width: 389px) {
   /* Smartphones pequeños */
 
   #titulo-index {
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
   #content-index {
     margin-bottom: 0.5rem;
@@ -182,7 +198,7 @@ nav a:hover {
     padding: 1rem 0 2rem 0;
   }
   #content-index p {
-    font-size: 1rem;
+    font-size: 1em;
   }
 }
 a {
@@ -244,9 +260,9 @@ a {
   background-color: var(--color-primario);
   color: var(--color-secundario);
   padding: 5vh 0 0 0;
-  font-size: 2.5rem;
+  font-size: 2.5em;
   @media (max-width: 390px) {
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
 }
 .div-section-portada {
@@ -256,7 +272,7 @@ a {
   width: 100%;
 }
 .iconos-portada {
-  font-size: 3rem;
+  font-size: 3em;
 }
 .inner-div-portada {
   display: flex;
@@ -283,7 +299,7 @@ a {
   transition: all 0.3s ease;
 }
 .inner-div-portada li {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: bold;
 }
 @media (max-width: 599px) {
@@ -350,9 +366,9 @@ fieldset {
 fieldset legend {
   display: flex;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   @media (max-width: 419px) {
-    font-size: 1.25rem;
+    font-size: 1.25em;
   }
   font-weight: bold;
   color: var(--color-secundario);
@@ -365,7 +381,7 @@ fieldset legend {
 
   align-items: center;
   justify-content: center;
-  width: 50vw;
+  width: 70vw;
   @media (max-width: 599px) {
     width: 80vw;
   }
@@ -383,7 +399,7 @@ fieldset legend {
 }
 form span {
   color: #333333;
-  font-size: 0.75rem;
+  font-size: 0.75em;
 }
 .apartado-contacto {
   margin: 2vh 0 2vh 0;
@@ -394,7 +410,7 @@ form span {
   justify-content: center;
   gap: 0.5rem;
   @media (max-width: 390px) {
-    font-size: 1rem;
+    font-size: 1em;
   }
 }
 #privacidad-check {
@@ -402,16 +418,15 @@ form span {
   flex-direction: row;
   gap: 0.5;
   @media (max-width: 390px) {
-    font-size: 0.75rem;
+    font-size: 0.75em;
   }
 }
 .info-contacto {
-  @media (min-width: 1200px) {
+  @media (min-width: 1100px) {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-
     gap: 10rem;
   }
 }
@@ -422,7 +437,7 @@ form span {
 label {
   font-weight: bold;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
   #nombre,
   #telefono,
   #email,
@@ -469,7 +484,7 @@ form textarea:valid {
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1em;
   margin-top: 1rem;
 }
 .apartado-contacto button:hover {
@@ -493,8 +508,9 @@ form textarea:valid {
   flex-grow: 1;
   flex-basis: 0;
   @media (min-width: 600px) {
-    margin-top: 4em;
-    height: 100vh;
+    height: calc(100vh-4em);
+    top: 4em;
+    position: sticky;
   }
   @media (max-width: 599px) {
     flex-direction: row;
@@ -553,7 +569,7 @@ form textarea:valid {
     flex-wrap: wrap;
     gap: 0.5vh;
     padding-bottom: 1vh;
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
 .btn-demo {
@@ -593,7 +609,7 @@ form textarea:valid {
     align-items: center;
   }
 }
-/*Estilado de cronología sin grid */
+/* Estilado de cronología sin grid */
 .table-box {
   display: flex;
 }
