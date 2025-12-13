@@ -18,7 +18,7 @@ Sistema de reservas genérico.
 - He hecho dos páginas con textos legales generados por IA para tener enlaces a sitios propios también en el footer.
 - Para intentar que la web sea lo más accesible posible, decidí dejar la tabla de la cronología con sus etiquetas html (y maquetar con flexbox), y a cambio he hecho una tabla con grid en la página de política de privacidad.
 
-## Decisiones CSS consultora
+## Decisiones y problemas CSS consultora
 
 - Creé el logo a partir de una IA generadora de imágenes y decidí adaptar la paleta de colores a los del logo, cuidando no mezclar tonalidades rojas y verdes.
 - Declaré las variables de color y fuente en :root
