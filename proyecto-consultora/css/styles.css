@@ -745,3 +745,61 @@ form textarea:valid {
 .privacidad-aviso h2 {
   margin: 0.5em;
 }
+/* Probando CSS grid en una página extra */
+.tabla-privacidad {
+  display: grid;
+  width: 30vw;
+  @media (max-width: 1800px) {
+    width: 40vw;
+  }
+  @media (max-width: 1350px) {
+    width: 60vw;
+  }
+  @media (max-width: 900px) {
+    width: 90vw;
+  }
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
+  background-color: var(--color-terciario);
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  grid-template-areas:
+    "tit tit"
+    "it1 it2"
+    "it3 it4"
+    "it5 it6";
+}
+.tit-tab-pri {
+  grid-area: tit;
+  font-weight: bold;
+  align-items: center;
+}
+.item-1 {
+  grid-area: it1;
+  justify-self: left;
+}
+.item-2 {
+  grid-area: it2;
+  justify-self: right;
+}
+.item-3 {
+  grid-area: it3;
+  justify-self: left;
+}
+.item-4 {
+  grid-area: it4;
+  justify-self: right;
+}
+.item-5 {
+  grid-area: it5;
+  justify-self: left;
+}
+.item-6 {
+  grid-area: it6;
+  justify-self: right;
+}
