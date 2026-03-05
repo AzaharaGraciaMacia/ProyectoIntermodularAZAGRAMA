@@ -1,13 +1,3 @@
 {
-  "error": "Datos de entrada inválidos",
-  "detalles": [
-    {
-      "campo": "fecha_inicio",
-      "mensaje": "La fecha de inicio debe ser posterior a hoy"
-    },
-    {
-      "campo": "num_personas",
-      "mensaje": "Debe ser mayor que 0"
-    }
-  ]
+  "error": "Datos incompletos o inválidos. Por favor, revise la solicitud e intente nuevamente."
 }

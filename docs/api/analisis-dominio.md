@@ -106,3 +106,7 @@ La respuesta que el backend devolvería al crear la reserva incluiría los campo
 ## Conclusión
 
 Necesito 13 campos de la tabla reserva (expongo 12 en la API) y uno de la tabla recurso. Aplicaré 5 validaciones básicas para garantizar integridad de datos. El MVP permitirá crear, listar, modificar y eliminar reservas.
+
+## Imagen del SwaggerUI
+
+![Imagen de SwaggerUI](./CapturaSwagger.png)
