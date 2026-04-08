@@ -92,63 +92,7 @@ paths:
                   error:
                     type: string
                     example: Internal server error
-  /reservaActualizar/{idReserva}:
-    patch:
-      summary: Actualizar una reserva existente
-      tags:
-        - Reservas
-      description: Modifica los detalles de una reserva específica del sistema usando su ID.
-      parameters:
-        - in: path
-          name: idReserva
-          schema:
-            type: integer
-          required: true
-          description: ID de la reserva a actualizar.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Reserva"
-      responses:
-        "200":
-          description: Reserva actualizada con éxito.
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Reserva actualizada con éxito.
-        "400":
-          description: Solicitud incorrecta.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: Solicitud incorrecta.
-        "404":
-          description: Reserva no encontrada.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: Reserva no encontrada.
-        "500":
-          description: Error interno del servidor.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: Internal server error
+
   /reservaBorrar/{idReserva}:
     delete:
       summary: Eliminar una reserva
