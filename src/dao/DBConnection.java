@@ -1,3 +1,9 @@
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DBConnection {
 
     private static final String URL = "jdbc:mariadb://localhost:3308/";
@@ -13,8 +19,8 @@ public class DBConnection {
             synchronized (DBConnection.class) {
                     try {
                         connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-                        crearTabla(connection);
-                        crearDatosEjemplo();
+                        /*crearTabla(connection);
+                        crearDatosEjemplo();*/
                     } catch ( SQLException e) {
                         e.printStackTrace();
                     }
