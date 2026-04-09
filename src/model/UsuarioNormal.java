@@ -7,41 +7,56 @@ public class UsuarioNormal extends Usuario {
     private String tlfMovil;
     private String fotografia;
 
-    public UsuarioNormal(String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario, Builder builder) {
-        super(nombre, email, contrasena, tipoUsuario, fechaNacimiento, idUsuario);
-        this.direccion = builder.direccion;
-        this.tlfMovil = builder.tlfMovil;
+    private UsuarioNormal(UsuarioNormalBuilder builder) {
+        super(builder.nombre, builder.email, builder.contrasena,
+                builder.tipoUsuario, builder.fechaNacimiento, builder.idUsuario);
+        this.direccion  = builder.direccion;
+        this.tlfMovil   = builder.tlfMovil;
         this.fotografia = builder.fotografia;
     }
 
-    public UsuarioNormal(String nombre, String email, String contrasena, TipoUsuario tipoUsuario, int idUsuario, Builder builder) {
-        super(nombre, email, contrasena, tipoUsuario, idUsuario);
-        this.direccion = builder.direccion;
-        this.tlfMovil = builder.tlfMovil;
-        this.fotografia = builder.fotografia;
-    }
-    public static class Builder {
+    public static class UsuarioNormalBuilder {
+
+        private final String nombre;
+        private final String email;
+        private final String contrasena;
+        private final TipoUsuario tipoUsuario;
+        private final int idUsuario;
+        private Date   fechaNacimiento;
         private String direccion;
         private String tlfMovil;
         private String fotografia;
-    }
-    public Builder direccion(String direccion) {
-        this.direccion = direccion;
-        return this;
-    }
-    public Builder tlfMovil(String tlfMovil) {
-        this.tlfMovil = tlfMovil;
-        return this;
-    }
-    public Builder fotografia(String fotografia) {
-        this.fotografia = fotografia;
-        return this;
-    }
 
-    public UsuarioNormal build() {
-        return new UsuarioNormal(this);
-    }
+        public UsuarioNormalBuilder(String nombre, String email, String contrasena,
+                       TipoUsuario tipoUsuario, int idUsuario) {
+            this.nombre       = nombre;
+            this.email        = email;
+            this.contrasena   = contrasena;
+            this.tipoUsuario  = tipoUsuario;
+            this.idUsuario    = idUsuario;
+        }
 
+        public UsuarioNormalBuilder fechaNacimiento(Date fechaNacimiento) {
+            this.fechaNacimiento = fechaNacimiento;
+            return this;
+        }
+        public UsuarioNormalBuilder direccion(String direccion) {
+            this.direccion = direccion;
+            return this;
+        }
+        public UsuarioNormalBuilder tlfMovil(String tlfMovil) {
+            this.tlfMovil = tlfMovil;
+            return this;
+        }
+        public UsuarioNormalBuilder fotografia(String fotografia) {
+            this.fotografia = fotografia;
+            return this;
+        }
+
+        public UsuarioNormal build() {
+            return new UsuarioNormal(this);
+        }
+    }
     public String getDireccion() {
         return direccion;
     }
