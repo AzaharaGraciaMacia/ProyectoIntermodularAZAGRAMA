@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/mi-proyecto-jdbc.iml" filepath="$PROJECT_DIR$/mi-proyecto-jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ProyectoIntermodularAZAGRAMA.iml" filepath="$PROJECT_DIR$/.idea/ProyectoIntermodularAZAGRAMA.iml" />
     </modules>
   </component>
 </project>
