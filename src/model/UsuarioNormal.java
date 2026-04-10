@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UsuarioNormal extends Usuario {
     private String direccion;
@@ -8,7 +8,7 @@ public class UsuarioNormal extends Usuario {
     private String fotografia;
 
     private UsuarioNormal(UsuarioNormalBuilder builder) {
-        super(builder.nombre, builder.email, builder.contrasena,
+        super(builder.dni, builder.nombre, builder.email, builder.contrasena,
                 builder.tipoUsuario, builder.fechaNacimiento, builder.idUsuario);
         this.direccion  = builder.direccion;
         this.tlfMovil   = builder.tlfMovil;
@@ -17,6 +17,7 @@ public class UsuarioNormal extends Usuario {
 
     public static class UsuarioNormalBuilder {
 
+        private final String dni;
         private final String nombre;
         private final String email;
         private final String contrasena;
@@ -27,8 +28,9 @@ public class UsuarioNormal extends Usuario {
         private String tlfMovil;
         private String fotografia;
 
-        public UsuarioNormalBuilder(String nombre, String email, String contrasena,
+        public UsuarioNormalBuilder(String dni, String nombre, String email, String contrasena,
                        TipoUsuario tipoUsuario, int idUsuario) {
+            this.dni          = dni;
             this.nombre       = nombre;
             this.email        = email;
             this.contrasena   = contrasena;

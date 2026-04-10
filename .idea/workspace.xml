@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="47067b11-009a-4a4e-b96c-dfa110c820b1" name="Changes" comment="Arreglos de .idea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Administrador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/UsuarioNormal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/UsuarioNormal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,22 +27,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "AzaharaGraciaMacia"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AzaharaGraciaMacia&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AzaharaGraciaMacia/ProyectoIntermodularAZAGRAMA.git",
-    "accountId": "ca4ece73-b913-4b52-a79b-c892ae2ff0f9"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AzaharaGraciaMacia/ProyectoIntermodularAZAGRAMA.git&quot;,
+    &quot;accountId&quot;: &quot;ca4ece73-b913-4b52-a79b-c892ae2ff0f9&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="3C7rDkKfsqD1MmQYhTHoCStFjCe" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -61,12 +64,19 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.3873563",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "editor.preferences.import"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="47067b11-009a-4a4e-b96c-dfa110c820b1" name="Changes" comment="" />

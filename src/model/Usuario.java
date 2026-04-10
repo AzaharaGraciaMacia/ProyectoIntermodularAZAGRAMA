@@ -1,9 +1,10 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Usuario
 {
+    private String dni;
     private String nombre;
     private String email;
     private String contrasena;
@@ -11,7 +12,8 @@ public class Usuario
     private Date fechaNacimiento;
     private int idUsuario;
 
-    public Usuario(String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario) {
+    public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario) {
+        this.dni = dni;
         this.nombre = nombre;
         this.email = email;
         this.contrasena = contrasena;
@@ -20,12 +22,21 @@ public class Usuario
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(String nombre, String email, String contrasena, TipoUsuario tipoUsuario, int idUsuario) {
+    public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, int idUsuario) {
+        this.dni = dni;
         this.nombre = nombre;
         this.email = email;
         this.contrasena = contrasena;
         this.tipoUsuario = tipoUsuario;
         this.idUsuario = idUsuario;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
