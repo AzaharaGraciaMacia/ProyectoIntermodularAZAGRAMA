@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Usuario
 {
@@ -11,8 +12,9 @@ public class Usuario
     private TipoUsuario tipoUsuario;
     private Date fechaNacimiento;
     private int idUsuario;
+    private Timestamp fechaRegistro;
 
-    public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario) {
+    public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario,  Timestamp fechaRegistro) {
         this.dni = dni;
         this.nombre = nombre;
         this.email = email;
@@ -20,15 +22,16 @@ public class Usuario
         this.tipoUsuario = tipoUsuario;
         this.fechaNacimiento = fechaNacimiento;
         this.idUsuario = idUsuario;
+        this.fechaRegistro = fechaRegistro;
     }
 
-    public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, int idUsuario) {
+    public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento) {
         this.dni = dni;
         this.nombre = nombre;
         this.email = email;
         this.contrasena = contrasena;
         this.tipoUsuario = tipoUsuario;
-        this.idUsuario = idUsuario;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getDni() {
@@ -87,4 +90,11 @@ public class Usuario
         this.idUsuario = idUsuario;
     }
 
+    public Timestamp getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Timestamp fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
 }

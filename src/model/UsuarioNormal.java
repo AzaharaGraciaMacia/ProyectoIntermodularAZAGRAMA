@@ -9,7 +9,7 @@ public class UsuarioNormal extends Usuario {
 
     private UsuarioNormal(UsuarioNormalBuilder builder) {
         super(builder.dni, builder.nombre, builder.email, builder.contrasena,
-                builder.tipoUsuario, builder.fechaNacimiento, builder.idUsuario);
+                builder.tipoUsuario, builder.fechaNacimiento);
         this.direccion  = builder.direccion;
         this.tlfMovil   = builder.tlfMovil;
         this.fotografia = builder.fotografia;
@@ -22,26 +22,21 @@ public class UsuarioNormal extends Usuario {
         private final String email;
         private final String contrasena;
         private final TipoUsuario tipoUsuario;
-        private final int idUsuario;
-        private Date   fechaNacimiento;
+        private final Date   fechaNacimiento;
         private String direccion;
         private String tlfMovil;
         private String fotografia;
 
         public UsuarioNormalBuilder(String dni, String nombre, String email, String contrasena,
-                       TipoUsuario tipoUsuario, int idUsuario) {
+                       TipoUsuario tipoUsuario, int idUsuario, Date fechaNacimiento) {
             this.dni          = dni;
             this.nombre       = nombre;
             this.email        = email;
             this.contrasena   = contrasena;
             this.tipoUsuario  = tipoUsuario;
-            this.idUsuario    = idUsuario;
+            this.fechaNacimiento = fechaNacimiento;
         }
 
-        public UsuarioNormalBuilder fechaNacimiento(Date fechaNacimiento) {
-            this.fechaNacimiento = fechaNacimiento;
-            return this;
-        }
         public UsuarioNormalBuilder direccion(String direccion) {
             this.direccion = direccion;
             return this;

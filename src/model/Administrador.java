@@ -5,13 +5,8 @@ import java.sql.Date;
 public class Administrador extends Usuario{
     private String telefono;
 
-    public Administrador(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario, String telefono) {
-        super(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento, idUsuario);
-        this.telefono = telefono;
-    }
-
-    public Administrador(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, int idUsuario, String telefono) {
-        super(dni, nombre, email, contrasena, tipoUsuario, idUsuario);
+    public Administrador(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, String telefono) {
+        super(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento);
         this.telefono = telefono;
     }
 

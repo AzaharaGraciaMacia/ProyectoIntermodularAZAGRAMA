@@ -1,5 +1,6 @@
 package dao;
 
+import model.TipoUsuario;
 import model.Usuario;
 
 import java.sql.Connection;
@@ -104,14 +105,18 @@ public class UsuarioDAO {
     }
 
     private Usuario resultSetToUsuario(ResultSet resultSet) throws SQLException {
+        String valorDB = resultSet.getString("tipoUsuario");
+        TipoUsuario tipoUsuario = (valorDB != null) ? TipoUsuario.valueOf(valorDB) : null;
         return new Usuario(
-                resultSet.getInt("idUsuario"),
+                resultSet.getString("dni"),
                 resultSet.getString("nombre"),
                 resultSet.getString("email"),
                 resultSet.getString("contrasena"),
+                tipoUsuario,
                 resultSet.getDate("fechaNacimiento"),
-                resultSet.getString("tipoUsuario"),
-                resultSet.getString("dni")
+                resultSet.getInt("idUsuario"),
+                resultSet.getTimestamp("fechaRegistro")
+
         );
     }
 

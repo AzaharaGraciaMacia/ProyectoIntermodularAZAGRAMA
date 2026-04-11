@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.sql.Date;
 
 public class Reserva {
-    private int idRecurso;
+    private String idRecurso;
     private int idReserva;
     private int idUsuario;
     private Date fechaReserva;
@@ -28,37 +28,29 @@ public class Reserva {
         this.observaciones = builder.observaciones;
     }
     public static class ReservaBuilder{
-        private final int idRecurso;
+        private final String idRecurso;
         private final int idReserva;
         private final int idUsuario;
         private final Date fechaReserva;
         private final Time horaInicio;
         private final Time horaFin;
-        private double coste;
-        private int numeroPlazas;
-        private String motivo;
+        private final double coste;
+        private final int numeroPlazas;
+        private final String motivo;
         private String observaciones;
 
-        public ReservaBuilder(int idRecurso, int idReserva, int idUsuario, Date fechaReserva,  Time horaInicio, Time horaFin) {
+        public ReservaBuilder(String idRecurso, int idReserva, int idUsuario, Date fechaReserva,  Time horaInicio, Time horaFin, double coste, int numeroPlazas, String motivo) {
             this.idRecurso = idRecurso;
             this.idReserva = idReserva;
             this.idUsuario = idUsuario;
             this.fechaReserva = fechaReserva;
             this.horaInicio = horaInicio;
             this.horaFin = horaFin;
-        }
-        public ReservaBuilder coste(double coste) {
             this.coste = coste;
-            return this;
-        }
-        public ReservaBuilder numeroPlazas(int numeroPlazas) {
             this.numeroPlazas = numeroPlazas;
-            return this;
-        }
-        public ReservaBuilder motivo(String motivo) {
             this.motivo = motivo;
-            return this;
         }
+
         public ReservaBuilder observaciones(String observaciones) {
             this.observaciones = observaciones;
             return this;
@@ -69,11 +61,11 @@ public class Reserva {
         }
     }
 
-    public int getIdRecurso() {
+    public String getIdRecurso() {
         return idRecurso;
     }
 
-    public void setIdRecurso(int idRecurso) {
+    public void setIdRecurso(String idRecurso) {
         this.idRecurso = idRecurso;
     }
 
