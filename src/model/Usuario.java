@@ -25,15 +25,6 @@ public class Usuario
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.email = email;
-        this.contrasena = contrasena;
-        this.tipoUsuario = tipoUsuario;
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     public String getDni() {
         return dni;
     }

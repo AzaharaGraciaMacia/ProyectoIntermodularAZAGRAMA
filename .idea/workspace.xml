@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47067b11-009a-4a4e-b96c-dfa110c820b1" name="Changes" comment="Arreglos de .idea">
-      <change afterPath="$PROJECT_DIR$/src/model/DiaSemana.java" afterDir="false" />
+    <list default="true" id="47067b11-009a-4a4e-b96c-dfa110c820b1" name="Changes" comment="Añado el script de la BD al proyecto y models acabados a falta de comprobar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/scripts/scripts.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Administrador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DisponibleEn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DisponibleEn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Horario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Horario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Recurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Recurso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Reserva.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/UsuarioNormal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/UsuarioNormal.java" afterDir="false" />
     </list>
@@ -100,7 +96,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775747762300</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Añado el script de la BD al proyecto y models acabados a falta de comprobar">
+      <option name="closed" value="true" />
+      <created>1775899001471</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775899001471</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,6 +112,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Arreglos de .idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglos de .idea" />
+    <MESSAGE value="Añado el script de la BD al proyecto y models acabados a falta de comprobar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añado el script de la BD al proyecto y models acabados a falta de comprobar" />
   </component>
 </project>

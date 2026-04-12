@@ -17,25 +17,26 @@ public class UsuarioDAO {
 
     //Sentencia SQL para crear la tabla si no existe
     public static final String CREATE_TABLE_USUARIO = """
-    CREATE TABLE IF NOT EXISTS `Usuario`(
-    `idUsuario` INT NOT NULL AUTO_INCREMENT,
-    `nombre` VARCHAR(50) NOT NULL,
-    `email` VARCHAR(50) NOT NULL,
+    CREATE TABLE IF NOT EXISTS `usuario`(
+    `idUsuario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `nombre` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
     `fechaNacimiento` DATE,
     `tipoUsuario` ENUM NOT NULL,
-    `contrasena` VARCHAR(50) NOT NULL,
+    `contrasena` VARCHAR(100) NOT NULL,
     `dni` VARCHAR(9) NOT NULL,
+    `fechaRegistro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                     primary key(`idUsuario`),
-                    unique key(`dni`)
+                    unique key(`dni`,`email`)
 );
 """;
     // Consultas SQL predefinidas para operaciones CRUD
-    private static final String INSERT_QUERY = "INSERT INTO Usuario (idUsuario, nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String SELECT_ALL_QUERY = "SELECT * FROM Usuario";
-    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM Usuario WHERE dni = ?";
-    private static final String UPDATE_QUERY = "UPDATE Usuario SET nombre = ?, email = ?, fechaNacimiento = ?, contrasena = ? WHERE dni = ?";
-    private static final String DELETE_QUERY = "DELETE FROM Usuario WHERE dni = ?";
-    private static final String TOTAL_PERSONAS_QUERY = "SELECT COUNT(*) FROM Usuario";
+    private static final String INSERT_QUERY = "INSERT INTO usuario (nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL_QUERY = "SELECT * FROM usuario";
+    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM uuario WHERE dni = ?";
+    private static final String UPDATE_QUERY = "UPDATE usuario SET nombre = ?, email = ?, fechaNacimiento = ?, contrasena = ? WHERE dni = ?";
+    private static final String DELETE_QUERY = "DELETE FROM usuario WHERE dni = ?";
+    private static final String TOTAL_PERSONAS_QUERY = "SELECT COUNT(*) FROM usuario";
 
     private UsuarioDAO() {
         this.connection = DBConnection.getConnection();
@@ -50,13 +51,12 @@ public class UsuarioDAO {
 
     public void insertUsuario(Usuario usuario) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(INSERT_QUERY)) {
-            statement.setInt(1, usuario.getIdUsuario());
-            statement.setString(2, usuario.getNombre());
-            statement.setString(3, usuario.getEmail());
-            statement.setString(4, usuario.getContrasena());
-            statement.setDate(5, usuario.getFechaNacimiento());
-            statement.setString(6, usuario.getTipoUsuario().name());
-            statement.setString(7, usuario.getDni());
+            statement.setString(1, usuario.getNombre());
+            statement.setString(2, usuario.getEmail());
+            statement.setString(5, usuario.getContrasena());
+            statement.setDate(3, usuario.getFechaNacimiento());
+            statement.setString(4, usuario.getTipoUsuario().name());
+            statement.setString(6, usuario.getDni());
             statement.executeUpdate();
         }
     }
@@ -75,7 +75,7 @@ public class UsuarioDAO {
     public Usuario getUsuarioByDni(String dni) throws SQLException {
         Usuario usuario = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_BY_DNI_QUERY)) {
-            statement.setString(7, dni);
+            statement.setString(1, dni);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 usuario = resultSetToUsuario(resultSet);
@@ -86,20 +86,18 @@ public class UsuarioDAO {
 
     public void updateUsuario(Usuario usuario) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            statement.setInt(1, usuario.getIdUsuario());
-            statement.setString(2, usuario.getNombre());
-            statement.setString(3, usuario.getEmail());
+            statement.setString(1, usuario.getNombre());
+            statement.setString(2, usuario.getEmail());
             statement.setString(4, usuario.getContrasena());
-            statement.setDate(5, usuario.getFechaNacimiento());
-            statement.setString(6, usuario.getTipoUsuario().name());
-            statement.setString(7, usuario.getDni());
+            statement.setDate(3, usuario.getFechaNacimiento());
+            statement.setString(5, usuario.getDni());
             statement.executeUpdate();
         }
     }
 
     public void deleteUsuarioByDni(String dni) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(DELETE_QUERY)) {
-            statement.setString(7, dni);
+            statement.setString(1, dni);
             statement.executeUpdate();
         }
     }
