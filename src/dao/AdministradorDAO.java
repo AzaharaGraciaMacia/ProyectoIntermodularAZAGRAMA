@@ -15,7 +15,7 @@ public class AdministradorDAO {
     private Connection connection;
 
     public static final String CREATE_TABLE_ADMINISTRADOR = """
-    CREATE TABLE IF NOT EXISTS `usuarioNormal`(
+    CREATE TABLE IF NOT EXISTS `administrador`(
     `idUsuario` INT UNSIGNED NOT NULL,
     `telefonoGuardia` VARCHAR(20),
                     primary key(`idUsuario`),
@@ -23,12 +23,12 @@ public class AdministradorDAO {
 );
 """;
 
-    private static final String INSERT_QUERY = "INSERT INTO Administrador (idUsuario, telefonoGuardia) VALUES (?, ?)";
-    private static final String SELECT_ALL_QUERY = "SELECT * FROM Administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario";
-    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM Administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
-    private static final String UPDATE_QUERY = "UPDATE Administrador SET telefonoGuardia = ? FROM Administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
-    private static final String DELETE_QUERY = "DELETE FROM Administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
-    private static final String TOTAL_PERSONAS_QUERY = "SELECT COUNT(*) FROM Administrador";
+    private static final String INSERT_QUERY = "INSERT INTO administrador (idUsuario, telefonoGuardia) VALUES (?, ?)";
+    private static final String SELECT_ALL_QUERY = "SELECT * FROM administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario";
+    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
+    private static final String UPDATE_QUERY = "UPDATE administrador SET telefonoGuardia = ? FROM Administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
+    private static final String DELETE_QUERY = "DELETE FROM administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
+    private static final String TOTAL_ADMINISTRADORES_QUERY = "SELECT COUNT(*) FROM administrador";
 
     private AdministradorDAO() {
         this.connection = DBConnection.getConnection();
@@ -105,7 +105,7 @@ public class AdministradorDAO {
 
     public int totalAdministradores() throws SQLException {
         int total = 0;
-        try (PreparedStatement statement = connection.prepareStatement(TOTAL_PERSONAS_QUERY)) {
+        try (PreparedStatement statement = connection.prepareStatement(TOTAL_ADMINISTRADORES_QUERY)) {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 total = resultSet.getInt(1);

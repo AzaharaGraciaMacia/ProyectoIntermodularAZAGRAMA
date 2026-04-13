@@ -15,50 +15,29 @@ public class Reserva {
     private String motivo;
     private String observaciones;
 
-    private Reserva (ReservaBuilder builder) {
-        this.idRecurso = builder.idRecurso;
-        this.idReserva = builder.idReserva;
-        this.idUsuario = builder.idUsuario;
-        this.fechaReserva = builder.fechaReserva;
-        this.horaInicio = builder.horaInicio;
-        this.horaFin = builder.horaFin;
-        this.coste = builder.coste;
-        this.numeroPlazas = builder.numeroPlazas;
-        this.motivo = builder.motivo;
-        this.observaciones = builder.observaciones;
+    public Reserva(String idRecurso, int idReserva, int idUsuario, Date fechaReserva, Time horaInicio, Time horaFin, double coste, int numeroPlazas, String motivo, String observaciones) {
+        this.idRecurso = idRecurso;
+        this.idReserva = idReserva;
+        this.idUsuario = idUsuario;
+        this.fechaReserva = fechaReserva;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.coste = coste;
+        this.numeroPlazas = numeroPlazas;
+        this.motivo = motivo;
+        this.observaciones = observaciones;
     }
-    public static class ReservaBuilder{
-        private final String idRecurso;
-        private final int idReserva;
-        private final int idUsuario;
-        private final Date fechaReserva;
-        private final Time horaInicio;
-        private final Time horaFin;
-        private final double coste;
-        private final int numeroPlazas;
-        private final String motivo;
-        private String observaciones;
 
-        public ReservaBuilder(String idRecurso, int idReserva, int idUsuario, Date fechaReserva,  Time horaInicio, Time horaFin, double coste, int numeroPlazas, String motivo) {
-            this.idRecurso = idRecurso;
-            this.idReserva = idReserva;
-            this.idUsuario = idUsuario;
-            this.fechaReserva = fechaReserva;
-            this.horaInicio = horaInicio;
-            this.horaFin = horaFin;
-            this.coste = coste;
-            this.numeroPlazas = numeroPlazas;
-            this.motivo = motivo;
-        }
-
-        public ReservaBuilder observaciones(String observaciones) {
-            this.observaciones = observaciones;
-            return this;
-        }
-
-        public Reserva build() {
-            return new Reserva(this);
-        }
+    public Reserva(String idRecurso, int idUsuario, Date fechaReserva, Time horaInicio, Time horaFin, double coste, int numeroPlazas, String motivo, String observaciones) {
+        this.idRecurso = idRecurso;
+        this.idUsuario = idUsuario;
+        this.fechaReserva = fechaReserva;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.coste = coste;
+        this.numeroPlazas = numeroPlazas;
+        this.motivo = motivo;
+        this.observaciones = observaciones;
     }
 
     public String getIdRecurso() {

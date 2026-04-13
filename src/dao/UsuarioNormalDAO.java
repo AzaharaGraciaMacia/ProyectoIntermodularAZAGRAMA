@@ -31,7 +31,7 @@ public class UsuarioNormalDAO {
     private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String UPDATE_QUERY = "UPDATE usuarioNormal SET direccion = ?, telefonoMovil = ?, fotografia = ? FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario WHERE dni = ?";
-    private static final String TOTAL_PERSONAS_QUERY = "SELECT COUNT(*) FROM usuarioNormal";
+    private static final String TOTAL_USUARIOS_NORMALES_QUERY = "SELECT COUNT(*) FROM usuarioNormal";
 
     private UsuarioNormalDAO() {
         this.connection = DBConnection.getConnection();
@@ -79,10 +79,10 @@ public class UsuarioNormalDAO {
 
     public void updateUsuarioNormal(UsuarioNormal usuarioNormal) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            statement.setInt(1, usuarioNormal.getIdUsuario());
-            statement.setString(2, usuarioNormal.getDireccion());
-            statement.setString(3, usuarioNormal.getTlfMovil());
-            statement.setString(4, usuarioNormal.getFotografia());
+            statement.setString(1, usuarioNormal.getDireccion());
+            statement.setString(2, usuarioNormal.getTlfMovil());
+            statement.setString(3, usuarioNormal.getFotografia());
+            statement.setString(4, usuarioNormal.getDni());
             statement.executeUpdate();
         }
     }
@@ -107,14 +107,14 @@ public class UsuarioNormalDAO {
                 resultSet.getInt("idUsuario"),
                 resultSet.getTimestamp("fechaRegistro"),
                 resultSet.getString("direccion"),
-                resultSet.getString("tlfMovil"),
+                resultSet.getString("telefonoMovil"),
                 resultSet.getString("fotografia")
         );
     }
 
     public int totalUsuariosNormales() throws SQLException {
         int total = 0;
-        try (PreparedStatement statement = connection.prepareStatement(TOTAL_PERSONAS_QUERY)) {
+        try (PreparedStatement statement = connection.prepareStatement(TOTAL_USUARIOS_NORMALES_QUERY)) {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 total = resultSet.getInt(1);

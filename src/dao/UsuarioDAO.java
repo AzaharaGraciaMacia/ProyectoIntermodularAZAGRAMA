@@ -22,7 +22,7 @@ public class UsuarioDAO {
     `nombre` VARCHAR(100) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `fechaNacimiento` DATE,
-    `tipoUsuario` ENUM NOT NULL,
+    `tipoUsuario` ENUM(`Administrador`, `Normal`) NOT NULL,
     `contrasena` VARCHAR(100) NOT NULL,
     `dni` VARCHAR(9) NOT NULL,
     `fechaRegistro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -36,7 +36,7 @@ public class UsuarioDAO {
     private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM uuario WHERE dni = ?";
     private static final String UPDATE_QUERY = "UPDATE usuario SET nombre = ?, email = ?, fechaNacimiento = ?, contrasena = ? WHERE dni = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuario WHERE dni = ?";
-    private static final String TOTAL_PERSONAS_QUERY = "SELECT COUNT(*) FROM usuario";
+    private static final String TOTAL_USUARIOS_QUERY = "SELECT COUNT(*) FROM usuario";
 
     private UsuarioDAO() {
         this.connection = DBConnection.getConnection();
@@ -55,7 +55,7 @@ public class UsuarioDAO {
             statement.setString(2, usuario.getEmail());
             statement.setString(5, usuario.getContrasena());
             statement.setDate(3, usuario.getFechaNacimiento());
-            statement.setString(4, usuario.getTipoUsuario().name());
+            statement.setString(4, usuario.getTipoUsuario().toString());
             statement.setString(6, usuario.getDni());
             statement.executeUpdate();
         }
@@ -120,7 +120,7 @@ public class UsuarioDAO {
 
     public int totalUsuarios() throws SQLException {
         int total = 0;
-        try (PreparedStatement statement = connection.prepareStatement(TOTAL_PERSONAS_QUERY)) {
+        try (PreparedStatement statement = connection.prepareStatement(TOTAL_USUARIOS_QUERY)) {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 total = resultSet.getInt(1);
