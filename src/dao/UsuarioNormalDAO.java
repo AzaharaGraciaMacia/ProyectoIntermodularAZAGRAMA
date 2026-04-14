@@ -27,8 +27,8 @@ public class UsuarioNormalDAO {
 """;
 
     private static final String INSERT_QUERY = "INSERT INTO usuarioNormal (idUsuario, direccion, telefonoMovil, fotografia) VALUES (?, ?, ?, ?)";
-    private static final String SELECT_ALL_QUERY = "SELECT * FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario";
-    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario WHERE dni = ?";
+    private static final String SELECT_ALL_QUERY = "SELECT u.idUsuario, u.nombre, u.email, u.fechaNacimiento, u.contrasena, u.dni, u2.direccion, u2.telefonoMovil, u2.fotografia FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario";
+    private static final String SELECT_BY_DNI_QUERY = "SELECT u.idUsuario, u.nombre, u.email, u.fechaNacimiento, u.contrasena, u.dni, u2.direccion, u2.telefonoMovil, u2.fotografia FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String UPDATE_QUERY = "UPDATE usuarioNormal SET direccion = ?, telefonoMovil = ?, fotografia = ? FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuarioNormal u2 INNER JOIN usuario u ON u2.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String TOTAL_USUARIOS_NORMALES_QUERY = "SELECT COUNT(*) FROM usuarioNormal";

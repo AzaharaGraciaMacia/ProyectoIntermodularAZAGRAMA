@@ -6,11 +6,11 @@ USE ProyIntUD5AzaharaGracia;
 
 CREATE OR REPLACE TABLE usuario (
 idUsuario INT UNSIGNED AUTO_INCREMENT,
-email VARCHAR(100) NOT NULL,
-contrasena VARCHAR(100) NOT NULL,
 nombre VARCHAR(100) NOT NULL,
+email VARCHAR(100) NOT NULL,
 fechaNacimiento DATE NOT NULL,
 tipoUsuario ENUM('Administrador', 'Normal') NOT NULL,
+contrasena VARCHAR(100) NOT NULL,
 dni VARCHAR(9) NOT NULL,
 fechaRegistro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT PK_USU PRIMARY KEY (idUsuario), -- En teoría a las restricciones de PK no hace falta darles un nombre, el sistema los ignora, pero como en los apuntes aparecía, se lo he dado.

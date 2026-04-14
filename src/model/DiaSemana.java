@@ -1,11 +1,11 @@
 package model;
 
 public enum DiaSemana {
-    Lunes,
-    Martes,
-    Miercoles,
-    Jueves,
-    Viernes,
-    Sábado,
-    Domingo
+    lunes,
+    martes,
+    miercoles,
+    jueves,
+    viernes,
+    sabado,
+    domingo
 }

@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="47067b11-009a-4a4e-b96c-dfa110c820b1" name="Changes" comment="Usuarios y sus tipos en DAO terminados y corregidos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DiaSemana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiaSemana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TipoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TipoUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/UsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UsuarioView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
