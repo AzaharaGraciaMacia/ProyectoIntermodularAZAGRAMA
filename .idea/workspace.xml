@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="47067b11-009a-4a4e-b96c-dfa110c820b1" name="Changes" comment="Usuarios y sus tipos en DAO terminados y corregidos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/HorarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/HorarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/RecursoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/RecursoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ReservaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/UsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UsuarioView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
