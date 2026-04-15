@@ -9,7 +9,7 @@ idUsuario INT UNSIGNED AUTO_INCREMENT,
 nombre VARCHAR(100) NOT NULL,
 email VARCHAR(100) NOT NULL,
 fechaNacimiento DATE NOT NULL,
-tipoUsuario ENUM('Administrador', 'Normal') NOT NULL,
+tipoUsuario ENUM('administrador', 'normal') NOT NULL,
 contrasena VARCHAR(100) NOT NULL,
 dni VARCHAR(9) NOT NULL,
 fechaRegistro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -49,7 +49,7 @@ CONSTRAINT PK_REC PRIMARY KEY (idRecurso)
 
 CREATE OR REPLACE TABLE horario (
 idHorario INT  UNSIGNED AUTO_INCREMENT, 
-diaSemana ENUM('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo') NOT NULL,
+diaSemana ENUM('lunes','martes','miercoles','jueves','viernes','sabado','domingo') NOT NULL,
 horaInicio TIME NOT NULL,
 horaFin TIME NOT NULL,
 CONSTRAINT PK_HOR PRIMARY KEY (idHorario),

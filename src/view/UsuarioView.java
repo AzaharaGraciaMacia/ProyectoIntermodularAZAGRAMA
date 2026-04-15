@@ -21,7 +21,7 @@ public class UsuarioView {
     public void mostrarUsuarios(List<Usuario> usuarios) {
         System.out.println("Lista de Usuarios:");
         // Cabecera
-        System.out.printf("%-5s %-15s %-15s %-12s %-15s %-15s %-12s %-12s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Tipo de Usuario","Contraseña", "DNI", "Fecha de Registro" );
+        System.out.printf("%-5s %-30s %-30s %-25s %-25s %-30s %-12s %-50s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Tipo de Usuario","Contraseña", "DNI", "Fecha de Registro" );
 
         System.out.println("---------------------------------------------------------------------");
 
@@ -31,7 +31,7 @@ public class UsuarioView {
     public void mostrarUsuariosNormales(List<UsuarioNormal> usuariosNormales) {
         System.out.println("Lista de Usuarios:");
         // Cabecera
-        System.out.printf("%-5s %-15s %-15s %-12s %-15s %-15s %-12s %-15s %-15s %-15s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Dirección", "Teléfono Móvil", "Fotografía" );
+        System.out.printf("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-50s %-15s %-15s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Dirección", "Teléfono Móvil", "Fotografía" );
 
         System.out.println("---------------------------------------------------------------------");
 
@@ -41,7 +41,7 @@ public class UsuarioView {
     public void mostrarAdministradores(List<Administrador> administradores) {
         System.out.println("Lista de Usuarios:");
         // Cabecera
-        System.out.printf("%-5s %-15s %-15s %-12s %-15s %-12s %-12s %-12s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Teléfono de Guardia" );
+        System.out.printf("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-12s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Teléfono de Guardia" );
 
         System.out.println("---------------------------------------------------------------------");
 
@@ -119,12 +119,8 @@ public class UsuarioView {
         return scanner.nextLine();
     }
 
-    public Usuario obtenerDatosActualizados() {
-        String direccion = null;
-        String telefono = null;
-        String fotografia = null;
-        System.out.println("Introduce el DNI:");
-        String dni = scanner.nextLine();
+    public Usuario obtenerDatosActualizados(Usuario usuario) {
+
         System.out.println("Introduce el nombre completo:");
         String nombre = scanner.nextLine();
         System.out.println("Introduce el nuevo email:");
@@ -135,31 +131,36 @@ public class UsuarioView {
         TipoUsuario tipoUsuario = TipoUsuario.valueOf(scanner.nextLine());
         System.out.println("Introduce la fecha de nacimiento (DD/MM/YYYY):");
         Date fechaNacimiento = Date.valueOf(scanner.nextLine());
-        if (tipoUsuario == TipoUsuario.valueOf("normal")){
 
-            System.out.println("Introduce la dirección (escribe OMITIR si no deseas aportar el dato): ");
-            String respuesta = scanner.nextLine();
-            OmitirRespuesta(respuesta.toUpperCase());
-            if (!omitirRespuesta) direccion = respuesta;
+        return new Usuario(usuario.getDni(), nombre, email, contrasena, tipoUsuario, fechaNacimiento, usuario.getIdUsuario(), usuario.getFechaRegistro());
 
-            System.out.println("Introduce el teléfono móvil (escribe OMITIR si no deseas aportar el dato): ");
-            String respuesta2 = scanner.nextLine();
-            OmitirRespuesta(respuesta2.toUpperCase());
-            if (!omitirRespuesta) telefono = respuesta;
+    }
+    public UsuarioNormal obtenerDatosActualizadosUsuarioNormal(Usuario usuario) {
+        String direccion = null;
+        String telefono = null;
+        String fotografia = null;
+        System.out.println("Introduce la nueva dirección (escribe OMITIR si no deseas aportar el dato): ");
+        String respuesta = scanner.nextLine();
+        OmitirRespuesta(respuesta.toUpperCase());
+        if (!omitirRespuesta) direccion = respuesta;
 
-            System.out.println("Introduce el enlace de fotografía (escribe OMITIR si no deseas aportar el dato): ");
-            String respuesta3 = scanner.nextLine();
-            OmitirRespuesta(respuesta3.toUpperCase());
-            if (!omitirRespuesta) fotografia = respuesta;
+        System.out.println("Introduce el nuevo teléfono móvil (escribe OMITIR si no deseas aportar el dato): ");
+        String respuesta2 = scanner.nextLine();
+        OmitirRespuesta(respuesta2.toUpperCase());
+        if (!omitirRespuesta) telefono = respuesta;
 
-            return new UsuarioNormal(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento, 0, null, direccion, telefono, fotografia);
+        System.out.println("Introduce el nuevo enlace de fotografía (escribe OMITIR si no deseas aportar el dato): ");
+        String respuesta3 = scanner.nextLine();
+        OmitirRespuesta(respuesta3.toUpperCase());
+        if (!omitirRespuesta) fotografia = respuesta;
 
-        } else {
-            System.out.println("Introduce el teléfono de guardia: ");
-            String telefonoGuardia = scanner.nextLine();
+        return new UsuarioNormal(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), direccion, telefono, fotografia);
+    }
+    public Administrador obtenerDatosActualizadosAdministrador(Usuario usuario) {
+        System.out.println("Introduce el nuevo teléfono de guardia: ");
+        String telefonoGuardia = scanner.nextLine();
 
-            return new Administrador(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento, 0, null, telefonoGuardia);
-        }
+        return new Administrador(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), telefonoGuardia);
     }
 
     public void mostrarMensaje(String mensaje) {

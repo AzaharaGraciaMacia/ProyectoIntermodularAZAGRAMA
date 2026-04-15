@@ -38,4 +38,9 @@ public class UsuarioNormal extends Usuario {
     public void setFotografia(String fotografia) {
         this.fotografia = fotografia;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-50s %-15s %-15s\n", super.getDni(), super.getNombre(), super.getEmail(), super.getFechaNacimiento(), super.getContrasena(), super.getDni(), super.getFechaRegistro(), direccion, tlfMovil, fotografia);
+    }
 }

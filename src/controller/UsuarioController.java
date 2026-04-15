@@ -81,6 +81,8 @@ public class UsuarioController {
     public void crearUsuario() {
         try {
             Usuario usuario=usuarioView.crearUsuario();
+            int idUsuario = usuarioDAO.insertUsuario(usuario);
+            usuario.setIdUsuario(idUsuario);
             if (usuario.getTipoUsuario() == TipoUsuario.valueOf("normal")){
                 crearUsuarioNormal(usuario);
             } else{
@@ -94,7 +96,7 @@ public class UsuarioController {
     public void crearUsuarioNormal(Usuario usuario) {
         try {
             UsuarioNormal usuarioNormal=usuarioView.crearUsuarioNormal(usuario);
-            usuarioDAO.insertUsuario(usuarioNormal);
+            usuarioNormalDAO.insertUsuarioNormal(usuarioNormal);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,8 +111,15 @@ public class UsuarioController {
     }
     public void actualizarUsuario() {
         try {
-            Usuario usuario=usuarioView.obtenerDatosActualizados();
+            String dni = usuarioView.obtenerDni();
+            Usuario usuario = usuarioDAO.getUsuarioByDni(dni);
+            usuarioView.obtenerDatosActualizados(usuario);
             usuarioDAO.updateUsuario(usuario);
+            if (usuario.getTipoUsuario() == TipoUsuario.valueOf("normal")){
+                usuarioView.obtenerDatosActualizadosUsuarioNormal(usuario);
+            } else{
+                usuarioView.obtenerDatosActualizadosAdministrador(usuario);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

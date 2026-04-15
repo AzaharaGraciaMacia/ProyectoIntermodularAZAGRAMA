@@ -3,10 +3,7 @@ package dao;
 import model.TipoUsuario;
 import model.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +30,7 @@ public class UsuarioDAO {
     // Consultas SQL predefinidas para operaciones CRUD
     private static final String INSERT_QUERY = "INSERT INTO usuario (nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM usuario";
-    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM uuario WHERE dni = ?";
+    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM usuario WHERE dni = ?";
     private static final String UPDATE_QUERY = "UPDATE usuario SET nombre = ?, email = ?, fechaNacimiento = ?, contrasena = ? WHERE dni = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuario WHERE dni = ?";
     private static final String TOTAL_USUARIOS_QUERY = "SELECT COUNT(*) FROM usuario";
@@ -49,16 +46,29 @@ public class UsuarioDAO {
         return instance;
     }
 
-    public void insertUsuario(Usuario usuario) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(INSERT_QUERY)) {
+    public int insertUsuario(Usuario usuario) throws SQLException {
+        int id = -1;
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_QUERY,  Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, usuario.getNombre());
             statement.setString(2, usuario.getEmail());
             statement.setString(5, usuario.getContrasena());
             statement.setDate(3, usuario.getFechaNacimiento());
             statement.setString(4, usuario.getTipoUsuario().toString());
             statement.setString(6, usuario.getDni());
-            statement.executeUpdate();
+            int filas = statement.executeUpdate();
+
+            if (filas > 0) {
+                try {
+                    ResultSet generatedKeys = statement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        id = generatedKeys.getInt(1);
+                    }
+                } catch (SQLException e) {
+                    throw e;
+                }
+            }
         }
+        return id;
     }
 
     public List<Usuario> getAllUsuarios() throws SQLException {

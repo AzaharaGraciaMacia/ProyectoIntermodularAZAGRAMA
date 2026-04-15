@@ -119,4 +119,9 @@ public class Reserva {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-15s %-15s %-15s %-15s %-10s %-10s %-10s %-15s %-50s %-100s\n", idReserva, idRecurso, idUsuario, fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
+    }
 }

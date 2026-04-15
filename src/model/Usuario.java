@@ -88,4 +88,9 @@ public class Usuario
     public void setFechaRegistro(Timestamp fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+
+    @Override
+public String toString() {
+    return String.format("%-5s %-30s %-30s %-25s %-25s %-30s %-12s %-50s\n", idUsuario, nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni , fechaRegistro);
+}
 }
