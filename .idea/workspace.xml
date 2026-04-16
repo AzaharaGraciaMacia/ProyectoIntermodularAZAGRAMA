@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="Bug de carpeta .idea">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql-connector-j-9.6.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_9_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoIntermodularAZAGRAMA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoIntermodularAZAGRAMA.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HorarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HorarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/RecursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RecursoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/HorarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/HorarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ReservaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Horario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Horario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Recurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Recurso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ConsolaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ConsolaView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/HorarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HorarioView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/RecursoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/RecursoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ReservaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ReservaView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/UsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UsuarioView.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AzaharaGraciaMacia&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AzaharaGraciaMacia/ProyectoIntermodularAZAGRAMA.git&quot;,
+    &quot;accountId&quot;: &quot;ca4ece73-b913-4b52-a79b-c892ae2ff0f9&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3CQYLHzJuJ0NIlktavjQ5rCHJmS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "feature/developing",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.25862068",
+    "settings.editor.selected.configurable": "editor.preferences.import"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="" />
+      <created>1776319205033</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776319205033</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Bug de carpeta .idea">
+      <option name="closed" value="true" />
+      <created>1776319316331</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776319316331</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bug de carpeta .idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug de carpeta .idea" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/UsuarioController.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dao/HorarioDAO.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/dao/HorarioDAO.java</url>
+          <line>65</line>
+          <properties class="dao.HorarioDAO" method="getAllHorarios">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
