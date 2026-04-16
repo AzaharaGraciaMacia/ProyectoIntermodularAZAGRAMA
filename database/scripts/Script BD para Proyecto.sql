@@ -127,7 +127,7 @@ INSERT INTO recurso (idRecurso,nombre,descripcion,ubicacion,capacidad) VALUES
 INSERT INTO horario (diaSemana,horaInicio,horaFin) VALUES 
 ('Martes','18:00','20:00'),
 ('Viernes','17:00','21:00'),
-('Sábado','20:00','24:00'),
+('Sábado','20:00','23:59'),
 ('Domingo','10:00','13:30'),
 ('Sábado','10:00','12:00');
 
@@ -139,7 +139,7 @@ INSERT INTO disponibleen (idRecurso,idHorario) VALUES
 ('5F',3);
 
 INSERT INTO reserva (idRecurso,idUsuario,fecha,horaInicio,horaFin,coste,numeroPlazas,motivo,observaciones) VALUES
-('5F',2,'2025-12-06','20:00','24:00',25380.57,100,'Boda','Alergia a cacahuetes'),
+('5F',2,'2025-12-06','20:00','23:59',25380.57,100,'Boda','Alergia a cacahuetes'),
 ('2G',3,'2025-12-02','18:00','19:00',13.50,2,'Partido',NULL),
 ('1F',4,'2025-12-05','18:00','19:00',20.24,3,'Fiesta de empresa',NULL),
 ('3F',9,'2025-12-07','10:00','13:30',351.26,10,'Despedida de soltero','Regalo para el novio'),

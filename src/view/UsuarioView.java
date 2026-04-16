@@ -20,30 +20,30 @@ public class UsuarioView {
 
     public void mostrarUsuarios(List<Usuario> usuarios) {
         System.out.println("Lista de Usuarios:");
-        // Cabecera
+
         System.out.printf("%-5s %-30s %-30s %-25s %-25s %-30s %-12s %-50s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Tipo de Usuario","Contraseña", "DNI", "Fecha de Registro" );
 
-        System.out.println("---------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         usuarios.forEach(System.out::println);
     }
 
     public void mostrarUsuariosNormales(List<UsuarioNormal> usuariosNormales) {
-        System.out.println("Lista de Usuarios:");
-        // Cabecera
+        System.out.println("Lista de Usuarios Normales:");
+
         System.out.printf("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-50s %-15s %-15s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Dirección", "Teléfono Móvil", "Fotografía" );
 
-        System.out.println("---------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         usuariosNormales.forEach(System.out::println);
     }
 
     public void mostrarAdministradores(List<Administrador> administradores) {
-        System.out.println("Lista de Usuarios:");
-        // Cabecera
+        System.out.println("Lista de Administradores:");
+
         System.out.printf("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-12s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Teléfono de Guardia" );
 
-        System.out.println("---------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         administradores.forEach(System.out::println);
     }
@@ -190,6 +190,19 @@ public class UsuarioView {
             System.out.println(administrador);
         else
             System.out.println("La persona no existe");
+    }
+
+    public void mostrarMenu() {
+        ConsolaView.limpiarPantalla();
+        ConsolaView.mostrarTitulo("GESTIÓN DE USUARIOS");
+        System.out.println("1. Alta de usuario");
+        System.out.println("2. Baja de usuario");
+        System.out.println("3. Modificar usuario");
+        System.out.println("4. Listar todos los usuarios");
+        System.out.println("5. Listar todos los administradores");
+        System.out.println("6. Listar todos los usuarios normales");
+        System.out.println("7. Mostrar usuario por DNI");
+        System.out.println("0. Volver");
     }
 
  }

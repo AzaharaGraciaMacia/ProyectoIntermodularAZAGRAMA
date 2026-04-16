@@ -16,10 +16,10 @@ public class ReservaView {
 
     public void mostrarReservas(List<Reserva> reservas) {
         System.out.println("Lista de Reservas:");
-        // Cabecera
+
         System.out.printf("%-15s %-15s %-15s %-15s %-10s %-10s %-10s %-15s %-50s %-100s\n","ID de Reserva" , "ID de Recurso" , "ID de Usuario" , "Fecha de Reserva" , "Hora de Inicio", "Hora de Fin", "Coste (€)", "Número de Plazas", "Motivo", "Observaciones");
 
-        System.out.println("---------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         reservas.forEach(System.out::println);
 
@@ -79,22 +79,32 @@ public class ReservaView {
         System.out.println(mensaje);
     }
 
-    public String obtenerIdReserva() {
+    public int obtenerIdReserva() {
         System.out.println("Introduce el ID de la reserva:");
-        return scanner.nextLine();
+        return scanner.nextInt();
     }
-    public String obtenerIdUsuario() {
+    public String obtenerDNIUsuario() {
         System.out.println("Introduce el DNI del usuario:");
         return scanner.nextLine();
     }
 
-    //muestra los datos de la persona
     public void mostrarReserva(Reserva reserva) {
         if (reserva != null)
             System.out.println(reserva.toString());
         else
-            System.out.println("La persona no existe");
+            System.out.println("La reserva no existe");
     }
 
-    // Otros métodos de la vista...
+    public void mostrarMenu() {
+        ConsolaView.limpiarPantalla();
+        ConsolaView.mostrarTitulo("GESTIÓN DE RESERVAS");
+        System.out.println("1. Alta reserva");
+        System.out.println("2. Baja reserva");
+        System.out.println("3. Modificar reserva");
+        System.out.println("4. Listar todas las reservas");
+        System.out.println("5. Mostrar reserva por id");
+        System.out.println("6. Listar reservas por DNI de Usuario");
+        System.out.println("0. Volver");
+    }
+
 }

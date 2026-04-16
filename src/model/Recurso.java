@@ -54,4 +54,9 @@ public class Recurso {
     public void setCapacidadRecurso(int capacidadRecurso) {
         this.capacidadRecurso = capacidadRecurso;
     }
+
+    @Override
+    public String toString() {
+       return String.format("%-25s %-30s %-50s %-30s %-20s\n", idRecurso, nombreRecurso, descripcion, ubicacionRecurso, capacidadRecurso);
+    }
 }

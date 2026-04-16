@@ -76,17 +76,18 @@ public class ReservaDAO {
         return reservas;
     }
 
-    public Reserva getReservaByDni(String dni) throws SQLException {
-        Reserva reserva = null;
+    public List<Reserva> getReservasByDni(String dni) throws SQLException {
+        List<Reserva> reservas = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SELECT_BY_DNI_USUARIO_QUERY)) {
             statement.setString(1, dni);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                reserva = resultSetToReserva(resultSet);
+            while (resultSet.next()) {
+                reservas.add(resultSetToReserva(resultSet));
             }
         }
-        return reserva;
+        return reservas;
     }
+
     public Reserva getReservaById(int idReserva) throws SQLException {
         Reserva reserva = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID_RESERVA_QUERY)) {
@@ -123,7 +124,9 @@ public class ReservaDAO {
 
     private Reserva resultSetToReserva(ResultSet resultSet) throws SQLException {
         return new Reserva(
+
                 resultSet.getString("idRecurso"),
+                resultSet.getInt("idReservaLocal"),
                 resultSet.getInt("idUsuario"),
                 resultSet.getDate("fecha"),
                 resultSet.getTime("horaInicio"),

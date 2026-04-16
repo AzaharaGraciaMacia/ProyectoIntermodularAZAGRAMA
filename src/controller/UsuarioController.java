@@ -7,6 +7,7 @@ import model.Administrador;
 import model.TipoUsuario;
 import model.Usuario;
 import model.UsuarioNormal;
+import view.ConsolaView;
 import view.UsuarioView;
 
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ public class UsuarioController {
     private UsuarioNormalDAO usuarioNormalDAO;
     private AdministradorDAO administradorDAO;
     private UsuarioView usuarioView;
+    private ConsolaView consolaView;
 
     public UsuarioController() {
         // Crear conexión a la base de datos
@@ -24,6 +26,7 @@ public class UsuarioController {
         usuarioNormalDAO = UsuarioNormalDAO.getInstance();
         administradorDAO = AdministradorDAO.getInstance();
         usuarioView = new UsuarioView();
+        consolaView = new ConsolaView();
     }
 
     public void mostrarTodosLosUsuarios() {
@@ -31,7 +34,7 @@ public class UsuarioController {
             List<Usuario> usuarios = usuarioDAO.getAllUsuarios();
             usuarioView.mostrarUsuarios(usuarios);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
     public void mostrarTodosLosUsuariosNormales() {
@@ -39,7 +42,7 @@ public class UsuarioController {
             List<UsuarioNormal> usuariosNormales = usuarioNormalDAO.getAllUsuariosNormales();
             usuarioView.mostrarUsuariosNormales(usuariosNormales);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
     public void mostrarTodosLosAdministradores() {
@@ -47,7 +50,7 @@ public class UsuarioController {
             List<Administrador> administradores = administradorDAO.getAllAdministradores();
             usuarioView.mostrarAdministradores(administradores);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
     public void mostrarUsuarioDNI() {
@@ -56,7 +59,7 @@ public class UsuarioController {
             Usuario usuario = usuarioDAO.getUsuarioByDni(dni);
             usuarioView.mostrarUsuario(usuario);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
     public void mostrarUsuarioNormalDNI() {
@@ -65,7 +68,7 @@ public class UsuarioController {
             UsuarioNormal usuarioNormal = usuarioNormalDAO.getUsuarioNormalByDni(dni);
             usuarioView.mostrarUsuarioNormal(usuarioNormal);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
     public void mostrarAdministradorDNI() {
@@ -74,7 +77,7 @@ public class UsuarioController {
             Administrador administrador = administradorDAO.getAdministradorByDni(dni);
             usuarioView.mostrarAdministrador(administrador);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
 
@@ -89,7 +92,7 @@ public class UsuarioController {
                 crearAdministrador(usuario);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
 
     }
@@ -98,7 +101,7 @@ public class UsuarioController {
             UsuarioNormal usuarioNormal=usuarioView.crearUsuarioNormal(usuario);
             usuarioNormalDAO.insertUsuarioNormal(usuarioNormal);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
     public void crearAdministrador(Usuario usuario) {
@@ -106,32 +109,57 @@ public class UsuarioController {
             Administrador administrador=usuarioView.crearAdministrador(usuario);
             administradorDAO.insertAdministrador(administrador);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
     public void actualizarUsuario() {
         try {
             String dni = usuarioView.obtenerDni();
             Usuario usuario = usuarioDAO.getUsuarioByDni(dni);
-            usuarioView.obtenerDatosActualizados(usuario);
-            usuarioDAO.updateUsuario(usuario);
+            Usuario usuarioActualizado = usuarioView.obtenerDatosActualizados(usuario);
+            usuarioDAO.updateUsuario(usuarioActualizado);
             if (usuario.getTipoUsuario() == TipoUsuario.valueOf("normal")){
-                usuarioView.obtenerDatosActualizadosUsuarioNormal(usuario);
+                UsuarioNormal usuarioNormalActualizado = usuarioView.obtenerDatosActualizadosUsuarioNormal(usuarioActualizado);
+                usuarioNormalDAO.updateUsuarioNormal(usuarioNormalActualizado);
             } else{
-                usuarioView.obtenerDatosActualizadosAdministrador(usuario);
+               Administrador administradorActualizado = usuarioView.obtenerDatosActualizadosAdministrador(usuarioActualizado);
+               administradorDAO.updateAdministrador(administradorActualizado);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
 
-    public void eliminarUsuario() {
+    public void eliminarUsuario () {
         try {
             String dni=usuarioView.obtenerDniAEliminar();
             usuarioDAO.deleteUsuarioByDni(dni);
         } catch (SQLException e) {
-            e.printStackTrace();
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
+    }
+
+    public void iniciar() {
+        int opcion;
+
+        do {
+            usuarioView.mostrarMenu();
+            opcion = consolaView.leerEntero("Opción: ");
+
+                switch (opcion) {
+
+                    case 1 -> crearUsuario();
+                    case 2 -> eliminarUsuario();
+                    case 3 -> actualizarUsuario();
+                    case 4 -> mostrarTodosLosUsuarios();
+                    case 5 -> mostrarTodosLosAdministradores();
+                    case 6 -> mostrarTodosLosUsuariosNormales();
+                    case 7 -> mostrarUsuarioDNI();
+                    case 0 -> consolaView.mostrar("Volviendo...");
+                    default -> consolaView.mostrar("Opción no válida.");
+                }
+
+        } while (opcion != 0);
     }
 
 }

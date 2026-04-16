@@ -1,5 +1,7 @@
 package dao;
 
+import view.ConsolaView;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,7 +23,7 @@ public class DBConnection {
                         connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
                     } catch ( SQLException e) {
-                        e.printStackTrace();
+                        ConsolaView.mostrar("Error de base de datos: " + e.getMessage());
                     }
             }
         }
@@ -34,7 +36,7 @@ public class DBConnection {
                 connection.close();
                 connection = null;
             } catch (SQLException e) {
-                e.printStackTrace();
+                ConsolaView.mostrar("Error de base de datos: " + e.getMessage());
             }
         }
     }

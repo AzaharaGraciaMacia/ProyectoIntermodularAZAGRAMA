@@ -52,4 +52,9 @@ public class Horario {
     public void setHoraFin(Time horaFin) {
         HoraFin = horaFin;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-15s %-30s %-25s %-25s\n", idHorario, diaSemana, HoraInicio, HoraFin);
+    }
 }
