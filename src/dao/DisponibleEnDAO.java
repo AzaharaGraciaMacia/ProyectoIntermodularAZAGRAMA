@@ -27,7 +27,7 @@ public class DisponibleEnDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM disponibleEn";
     private static final String SELECT_BY_RECURSO_QUERY = "SELECT * FROM disponibleEn WHERE idRecurso = ?";
     private static final String SELECT_BY_HORARIO_QUERY = "SELECT * FROM disponibleEn WHERE idHorario = ?";
-    private static final String UPDATE_QUERY = "UPDATE disponibleEn SET idHorario = ? FROM disponibleEn WHERE idRecurso = ?";
+    private static final String UPDATE_QUERY = "UPDATE disponibleEn SET idHorario = ? WHERE idRecurso = ?";
     private static final String DELETE_QUERY = "DELETE FROM disponibleEn WHERE idRecurso = ? AND idHorario = ?";
     private static final String TOTAL_DISPONIBILIDADES_QUERY = "SELECT COUNT(*) FROM disponibleEn";
 

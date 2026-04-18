@@ -35,7 +35,7 @@ public class ReservaDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM reserva";
     private static final String SELECT_BY_DNI_USUARIO_QUERY = "SELECT * FROM reserva r INNER JOIN usuario u ON r.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String SELECT_BY_ID_RESERVA_QUERY = "SELECT * FROM reserva r WHERE idReservaLocal = ?";
-    private static final String UPDATE_QUERY = "UPDATE reserva SET idRecurso = ?, fecha = ?, horaInicio = ?, horaFin = ?, coste = ?, numeroPlazas = ?, motivo = ?, observaciones = ? FROM reserva WHERE idReservaLocal = ?";
+    private static final String UPDATE_QUERY = "UPDATE reserva SET idRecurso = ?, fecha = ?, horaInicio = ?, horaFin = ?, coste = ?, numeroPlazas = ?, motivo = ?, observaciones = ? WHERE idReservaLocal = ?";
     private static final String DELETE_QUERY = "DELETE FROM reserva WHERE idReservaLocal = ?";
     private static final String TOTAL_RESERVAS_QUERY = "SELECT COUNT(*) FROM reserva";
 

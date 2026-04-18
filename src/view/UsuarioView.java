@@ -9,14 +9,9 @@ import model.UsuarioNormal;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Scanner;
 
 public class UsuarioView {
-    public Scanner scanner;
 
-    public UsuarioView() {
-        scanner = new Scanner(System.in);
-    }
 
     public void mostrarUsuarios(List<Usuario> usuarios) {
         System.out.println("Lista de Usuarios:");
@@ -48,89 +43,140 @@ public class UsuarioView {
         administradores.forEach(System.out::println);
     }
 
-    public boolean omitirRespuesta = false;
-    public void OmitirRespuesta(String respuesta) {
-        if (respuesta.equals("OMITIR")) {
-            omitirRespuesta = true;
-        }
-    }
-
     public Usuario crearUsuario() throws SQLException {
         boolean entradaValida = false;
         //comprobamos que no exista un usuario con el mismo DNI
         String dni="";
+
         while (!entradaValida) {
-            System.out.println("Introduce el DNI:");
-            dni = scanner.nextLine().toUpperCase();
-            try {
-                Usuario usuarioDuplicado = UsuarioDAO.getInstance().getUsuarioByDni(dni);
-                if (usuarioDuplicado==null)//no existe
-                    entradaValida = true;
-                else
-                    System.out.println("Error: el usuario ya existe.");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            dni = ConsolaView.leerTexto("Introduce el DNI:").toUpperCase();
+            if(ConsolaView.comprobarDNI(dni)) {
+                try {
+                    Usuario usuarioDuplicado = UsuarioDAO.getInstance().getUsuarioByDni(dni);
+                    if (usuarioDuplicado == null)
+                        entradaValida = true;
+                    else
+                        System.out.println("Error: el usuario ya existe.");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e); //Lanzamos el error en forma de unchecked para manejarlo después
+                }
+            } else {System.out.println("Error: DNI incorrecto.");}
+        }
+        String nombre = ConsolaView.leerTexto("Introduce el nombre completo:");
+        String email = null;
+        boolean emailValido = false;
+        while (!emailValido){
+            String emailAportado = ConsolaView.leerTexto("Introduce el email:");
+            if (!ConsolaView.validarEmail(emailAportado)) {
+                System.out.println("Error: email incorrecto.");
+            } else {
+                email = emailAportado;
+                emailValido = true;
             }
         }
-        System.out.println("Introduce el nombre completo:");
-        String nombre = scanner.nextLine();
-        System.out.println("Introduce el email:");
-        String email = scanner.nextLine();
-        System.out.println("Introduce la contraseña:");
-        String contrasena = scanner.nextLine();
-        System.out.println("Introduce el tipo de usuario (Normal o Administrador): ");
-        TipoUsuario tipoUsuario = TipoUsuario.valueOf(scanner.nextLine().toLowerCase());
-        System.out.println("Introduce la fecha de nacimiento (DD/MM/YYYY):");
-        Date fechaNacimiento = Date.valueOf(scanner.nextLine());
+        String contrasena = ConsolaView.leerTexto("Introduce la contraseña:");
+        TipoUsuario tipoUsuario = null;
+        boolean tipoValido = false;
+        while (!tipoValido) {
+            String respuestaTipo = ConsolaView.leerTexto("Introduce el tipo de usuario (Normal o Administrador): ").toLowerCase();
+            tipoUsuario = ConsolaView.ComprobarTipoUsuario(respuestaTipo);
+            if (tipoUsuario != null)
+                tipoValido = true;
+            else
+                System.out.println("Tipo no válido.");
+        }
+        Date fechaNacimiento = null;
+        boolean fechaValida = false;
+        while (!fechaValida) {
+            String fecha = ConsolaView.leerTexto("Introduce la fecha de nacimiento (dd/MM/yyyy):");
+            fechaNacimiento = ConsolaView.validarYFormatearFecha(fecha);
+            if (fechaNacimiento != null)
+                fechaValida = true;
+            else
+                System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
+        }
 
         return new Usuario(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento, 0, null);
-
     }
+
     public UsuarioNormal crearUsuarioNormal(Usuario usuario) {
         String direccion = null;
         String telefono = null;
         String fotografia = null;
-        System.out.println("Introduce la dirección (escribe OMITIR si no deseas aportar el dato): ");
-        String respuesta = scanner.nextLine();
-        OmitirRespuesta(respuesta.toUpperCase());
-        if (!omitirRespuesta) direccion = respuesta;
+        String respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce la dirección (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            direccion = respuesta;
+        }
 
-        System.out.println("Introduce el teléfono móvil (escribe OMITIR si no deseas aportar el dato): ");
-        String respuesta2 = scanner.nextLine();
-        OmitirRespuesta(respuesta2.toUpperCase());
-        if (!omitirRespuesta) telefono = respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce el teléfono móvil (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            telefono = respuesta;
+        }
 
-        System.out.println("Introduce el enlace de fotografía (escribe OMITIR si no deseas aportar el dato): ");
-        String respuesta3 = scanner.nextLine();
-        OmitirRespuesta(respuesta3.toUpperCase());
-        if (!omitirRespuesta) fotografia = respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce el enlace de fotografía (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            fotografia = respuesta;
+        }
 
-        return new UsuarioNormal(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), 0, null, direccion, telefono, fotografia);
+        return new UsuarioNormal(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), direccion, telefono, fotografia);
 
     }
     public Administrador crearAdministrador(Usuario usuario) {
-        System.out.println("Introduce el teléfono de guardia: ");
-        String telefonoGuardia = scanner.nextLine();
+        String telefonoGuardia = ConsolaView.leerTexto("Introduce el teléfono de guardia: ");
 
-        return new Administrador(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), 0, null, telefonoGuardia);
+        return new Administrador(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), telefonoGuardia);
     }
     public String obtenerDniAEliminar() {
-        System.out.println("Introduce el DNI del usuario a eliminar:");
-        return scanner.nextLine();
+        String dni = ConsolaView.leerTexto("Introduce el DNI del usuario a eliminar:").toUpperCase();
+        while(!ConsolaView.comprobarDNI(dni)) {
+            System.out.println("Error: DNI incorrecto.");
+        }
+        return dni;
     }
 
     public Usuario obtenerDatosActualizados(Usuario usuario) {
 
-        System.out.println("Introduce el nombre completo:");
-        String nombre = scanner.nextLine();
-        System.out.println("Introduce el nuevo email:");
-        String email = scanner.nextLine();
-        System.out.println("Introduce la nueva contraseña:");
-        String contrasena = scanner.nextLine();
-        System.out.println("Introduce el tipo de usuario:");
-        TipoUsuario tipoUsuario = TipoUsuario.valueOf(scanner.nextLine());
-        System.out.println("Introduce la fecha de nacimiento (DD/MM/YYYY):");
-        Date fechaNacimiento = Date.valueOf(scanner.nextLine());
+        String nombre = ConsolaView.leerTexto("Introduce el nombre completo:");
+        String email = null;
+        boolean emailValido = false;
+        while (!emailValido){
+            String emailAportado = ConsolaView.leerTexto("Introduce el nuevo email:");
+            if (!ConsolaView.validarEmail(emailAportado)) {
+                System.out.println("Error: email incorrecto.");
+            } else {
+                email = emailAportado;
+                emailValido = true;
+            }
+        }
+        String contrasena = ConsolaView.leerTexto("Introduce la nueva contraseña:");
+        TipoUsuario tipoUsuario = null;
+        boolean tipoValido = false;
+        while (!tipoValido) {
+            String respuestaTipo = ConsolaView.leerTexto("Introduce el tipo de usuario (Normal o Administrador): ").toLowerCase();
+            tipoUsuario = ConsolaView.ComprobarTipoUsuario(respuestaTipo);
+            if (tipoUsuario != null)
+                tipoValido = true;
+            else
+                System.out.println("Tipo no válido.");
+        }
+
+        Date fechaNacimiento = null;
+        boolean fechaValida = false;
+        while (!fechaValida) {
+            String fecha = ConsolaView.leerTexto("Introduce la nueva fecha de nacimiento (dd/MM/yyyy):");
+            fechaNacimiento = ConsolaView.validarYFormatearFecha(fecha);
+            if (fechaNacimiento != null)
+                fechaValida = true;
+            else
+                System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
+        }
 
         return new Usuario(usuario.getDni(), nombre, email, contrasena, tipoUsuario, fechaNacimiento, usuario.getIdUsuario(), usuario.getFechaRegistro());
 
@@ -139,40 +185,44 @@ public class UsuarioView {
         String direccion = null;
         String telefono = null;
         String fotografia = null;
-        System.out.println("Introduce la nueva dirección (escribe OMITIR si no deseas aportar el dato): ");
-        String respuesta = scanner.nextLine();
-        OmitirRespuesta(respuesta.toUpperCase());
-        if (!omitirRespuesta) direccion = respuesta;
+        String respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce la nueva dirección (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            direccion = respuesta;
+        }
 
-        System.out.println("Introduce el nuevo teléfono móvil (escribe OMITIR si no deseas aportar el dato): ");
-        String respuesta2 = scanner.nextLine();
-        OmitirRespuesta(respuesta2.toUpperCase());
-        if (!omitirRespuesta) telefono = respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce el nuevo teléfono móvil (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            telefono = respuesta;
+        }
 
-        System.out.println("Introduce el nuevo enlace de fotografía (escribe OMITIR si no deseas aportar el dato): ");
-        String respuesta3 = scanner.nextLine();
-        OmitirRespuesta(respuesta3.toUpperCase());
-        if (!omitirRespuesta) fotografia = respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce el nuevo enlace de fotografía (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            fotografia = respuesta;
+        }
 
         return new UsuarioNormal(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), direccion, telefono, fotografia);
     }
     public Administrador obtenerDatosActualizadosAdministrador(Usuario usuario) {
-        System.out.println("Introduce el nuevo teléfono de guardia: ");
-        String telefonoGuardia = scanner.nextLine();
+        String telefonoGuardia = ConsolaView.leerTexto("Introduce el nuevo teléfono de guardia: ");
 
         return new Administrador(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), telefonoGuardia);
     }
 
-    public void mostrarMensaje(String mensaje) {
-        System.out.println(mensaje);
-    }
-
     public String obtenerDni() {
-        System.out.println("Introduce el DNI del usuario:");
-        return scanner.nextLine();
+        String dni = ConsolaView.leerTexto("Introduce el DNI del usuario:").toUpperCase();
+        while(!ConsolaView.comprobarDNI(dni)) {
+            System.out.println("Error: DNI incorrecto.");
+        }
+        return dni;
     }
 
-    //muestra los datos del usuario
     public void mostrarUsuario(Usuario usuario) {
         if (usuario != null)
             System.out.println(usuario);

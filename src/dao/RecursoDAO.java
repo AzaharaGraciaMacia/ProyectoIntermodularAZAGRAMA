@@ -28,7 +28,7 @@ public class RecursoDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM recurso";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Horario WHERE idRecurso = ?";
     private static final String SELECT_BY_NOMBRE_QUERY = "SELECT * FROM Horario WHERE nombre = ?";
-    private static final String UPDATE_QUERY = "UPDATE recurso SET nombre = ?, descripcion = ?, ubicacion = ?, capacidad = ? FROM recurso WHERE idRecurso = ?";
+    private static final String UPDATE_QUERY = "UPDATE recurso SET nombre = ?, descripcion = ?, ubicacion = ?, capacidad = ? WHERE idRecurso = ?";
     private static final String DELETE_QUERY = "DELETE FROM recurso WHERE idRecurso = ?";
     private static final String TOTAL_RECURSOS_QUERY = "SELECT COUNT(*) FROM recurso";
 

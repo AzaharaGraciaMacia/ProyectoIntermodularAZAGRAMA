@@ -8,6 +8,8 @@ public class UsuarioNormal extends Usuario {
     private String tlfMovil;
     private String fotografia;
 
+
+
     public UsuarioNormal(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario, Timestamp fechaRegistro, String direccion, String tlfMovil, String fotografia) {
         super(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento, idUsuario, fechaRegistro);
         this.direccion = direccion;

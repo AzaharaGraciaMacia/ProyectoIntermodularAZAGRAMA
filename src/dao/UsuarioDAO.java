@@ -12,7 +12,6 @@ public class UsuarioDAO {
     private static UsuarioDAO instance;
     private Connection connection;
 
-    //Sentencia SQL para crear la tabla si no existe
     public static final String CREATE_TABLE_USUARIO = """
     CREATE TABLE IF NOT EXISTS `usuario`(
     `idUsuario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -27,7 +26,7 @@ public class UsuarioDAO {
                     unique key(`dni`,`email`)
 );
 """;
-    // Consultas SQL predefinidas para operaciones CRUD
+
     private static final String INSERT_QUERY = "INSERT INTO usuario (nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM usuario";
     private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM usuario WHERE dni = ?";
