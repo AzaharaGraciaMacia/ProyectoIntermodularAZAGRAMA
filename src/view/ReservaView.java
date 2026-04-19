@@ -5,14 +5,8 @@ import model.Reserva;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
-import java.util.Scanner;
 
 public class ReservaView {
-    public Scanner scanner;
-
-    public ReservaView() {
-        scanner = new Scanner(System.in);
-    }
 
     public void mostrarReservas(List<Reserva> reservas) {
         System.out.println("Lista de Reservas:");
@@ -27,70 +21,140 @@ public class ReservaView {
 
     public Reserva crearReserva() {
 
-        System.out.println("Introduce el código del recurso:");
-        String idRecurso = scanner.nextLine();
-        System.out.println("Introduce el id del usuario:");
-        int idUsuario = scanner.nextInt();
-        System.out.println("Introduce la fecha de la reserva (AAAA-MM-DD):");
-        Date fechaReserva = Date.valueOf(scanner.nextLine());
-        System.out.println("Introduce la hora de inicio:");
-        Time horaInicio = Time.valueOf(scanner.nextLine());
-        System.out.println("Introduce la hora final:");
-        Time horaFin = Time.valueOf(scanner.nextLine());
-        System.out.println("Introduce el coste de la reserva:");
-        double coste = scanner.nextDouble();
-        System.out.println("Introduce el número de plazas:");
-        int numeroPlazas = scanner.nextInt();
-        System.out.println("Introduce el motivo de la reserva:");
-        String motivo = scanner.nextLine();
-        System.out.println("Introduce las observaciones:");
-        String observaciones = scanner.nextLine();
+        String idRecurso = ConsolaView.leerTexto("Introduce el código del recurso:");
+        int idUsuario = ConsolaView.leerEntero("Introduce el id del usuario:");
+
+        Date fechaReserva = null;
+        boolean fechaValida = false;
+        while (!fechaValida) {
+            String fecha = ConsolaView.leerTexto("Introduce la fecha de la reserva (dd/MM/yyyy):");
+            fechaReserva = ConsolaView.validarYFormatearFecha(fecha);
+            if (fechaReserva != null)
+                fechaValida = true;
+            else
+                System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
+        }
+
+        Time horaInicio = null;
+        Time horaFin = null;
+
+        do {
+            System.out.println("Recuerda que la hora de fin debe ser posterior a la hora de inicio");
+            boolean horaInicioValida = false;
+            while (!horaInicioValida) {
+                String hora = ConsolaView.leerTexto("Introduce la hora de inicio (HH:mm 24h):");
+                horaInicio = ConsolaView.validarYFormatearHora(hora);
+                if (horaInicio != null)
+                    horaInicioValida = true;
+                else
+                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
+            }
+
+            boolean horaFinValida = false;
+            while (!horaFinValida) {
+                String hora = ConsolaView.leerTexto("Introduce la hora de fin (HH:mm 24h):");
+                horaFin = ConsolaView.validarYFormatearHora(hora);
+                if (horaFin != null)
+                    horaFinValida = true;
+                else
+                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
+            }
+        } while (horaFin.before(horaInicio) || horaFin.equals(horaInicio));
+
+        double coste = ConsolaView.leerDouble("Introduce el coste de la reserva:");
+
+        int numeroPlazas = ConsolaView.leerEntero("Introduce el número de plazas:");
+        String motivo = ConsolaView.leerTexto("Introduce el motivo de la reserva:");
+
+        String observaciones = null;
+        String respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce las observaciones (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            observaciones = respuesta;
+        }
 
         return new Reserva(idRecurso, idUsuario, fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
     }
 
     public int obtenerIdAEliminar() {
-        System.out.println("Introduce el ID de la reserva a eliminar:");
-        return scanner.nextInt();
+        return ConsolaView.leerEntero("Introduce el ID de la reserva a eliminar:");
     }
 
     public Reserva obtenerDatosActualizados(Reserva reserva) {
-        System.out.println("Introduce el nuevo código del recurso:");
-        String idRecurso = scanner.nextLine();
-        System.out.println("Introduce la nueva fecha de la reserva (AAAA-MM-DD):");
-        Date fechaReserva = Date.valueOf(scanner.nextLine());
-        System.out.println("Introduce la nueva hora de inicio:");
-        Time horaInicio = Time.valueOf(scanner.nextLine());
-        System.out.println("Introduce la nueva hora final:");
-        Time horaFin = Time.valueOf(scanner.nextLine());
-        System.out.println("Introduce el nuevo coste de la reserva:");
-        double coste = scanner.nextDouble();
-        System.out.println("Introduce el nuevo número de plazas:");
-        int numeroPlazas = scanner.nextInt();
-        System.out.println("Introduce el motivo de la reserva:");
-        String motivo = scanner.nextLine();
-        System.out.println("Introduce las observaciones:");
-        String observaciones = scanner.nextLine();
+
+        String idRecurso = ConsolaView.leerTexto("Introduce el nuevo código del recurso:");
+
+        Date fechaReserva = null;
+        boolean fechaValida = false;
+        while (!fechaValida) {
+            String fecha = ConsolaView.leerTexto("Introduce la nueva fecha de la reserva (dd/MM/yyyy):");
+            fechaReserva = ConsolaView.validarYFormatearFecha(fecha);
+            if (fechaReserva != null)
+                fechaValida = true;
+            else
+                System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
+        }
+
+        Time horaInicio = null;
+        Time horaFin = null;
+
+        do {
+            System.out.println("Recuerda que la hora de fin debe ser posterior a la hora de inicio");
+            boolean horaInicioValida = false;
+            while (!horaInicioValida) {
+                String hora = ConsolaView.leerTexto("Introduce la hora de inicio (HH:mm 24h):");
+                horaInicio = ConsolaView.validarYFormatearHora(hora);
+                if (horaInicio != null)
+                    horaInicioValida = true;
+                else
+                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
+            }
+
+            boolean horaFinValida = false;
+            while (!horaFinValida) {
+                String hora = ConsolaView.leerTexto("Introduce la hora de fin (HH:mm 24h):");
+                horaFin = ConsolaView.validarYFormatearHora(hora);
+                if (horaFin != null)
+                    horaFinValida = true;
+                else
+                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
+            }
+        } while (horaFin.before(horaInicio) || horaFin.equals(horaInicio));
+
+        double coste = ConsolaView.leerDouble("Introduce el coste de la reserva:");
+
+        int numeroPlazas = ConsolaView.leerEntero("Introduce el número de plazas:");
+        String motivo = ConsolaView.leerTexto("Introduce el motivo de la reserva:");
+
+        String observaciones = null;
+        String respuesta;
+        do {
+            respuesta = ConsolaView.leerTexto("Introduce las observaciones (escribe OMITIR si no deseas aportar el dato): ");
+        } while (respuesta.isBlank());
+        if (!ConsolaView.OmitirRespuesta(respuesta.toUpperCase())) {
+            observaciones = respuesta;
+        }
 
         return new Reserva(idRecurso, reserva.getIdUsuario(), fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
     }
 
-    public void mostrarMensaje(String mensaje) {
-        System.out.println(mensaje);
-    }
-
     public int obtenerIdReserva() {
-        System.out.println("Introduce el ID de la reserva:");
-        return scanner.nextInt();
+        return ConsolaView.leerEntero("Introduce el ID de la reserva:");
     }
     public String obtenerDNIUsuario() {
-        System.out.println("Introduce el DNI del usuario:");
-        return scanner.nextLine();
+        String dni;
+        do {
+            dni = ConsolaView.leerTexto("Introduce el DNI del usuario:").toUpperCase();
+            System.out.println("Error: DNI incorrecto.");
+        } while(!ConsolaView.comprobarDNI(dni));
+        return dni;
     }
 
     public void mostrarReserva(Reserva reserva) {
         if (reserva != null)
-            System.out.println(reserva.toString());
+            System.out.println(reserva);
         else
             System.out.println("La reserva no existe");
     }

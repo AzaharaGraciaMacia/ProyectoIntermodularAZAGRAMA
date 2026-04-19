@@ -66,6 +66,7 @@ public class HorarioController {
             Horario horario = horarioDAO.getHorarioById(idHorario);
             Horario horarioActualizado = horarioView.obtenerDatosActualizados(horario);
             horarioDAO.updateHorario(horarioActualizado);
+            System.out.println("Horario actualizado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
@@ -75,6 +76,7 @@ public class HorarioController {
         try {
             int idHorario = horarioView.obtenerIdAEliminar();
             horarioDAO.deleteHorario(idHorario);
+            System.out.println("Horario eliminado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }

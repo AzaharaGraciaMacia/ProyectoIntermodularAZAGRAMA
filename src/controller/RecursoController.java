@@ -1,5 +1,6 @@
 package controller;
 
+import dao.DisponibleEnDAO;
 import dao.RecursoDAO;
 import model.Recurso;
 import view.ConsolaView;
@@ -13,6 +14,7 @@ public class RecursoController {
     private RecursoDAO recursoDAO;
     private RecursoView recursoView;
     private ConsolaView consolaView;
+    private DisponibleEnDAO disponibleEnDAO;
 
     public RecursoController() {
         // Crear conexión a la base de datos
@@ -20,6 +22,8 @@ public class RecursoController {
         recursoDAO = RecursoDAO.getInstance();
         recursoView = new RecursoView();
         consolaView = new ConsolaView();
+        disponibleEnDAO = DisponibleEnDAO.getInstance();
+
     }
 
     public void mostrarTodosLosRecursos() {
@@ -45,6 +49,8 @@ public class RecursoController {
         try {
             Recurso recurso = recursoView.crearRecurso();
             recursoDAO.insertRecurso(recurso);
+            disponibleEnDAO.insertDisponibilidad(recursoView.crearDisponibilidad(recurso));
+            System.out.println("Recurso creado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
@@ -56,6 +62,8 @@ public class RecursoController {
             Recurso recurso = recursoDAO.getRecursoById(idRecurso);
             Recurso recursoActualizado = recursoView.obtenerDatosActualizados(recurso);
             recursoDAO.updateRecurso(recursoActualizado);
+            disponibleEnDAO.insertDisponibilidad(recursoView.crearDisponibilidad(recursoActualizado));
+            System.out.println("Recurso actualizado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
@@ -65,6 +73,7 @@ public class RecursoController {
         try {
             String idRecurso = recursoView.obtenerIdAEliminar();
             recursoDAO.deleteRecursoById(idRecurso);
+            System.out.println("Recurso eliminado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }

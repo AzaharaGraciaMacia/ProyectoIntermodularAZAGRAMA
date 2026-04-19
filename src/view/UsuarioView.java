@@ -156,16 +156,6 @@ public class UsuarioView {
             }
         }
         String contrasena = ConsolaView.leerTexto("Introduce la nueva contraseña:");
-        TipoUsuario tipoUsuario = null;
-        boolean tipoValido = false;
-        while (!tipoValido) {
-            String respuestaTipo = ConsolaView.leerTexto("Introduce el tipo de usuario (Normal o Administrador): ").toLowerCase();
-            tipoUsuario = ConsolaView.ComprobarTipoUsuario(respuestaTipo);
-            if (tipoUsuario != null)
-                tipoValido = true;
-            else
-                System.out.println("Tipo no válido.");
-        }
 
         Date fechaNacimiento = null;
         boolean fechaValida = false;
@@ -178,7 +168,7 @@ public class UsuarioView {
                 System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
         }
 
-        return new Usuario(usuario.getDni(), nombre, email, contrasena, tipoUsuario, fechaNacimiento, usuario.getIdUsuario(), usuario.getFechaRegistro());
+        return new Usuario(usuario.getDni(), nombre, email, contrasena, usuario.getTipoUsuario(), fechaNacimiento, usuario.getIdUsuario(), usuario.getFechaRegistro());
 
     }
     public UsuarioNormal obtenerDatosActualizadosUsuarioNormal(Usuario usuario) {
@@ -216,10 +206,11 @@ public class UsuarioView {
     }
 
     public String obtenerDni() {
-        String dni = ConsolaView.leerTexto("Introduce el DNI del usuario:").toUpperCase();
-        while(!ConsolaView.comprobarDNI(dni)) {
+        String dni;
+        do {
+            dni = ConsolaView.leerTexto("Introduce el DNI del usuario:").toUpperCase();
             System.out.println("Error: DNI incorrecto.");
-        }
+        } while(!ConsolaView.comprobarDNI(dni));
         return dni;
     }
 
@@ -227,19 +218,7 @@ public class UsuarioView {
         if (usuario != null)
             System.out.println(usuario);
         else
-            System.out.println("La persona no existe");
-    }
-    public void mostrarUsuarioNormal(UsuarioNormal usuarioNormal) {
-        if (usuarioNormal != null)
-            System.out.println(usuarioNormal);
-        else
-            System.out.println("La persona no existe");
-    }
-    public void mostrarAdministrador(Administrador administrador) {
-        if (administrador != null)
-            System.out.println(administrador);
-        else
-            System.out.println("La persona no existe");
+            System.out.println("El usuario no existe");
     }
 
     public void mostrarMenu() {

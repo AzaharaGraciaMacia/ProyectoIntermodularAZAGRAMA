@@ -62,24 +62,6 @@ public class UsuarioController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
-    public void mostrarUsuarioNormalDNI() {
-        try {
-            String dni = usuarioView.obtenerDni();
-            UsuarioNormal usuarioNormal = usuarioNormalDAO.getUsuarioNormalByDni(dni);
-            usuarioView.mostrarUsuarioNormal(usuarioNormal);
-        } catch (SQLException e) {
-            consolaView.mostrar("Error de base de datos: " + e.getMessage());
-        }
-    }
-    public void mostrarAdministradorDNI() {
-        try {
-            String dni = usuarioView.obtenerDni();
-            Administrador administrador = administradorDAO.getAdministradorByDni(dni);
-            usuarioView.mostrarAdministrador(administrador);
-        } catch (SQLException e) {
-            consolaView.mostrar("Error de base de datos: " + e.getMessage());
-        }
-    }
 
     public void crearUsuario() {
         try {

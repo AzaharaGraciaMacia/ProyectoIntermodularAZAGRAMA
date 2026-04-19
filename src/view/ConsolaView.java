@@ -43,8 +43,28 @@ public class ConsolaView {
         return numero;
     }
 
-    static public boolean comprobarDNI(String dni) {
+    static public double leerDouble(String mensaje) {
+        boolean valido = false;
+        double numero = 0.0;
 
+        while (!valido) {
+            try {
+                System.out.print(mensaje);
+                numero = Double.parseDouble(scanner.nextLine().trim());
+                if (numero >= 0.0) {
+                    valido = true;}
+                else {
+                    System.out.println("El número debe ser mayor o igual a 0");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: debes introducir un número entero.");
+            }
+        }
+        return numero;
+    }
+
+    static public boolean comprobarDNI(String dni) {
+        try{
         String LETRAS_CONTROL = "TRWAGMYFPDXBNJZSQVHLCKE";
 
         if (dni == null || dni.isBlank()) return false;
@@ -57,6 +77,11 @@ public class ConsolaView {
         char letraEsperada = LETRAS_CONTROL.charAt(numeroDNI % 23);
 
         return d.charAt(8) == letraEsperada;
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error: debes introducir un dni válido." + e.getMessage());
+        }
+        return false;
     }
 
     static public Date validarYFormatearFecha(String fecha) {

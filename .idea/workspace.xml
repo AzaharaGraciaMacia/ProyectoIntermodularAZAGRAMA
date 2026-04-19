@@ -6,17 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="App terminada a falta de depurar y manejar posibles errores">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/HorarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/HorarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HorarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HorarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/RecursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RecursoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/RecursoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/RecursoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ReservaDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Administrador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/UsuarioNormal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/UsuarioNormal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ConsolaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ConsolaView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/HorarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HorarioView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/RecursoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/RecursoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ReservaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ReservaView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/UsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UsuarioView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,20 +103,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Bug de carpeta .idea" />
     <MESSAGE value="App terminada a falta de depurar y manejar posibles errores" />
     <option name="LAST_COMMIT_MESSAGE" value="App terminada a falta de depurar y manejar posibles errores" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/UsuarioController.java</url>
-          <line>153</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -92,16 +92,16 @@ CONSTRAINT RES_TIME CHECK (horaFin>horaInicio)
 SET FOREIGN_KEY_CHECKS = 1; -- Vuelvo a "encender" el check de las fk para que haga las comprobaciones después de crear o reemplazar todas las tablas.
 
 INSERT INTO usuario (email,contrasena,nombre,fechaNacimiento,tipoUsuario,dni) VALUES 
-('azagramac@alu.edu.gva.es', 'DaWNoviembre2025!', 'Azahara Gracia Maciá', '1989-01-14', 'Administrador', '74411130F'),
-('jorge.garcia@gmail.com', 'secreto123', 'Jorge García Pérez', '1992-08-23', 'Normal', '74411131F'),
-('lucia.perez@hotmail.com', 'lucia_99', 'Lucía Pérez García', '1999-11-05', 'Normal', '74411132F'),
-('roberto.sanz@yahoo.es', 'futbol2024', 'Roberto Sanz Domínguez', '2001-02-14', 'Normal', '74411133F'),
-('elena.dominguez@outlook.com', 'claveSegura.5', 'Elena Domínguez Sanz', '1978-06-30', 'Administrador', '74411134F'),
-('admin@centro.com', 'AdminPass2024!', 'Laura Martínez Jiménez', '1985-04-12', 'Administrador', '74411135F'),
-('shadowfiltro@gmail.com', 'StrangerPass2025!', 'Víctor Manuel González Mira', '1987-06-06', 'Administrador', '74411136F'),
-('persona@centro.com', 'sinIdeas.1', 'Elena Martínez Díaz', '1988-12-14', 'Administrador', '74411137F'),
-('fulanito@gmail.com', 'sinIdeas.2', 'Fulanito García García', '2000-05-15', 'Normal', '74411138F'),
-('menganito@gmail.com', 'sinIdeas.3!', 'Menganito González González', '1999-11-23', 'Normal', '74411139F');
+('azagramac@alu.edu.gva.es', 'DaWNoviembre2025!', 'Azahara Gracia Maciá', '1989-01-14', 'Administrador', '11621303R'),
+('jorge.garcia@gmail.com', 'secreto123', 'Jorge García Pérez', '1992-08-23', 'Normal', '33524747Q'),
+('lucia.perez@hotmail.com', 'lucia_99', 'Lucía Pérez García', '1999-11-05', 'Normal', '53182616S'),
+('roberto.sanz@yahoo.es', 'futbol2024', 'Roberto Sanz Domínguez', '2001-02-14', 'Normal', '51664173D'),
+('elena.dominguez@outlook.com', 'claveSegura.5', 'Elena Domínguez Sanz', '1978-06-30', 'Administrador', '37022495Q'),
+('admin@centro.com', 'AdminPass2024!', 'Laura Martínez Jiménez', '1985-04-12', 'Administrador', '02024208R'),
+('shadowfiltro@gmail.com', 'StrangerPass2025!', 'Víctor Manuel González Mira', '1987-06-06', 'Administrador', '97783624K'),
+('persona@centro.com', 'sinIdeas.1', 'Elena Martínez Díaz', '1988-12-14', 'Administrador', '40349093D'),
+('fulanito@gmail.com', 'sinIdeas.2', 'Fulanito García García', '2000-05-15', 'Normal', '76289289Z'),
+('menganito@gmail.com', 'sinIdeas.3!', 'Menganito González González', '1999-11-23', 'Normal', '74999092W');
 
 INSERT INTO administrador (idUsuario,telefonoGuardia) VALUES 
 (1, '695439149'),

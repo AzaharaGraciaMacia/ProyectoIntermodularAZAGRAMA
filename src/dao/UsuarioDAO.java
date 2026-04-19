@@ -29,7 +29,7 @@ public class UsuarioDAO {
 
     private static final String INSERT_QUERY = "INSERT INTO usuario (nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM usuario";
-    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM usuario WHERE dni = ?";
+    private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM usuario u LEFT JOIN usuarioNormal u2 ON u.idUsuario = u2.idUsuario LEFT JOIN administrador a ON u.idUsuario = a.idUsuario WHERE dni = ?";
     private static final String UPDATE_QUERY = "UPDATE usuario SET nombre = ?, email = ?, fechaNacimiento = ?, contrasena = ? WHERE dni = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuario WHERE dni = ?";
     private static final String TOTAL_USUARIOS_QUERY = "SELECT COUNT(*) FROM usuario";

@@ -5,14 +5,8 @@ import model.Horario;
 
 import java.sql.Time;
 import java.util.List;
-import java.util.Scanner;
 
 public class HorarioView {
-    public Scanner scanner;
-
-    public HorarioView() {
-        scanner = new Scanner(System.in);
-    }
 
     public void mostrarHorarios(List<Horario> horarios) {
         System.out.println("Lista de Horarios:");
@@ -68,8 +62,7 @@ public class HorarioView {
     }
 
     public int obtenerIdAEliminar() {
-        System.out.println("Introduce el ID del horario a eliminar:");
-        return scanner.nextInt();
+        return ConsolaView.leerEntero("Introduce el ID del horario a eliminar:");
     }
 
     public Horario obtenerDatosActualizados(Horario horario) {
