@@ -6,6 +6,8 @@ import view.ConsolaView;
 import view.ReservaView;
 
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 public class ReservaController{
@@ -51,10 +53,31 @@ public class ReservaController{
             }
         }
 
+    private boolean horasSolapadas(Time ini1, Time fin1,
+                                   Time ini2, Time fin2) {
+            LocalTime horaInicio1 = ini1.toLocalTime();
+            LocalTime horaInicio2 = ini2.toLocalTime();
+            LocalTime horaFin1 = fin1.toLocalTime();
+            LocalTime horaFin2 = fin2.toLocalTime();
+        return horaInicio1.isBefore(horaFin2) && horaInicio2.isBefore(horaFin1);
+    }
+
+    public boolean reservaDuplicada(List<Reserva> reservas, Reserva nuevaReserva) {
+        return reservas.stream()
+                .anyMatch(r -> r.getIdRecurso().equals(nuevaReserva.getIdRecurso())
+                        && r.getFechaReserva().equals(nuevaReserva.getFechaReserva())
+                        && horasSolapadas(r.getHoraInicio(), r.getHoraFin(),
+                        nuevaReserva.getHoraInicio(), nuevaReserva.getHoraFin()));
+    }
+
         public void crearReserva() {
             try {
                 Reserva reserva = reservaView.crearReserva();
-                reservaDAO.insertReserva(reserva);
+                if(!reservaDuplicada(reservaDAO.getAllReservas(), reserva)) {
+                reservaDAO.insertReserva(reserva);}
+                else  {
+                    consolaView.mostrar("Ya existe una reserva para esa fecha.");
+                }
             } catch (SQLException e) {
                 consolaView.mostrar("Error de base de datos: " + e.getMessage());
             }
@@ -65,7 +88,11 @@ public class ReservaController{
                 int idReserva = reservaView.obtenerIdReserva();
                 Reserva reserva = reservaDAO.getReservaById(idReserva);
                 Reserva reservaActualizada = reservaView.obtenerDatosActualizados(reserva);
-                reservaDAO.updateReserva(reservaActualizada);
+                if(!reservaDuplicada(reservaDAO.getAllReservas(), reserva)) {
+                reservaDAO.updateReserva(reservaActualizada);}
+                else  {
+                    consolaView.mostrar("Ya existe otra reserva para esa fecha.");
+                }
             } catch (SQLException e) {
                 consolaView.mostrar("Error de base de datos: " + e.getMessage());
             }

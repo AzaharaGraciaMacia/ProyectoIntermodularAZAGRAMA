@@ -32,4 +32,9 @@ public class DisponibleEn {
     public void setIdHorario(int idHorario) {
         this.idHorario = idHorario;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-25s %-25s\n", idRecurso, idHorario);
+    }
 }

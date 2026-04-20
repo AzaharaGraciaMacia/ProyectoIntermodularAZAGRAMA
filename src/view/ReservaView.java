@@ -1,12 +1,23 @@
 package view;
 
+
+import controller.RecursoController;
+import dao.HorarioDAO;
+import model.DiaSemana;
+import model.Horario;
 import model.Reserva;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ReservaView {
+    RecursoView recursoView = new RecursoView();
+    RecursoController recursoController = new RecursoController();
+    HorarioDAO horarioDAO = HorarioDAO.getInstance();
 
     public void mostrarReservas(List<Reserva> reservas) {
         System.out.println("Lista de Reservas:");
@@ -19,47 +30,43 @@ public class ReservaView {
 
     }
 
-    public Reserva crearReserva() {
+    public Reserva crearReserva () {
 
         String idRecurso = ConsolaView.leerTexto("Introduce el código del recurso:");
         int idUsuario = ConsolaView.leerEntero("Introduce el id del usuario:");
 
-        Date fechaReserva = null;
-        boolean fechaValida = false;
-        while (!fechaValida) {
-            String fecha = ConsolaView.leerTexto("Introduce la fecha de la reserva (dd/MM/yyyy):");
-            fechaReserva = ConsolaView.validarYFormatearFecha(fecha);
-            if (fechaReserva != null)
-                fechaValida = true;
-            else
-                System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
+        List<Horario> horarios = recursoController.mostrarDisponibilidad(idRecurso);
+        recursoView.mostrarDisponiblesEn(horarios);
+        int idHorario = ConsolaView.leerEntero("Seleccione un horario disponible de los anteriores:");
+        Horario horario;
+        DiaSemana diaSemanaDisponible;
+
+        try {
+            horario = horarioDAO.getHorarioById(idHorario);
+            diaSemanaDisponible = horario.getDiaSemana();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
-        Time horaInicio = null;
-        Time horaFin = null;
-
+        LocalDate fechaDia;
+        DayOfWeek diaSemana;
+        Date fechaReserva = null;
         do {
-            System.out.println("Recuerda que la hora de fin debe ser posterior a la hora de inicio");
-            boolean horaInicioValida = false;
-            while (!horaInicioValida) {
-                String hora = ConsolaView.leerTexto("Introduce la hora de inicio (HH:mm 24h):");
-                horaInicio = ConsolaView.validarYFormatearHora(hora);
-                if (horaInicio != null)
-                    horaInicioValida = true;
+            boolean fechaValida = false;
+            while (!fechaValida) {
+                String fecha = ConsolaView.leerTexto("Introduce una fecha de reserva válida (dd/MM/yyyy) dentro de la disponibilidad del recurso:");
+                fechaReserva = ConsolaView.validarYFormatearFecha(fecha);
+                if (fechaReserva != null)
+                    fechaValida = true;
                 else
-                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
+                    System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
             }
+            fechaDia = fechaReserva.toLocalDate();
+            diaSemana = fechaDia.getDayOfWeek();
+        } while (DiaSemana.valueOf(diaSemana.toString())!=diaSemanaDisponible);
 
-            boolean horaFinValida = false;
-            while (!horaFinValida) {
-                String hora = ConsolaView.leerTexto("Introduce la hora de fin (HH:mm 24h):");
-                horaFin = ConsolaView.validarYFormatearHora(hora);
-                if (horaFin != null)
-                    horaFinValida = true;
-                else
-                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
-            }
-        } while (horaFin.before(horaInicio) || horaFin.equals(horaInicio));
+        Time horaInicio = horario.getHoraInicio();
+        Time horaFin = horario.getHoraFin();
 
         double coste = ConsolaView.leerDouble("Introduce el coste de la reserva:");
 
@@ -86,42 +93,38 @@ public class ReservaView {
 
         String idRecurso = ConsolaView.leerTexto("Introduce el nuevo código del recurso:");
 
-        Date fechaReserva = null;
-        boolean fechaValida = false;
-        while (!fechaValida) {
-            String fecha = ConsolaView.leerTexto("Introduce la nueva fecha de la reserva (dd/MM/yyyy):");
-            fechaReserva = ConsolaView.validarYFormatearFecha(fecha);
-            if (fechaReserva != null)
-                fechaValida = true;
-            else
-                System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
+        List<Horario> horarios = recursoController.mostrarDisponibilidad(idRecurso);
+        recursoView.mostrarDisponiblesEn(horarios);
+        int idHorario = ConsolaView.leerEntero("Seleccione un horario disponible de los anteriores:");
+        Horario horario;
+        DiaSemana diaSemanaDisponible;
+
+        try {
+            horario = horarioDAO.getHorarioById(idHorario);
+            diaSemanaDisponible = horario.getDiaSemana();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
-        Time horaInicio = null;
-        Time horaFin = null;
-
+        LocalDate fechaDia;
+        DayOfWeek diaSemana;
+        Date fechaReserva = null;
         do {
-            System.out.println("Recuerda que la hora de fin debe ser posterior a la hora de inicio");
-            boolean horaInicioValida = false;
-            while (!horaInicioValida) {
-                String hora = ConsolaView.leerTexto("Introduce la hora de inicio (HH:mm 24h):");
-                horaInicio = ConsolaView.validarYFormatearHora(hora);
-                if (horaInicio != null)
-                    horaInicioValida = true;
+            boolean fechaValida = false;
+            while (!fechaValida) {
+                String fecha = ConsolaView.leerTexto("Introduce una fecha de reserva válida (dd/MM/yyyy) dentro de la disponibilidad del recurso:");
+                fechaReserva = ConsolaView.validarYFormatearFecha(fecha);
+                if (fechaReserva != null)
+                    fechaValida = true;
                 else
-                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
+                    System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
             }
+            fechaDia = fechaReserva.toLocalDate();
+            diaSemana = fechaDia.getDayOfWeek();
+        } while (DiaSemana.valueOf(diaSemana.toString())!=diaSemanaDisponible);
 
-            boolean horaFinValida = false;
-            while (!horaFinValida) {
-                String hora = ConsolaView.leerTexto("Introduce la hora de fin (HH:mm 24h):");
-                horaFin = ConsolaView.validarYFormatearHora(hora);
-                if (horaFin != null)
-                    horaFinValida = true;
-                else
-                    System.out.println("Hora no válida. Usa el formato HH:mm 24h.");
-            }
-        } while (horaFin.before(horaInicio) || horaFin.equals(horaInicio));
+        Time horaInicio = horario.getHoraInicio();
+        Time horaFin = horario.getHoraFin();
 
         double coste = ConsolaView.leerDouble("Introduce el coste de la reserva:");
 

@@ -1,6 +1,7 @@
 package view;
 
 import model.DisponibleEn;
+import model.Horario;
 import model.Recurso;
 
 import java.util.List;
@@ -58,6 +59,16 @@ public class RecursoView {
     public DisponibleEn crearDisponibilidad(Recurso recurso) {
         int horario = ConsolaView.leerEntero("Introduce el id del horario a asignar:");
         return new DisponibleEn(recurso.getIdRecurso(), horario);
+    }
+
+    public void mostrarDisponiblesEn(List<Horario> horarios) {
+        System.out.println("Lista de horarios disponibles en el recurso:");
+
+        System.out.printf("%-15s %-30s %-25s %-25s\n", "ID de Horario", "Día de la Semana", "Hora Inicio", "Hora Fin");
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------------");
+
+        horarios.forEach(System.out::println);
     }
 
     public void mostrarMenu() {

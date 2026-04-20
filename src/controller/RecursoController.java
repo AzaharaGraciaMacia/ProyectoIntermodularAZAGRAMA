@@ -1,12 +1,16 @@
 package controller;
 
 import dao.DisponibleEnDAO;
+import dao.HorarioDAO;
 import dao.RecursoDAO;
+import model.DisponibleEn;
+import model.Horario;
 import model.Recurso;
 import view.ConsolaView;
 import view.RecursoView;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecursoController {
@@ -14,6 +18,7 @@ public class RecursoController {
     private RecursoDAO recursoDAO;
     private RecursoView recursoView;
     private ConsolaView consolaView;
+    private HorarioDAO horarioDAO;
     private DisponibleEnDAO disponibleEnDAO;
 
     public RecursoController() {
@@ -22,6 +27,7 @@ public class RecursoController {
         recursoDAO = RecursoDAO.getInstance();
         recursoView = new RecursoView();
         consolaView = new ConsolaView();
+        horarioDAO = HorarioDAO.getInstance();
         disponibleEnDAO = DisponibleEnDAO.getInstance();
 
     }
@@ -78,6 +84,23 @@ public class RecursoController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
+
+    public List<Horario> mostrarDisponibilidad(String idRecurso) {
+        try{
+            List<DisponibleEn> disponibilidades = disponibleEnDAO.getDisponibilidadesByRecurso(idRecurso);
+            List<Horario> horarios = new ArrayList<>();
+            for(DisponibleEn disponibleEn : disponibilidades){
+                int idHorario = disponibleEn.getIdHorario();
+                horarios.add(horarioDAO.getHorarioById(idHorario));
+            }
+            return horarios;
+            }
+        catch(SQLException e){
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return null;
+    }
+
     public void iniciar() {
         int opcion;
 
