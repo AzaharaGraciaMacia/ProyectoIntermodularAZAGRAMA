@@ -12,6 +12,9 @@ import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
 
+/**
+ * Controlador de la tabla reservas
+ */
 public class ReservaController{
 
         private ReservaDAO reservaDAO;
@@ -19,16 +22,20 @@ public class ReservaController{
         private ConsolaView consolaView;
         private RecursoDAO recursoDAO;
 
-        public ReservaController() {
-            // Crear conexión a la base de datos
-
+    /**
+     * Crea las conexiones con el resto de clases
+     */
+    public ReservaController() {
             reservaDAO = ReservaDAO.getInstance();
             reservaView = new ReservaView();
             consolaView = new ConsolaView();
             recursoDAO = RecursoDAO.getInstance();
         }
 
-        public void mostrarTodasLasReservas() {
+    /**
+     * Muestra todas las reservas
+     */
+    public void mostrarTodasLasReservas() {
             try {
                 List<Reserva> reservas = reservaDAO.getAllReservas();
                 reservaView.mostrarReservas(reservas);
@@ -37,6 +44,9 @@ public class ReservaController{
             }
         }
 
+    /**
+     * Muestra todas las reservas de un usuario por DNI
+     */
     public void mostrarReservasUsuario() {
         try {
             String dni = reservaView.obtenerDNIUsuario();
@@ -47,7 +57,10 @@ public class ReservaController{
         }
     }
 
-        public void mostrarReservaID() {
+    /**
+     * Muestra una reserva por su ID
+     */
+    public void mostrarReservaID() {
             try {
                 int idReserva = reservaView.obtenerIdReserva();
                 Reserva reserva = reservaDAO.getReservaById(idReserva);
@@ -57,6 +70,14 @@ public class ReservaController{
             }
         }
 
+    /**
+     * Comprueba si hay solapamiento en los horarios, o si se salen de la franja horaria establecida
+     * @param ini1
+     * @param fin1
+     * @param ini2
+     * @param fin2
+     * @return true si hay solapamiento
+     */
     private boolean horasSolapadas(Time ini1, Time fin1,
                                    Time ini2, Time fin2) {
             LocalTime horaInicio1 = ini1.toLocalTime();
@@ -66,6 +87,12 @@ public class ReservaController{
         return horaInicio1.isBefore(horaFin2) && horaInicio2.isBefore(horaFin1);
     }
 
+    /**
+     * Comrpueba si hay reservas duplicadas
+     * @param reservas
+     * @param nuevaReserva
+     * @return true si ya existe una reserva en misma fecha y horario
+     */
     public boolean reservaDuplicada(List<Reserva> reservas, Reserva nuevaReserva) {
         return reservas.stream()
                 .anyMatch(r -> r.getIdRecurso().equals(nuevaReserva.getIdRecurso())
@@ -74,7 +101,10 @@ public class ReservaController{
                         nuevaReserva.getHoraInicio(), nuevaReserva.getHoraFin()));
     }
 
-        public void crearReserva() {
+    /**
+     * Crea una nueva reserva
+     */
+    public void crearReserva() {
             try {
                 Reserva reserva = reservaView.crearReserva();
                 String idRecurso = reserva.getIdRecurso();
@@ -91,7 +121,10 @@ public class ReservaController{
             }
         }
 
-        public void actualizarReserva() {
+    /**
+     * Actualiza una reserva existente
+     */
+    public void actualizarReserva() {
             try {
                 int idReserva = reservaView.obtenerIdReserva();
                 Reserva reserva = reservaDAO.getReservaById(idReserva);
@@ -110,7 +143,10 @@ public class ReservaController{
             }
         }
 
-        public void eliminarReserva() {
+    /**
+     * Elimina una reserva existente
+     */
+    public void eliminarReserva() {
             try {
                 int idReserva = reservaView.obtenerIdAEliminar();
                 reservaDAO.deleteReservaById(idReserva);
@@ -120,7 +156,10 @@ public class ReservaController{
             }
         }
 
-
+    /**
+     * Suma la cantidad de reservas en el momento de la llamada
+     * @return int cantidad de reservas
+     */
     public int cantidadReservas() {
         try{
             int cantidad = reservaDAO.totalReservas();
@@ -131,6 +170,9 @@ public class ReservaController{
         return 0;
     }
 
+    /**
+     * Inicia el menú de reservas
+     */
     public void iniciar() {
         int opcion;
 

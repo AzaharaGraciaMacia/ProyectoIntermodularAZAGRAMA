@@ -8,20 +8,27 @@ import view.HorarioView;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Controlador de la tabla horarios
+ */
 public class HorarioController {
 
     private HorarioDAO horarioDAO;
     private HorarioView horarioView;
     private ConsolaView consolaView;
 
+    /**
+     * Crea las conexiones con el resto de clases
+     */
     public HorarioController() {
-        // Crear conexión a la base de datos
-
         horarioDAO = HorarioDAO.getInstance();
         horarioView = new HorarioView();
         consolaView = new ConsolaView();
     }
 
+    /**
+     * Muestra todos los horarios
+     */
     public void mostrarTodosLosHorarios() {
         try {
             List<Horario> horarios = horarioDAO.getAllHorarios();
@@ -31,6 +38,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Muestra un horario por su ID
+     */
     public void mostrarHorarioID() {
         try {
             int idHorario = horarioView.obtenerIdHorario();
@@ -41,6 +51,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Muestra todos los horarios por día de la semana
+     */
     public void mostrarHorariosDia() {
         try {
             String diaSemana = horarioView.obtenerDiaHorario();
@@ -51,6 +64,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Crea un nuevo horario
+     */
     public void crearHorario() {
         try {
             Horario horario = horarioView.crearHorario();
@@ -61,6 +77,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Modifica un horario existente
+     */
     public void actualizarHorario() {
         try {
             int idHorario = horarioView.obtenerIdHorario();
@@ -73,6 +92,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Elimina un horario existente
+     */
     public void eliminarHorario() {
         try {
             int idHorario = horarioView.obtenerIdAEliminar();
@@ -83,6 +105,10 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Suma la cantidad de horarios en el momento de la llamada
+     * @return int cantidad de horarios
+     */
     public int cantidadHorarios() {
         try{
             int cantidad = horarioDAO.totalHorarios();
@@ -93,6 +119,9 @@ public class HorarioController {
         return 0;
     }
 
+    /**
+     * Inicia el menú de horarios
+     */
     public void iniciar() {
         int opcion;
 

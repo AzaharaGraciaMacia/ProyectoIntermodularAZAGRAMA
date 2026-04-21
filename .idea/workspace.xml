@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="Reserva con comprobaciones finalizada a falta de depurar la comprobación del día de semana en fecha.">
+    <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="Commit final. Completado y comprobado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/HorarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HorarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/RecursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RecursoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReservaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ReservaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/HorarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HorarioView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/RecursoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/RecursoView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ReservaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ReservaView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/UsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UsuarioView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776713373019</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Commit final. Completado y comprobado">
+      <option name="closed" value="true" />
+      <created>1776798002445</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1776798002445</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +134,7 @@
     <MESSAGE value="App terminada a falta de depurar y manejar posibles errores" />
     <MESSAGE value="Recurso y Reserva casi completados. Falta añadir comprobación de horario a las reservas." />
     <MESSAGE value="Reserva con comprobaciones finalizada a falta de depurar la comprobación del día de semana en fecha." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reserva con comprobaciones finalizada a falta de depurar la comprobación del día de semana en fecha." />
+    <MESSAGE value="Commit final. Completado y comprobado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit final. Completado y comprobado" />
   </component>
 </project>
