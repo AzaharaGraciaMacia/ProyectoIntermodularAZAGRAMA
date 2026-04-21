@@ -55,6 +55,7 @@ public class HorarioController {
         try {
             Horario horario = horarioView.crearHorario();
             horarioDAO.insertHorario(horario);
+            System.out.println("Horario creado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
@@ -66,6 +67,7 @@ public class HorarioController {
             Horario horario = horarioDAO.getHorarioById(idHorario);
             Horario horarioActualizado = horarioView.obtenerDatosActualizados(horario);
             horarioDAO.updateHorario(horarioActualizado);
+            System.out.println("Horario actualizado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
@@ -75,9 +77,20 @@ public class HorarioController {
         try {
             int idHorario = horarioView.obtenerIdAEliminar();
             horarioDAO.deleteHorario(idHorario);
+            System.out.println("Horario eliminado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
+    }
+
+    public int cantidadHorarios() {
+        try{
+            int cantidad = horarioDAO.totalHorarios();
+            return cantidad;
+        } catch (SQLException e) {
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return 0;
     }
 
     public void iniciar() {
@@ -95,6 +108,7 @@ public class HorarioController {
                     case 4 -> mostrarTodosLosHorarios();
                     case 5 -> mostrarHorarioID();
                     case 6 -> mostrarHorariosDia();
+                    case 7 -> System.out.println("En estos momentos hay registrados "+ cantidadHorarios() + " horarios.");
                     case 0 -> consolaView.mostrar("Volviendo...");
                     default -> consolaView.mostrar("Opción no válida.");
                 }

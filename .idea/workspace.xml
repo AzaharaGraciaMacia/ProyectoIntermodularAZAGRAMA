@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="Bug de carpeta .idea">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql-connector-j-9.6.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_9_6_0.xml" beforeDir="false" />
+    <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="Reserva con comprobaciones finalizada a falta de depurar la comprobación del día de semana en fecha.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoIntermodularAZAGRAMA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoIntermodularAZAGRAMA.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/scripts/Script BD para Proyecto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/HorarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HorarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/RecursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RecursoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReservaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/HorarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/HorarioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/ReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ReservaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Horario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Horario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Recurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Recurso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ConsolaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ConsolaView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/HorarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HorarioView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/RecursoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/RecursoView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ReservaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ReservaView.java" afterDir="false" />
@@ -95,39 +85,52 @@
       <option name="project" value="LOCAL" />
       <updated>1776319316331</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="App terminada a falta de depurar y manejar posibles errores">
+      <option name="closed" value="true" />
+      <created>1776335640149</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776335640149</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Recurso y Reserva casi completados. Falta añadir comprobación de horario a las reservas.">
+      <option name="closed" value="true" />
+      <created>1776627522815</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776627522815</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Reserva con comprobaciones finalizada a falta de depurar la comprobación del día de semana en fecha.">
+      <option name="closed" value="true" />
+      <created>1776713373019</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776713373019</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Bug de carpeta .idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug de carpeta .idea" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/UsuarioController.java</url>
-          <line>153</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dao/HorarioDAO.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/dao/HorarioDAO.java</url>
-          <line>65</line>
-          <properties class="dao.HorarioDAO" method="getAllHorarios">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="App terminada a falta de depurar y manejar posibles errores" />
+    <MESSAGE value="Recurso y Reserva casi completados. Falta añadir comprobación de horario a las reservas." />
+    <MESSAGE value="Reserva con comprobaciones finalizada a falta de depurar la comprobación del día de semana en fecha." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reserva con comprobaciones finalizada a falta de depurar la comprobación del día de semana en fecha." />
   </component>
 </project>

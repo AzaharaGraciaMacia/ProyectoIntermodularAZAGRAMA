@@ -62,30 +62,13 @@ public class UsuarioController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
-    public void mostrarUsuarioNormalDNI() {
-        try {
-            String dni = usuarioView.obtenerDni();
-            UsuarioNormal usuarioNormal = usuarioNormalDAO.getUsuarioNormalByDni(dni);
-            usuarioView.mostrarUsuarioNormal(usuarioNormal);
-        } catch (SQLException e) {
-            consolaView.mostrar("Error de base de datos: " + e.getMessage());
-        }
-    }
-    public void mostrarAdministradorDNI() {
-        try {
-            String dni = usuarioView.obtenerDni();
-            Administrador administrador = administradorDAO.getAdministradorByDni(dni);
-            usuarioView.mostrarAdministrador(administrador);
-        } catch (SQLException e) {
-            consolaView.mostrar("Error de base de datos: " + e.getMessage());
-        }
-    }
 
     public void crearUsuario() {
         try {
             Usuario usuario=usuarioView.crearUsuario();
             int idUsuario = usuarioDAO.insertUsuario(usuario);
             usuario.setIdUsuario(idUsuario);
+            System.out.println("Usuario creado correctamente.");
             if (usuario.getTipoUsuario() == TipoUsuario.valueOf("normal")){
                 crearUsuarioNormal(usuario);
             } else{
@@ -118,6 +101,7 @@ public class UsuarioController {
             Usuario usuario = usuarioDAO.getUsuarioByDni(dni);
             Usuario usuarioActualizado = usuarioView.obtenerDatosActualizados(usuario);
             usuarioDAO.updateUsuario(usuarioActualizado);
+            System.out.println("Usuario actualizado correctamente.");
             if (usuario.getTipoUsuario() == TipoUsuario.valueOf("normal")){
                 UsuarioNormal usuarioNormalActualizado = usuarioView.obtenerDatosActualizadosUsuarioNormal(usuarioActualizado);
                 usuarioNormalDAO.updateUsuarioNormal(usuarioNormalActualizado);
@@ -134,9 +118,40 @@ public class UsuarioController {
         try {
             String dni=usuarioView.obtenerDniAEliminar();
             usuarioDAO.deleteUsuarioByDni(dni);
+            System.out.println("Usuario eliminado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
+    }
+
+    public int cantidadUsuarios() {
+        try{
+            int cantidad = usuarioDAO.totalUsuarios();
+            return cantidad;
+        } catch (SQLException e) {
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public int cantidadAdministradores() {
+        try{
+            int cantidad = administradorDAO.totalAdministradores();
+            return cantidad;
+        } catch (SQLException e) {
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public int cantidadUsuariosNormales() {
+        try{
+            int cantidad = usuarioNormalDAO.totalUsuariosNormales();
+            return cantidad;
+        } catch (SQLException e) {
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return 0;
     }
 
     public void iniciar() {
@@ -155,6 +170,9 @@ public class UsuarioController {
                     case 5 -> mostrarTodosLosAdministradores();
                     case 6 -> mostrarTodosLosUsuariosNormales();
                     case 7 -> mostrarUsuarioDNI();
+                    case 8 -> System.out.println("En estos momentos hay registrados "+ cantidadUsuarios() + " usuarios.");
+                    case 9 -> System.out.println("En estos momentos hay registrados "+ cantidadAdministradores() + " administradores.");
+                    case 10 -> System.out.println("En estos momentos hay registrados "+ cantidadUsuariosNormales() + " usuarios.");
                     case 0 -> consolaView.mostrar("Volviendo...");
                     default -> consolaView.mostrar("Opción no válida.");
                 }

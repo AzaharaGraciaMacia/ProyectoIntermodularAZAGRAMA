@@ -5,9 +5,6 @@ import view.ConsolaView;
 
 /**
  * Controlador principal de la aplicación.
- *
- * <p>Presenta el menú general y delega la ejecución en los controladores específicos
- * de departamentos y empleados.</p>
  */
 public class AppController {
 

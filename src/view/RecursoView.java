@@ -1,16 +1,13 @@
 package view;
 
+import model.DisponibleEn;
+import model.Horario;
 import model.Recurso;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class RecursoView {
-    public Scanner scanner;
 
-    public RecursoView() {
-        scanner = new Scanner(System.in);
-    }
 
     public void mostrarRecursos(List<Recurso> recursos) {
         System.out.println("Lista de Recursos:");
@@ -25,53 +22,53 @@ public class RecursoView {
 
     public Recurso crearRecurso() {
 
-        System.out.println("Introduce el código del recurso:");
-        String idRecurso = scanner.nextLine();
-        System.out.println("Introduce el nombre del recurso:");
-        String nombreRecurso = scanner.nextLine();
-        System.out.println("Introduce la descripción del recurso:");
-        String descripcion = scanner.nextLine();
-        System.out.println("Introduce la ubicación del recurso:");
-        String ubicacionRecurso = scanner.nextLine();
-        System.out.println("Introduce la capacidad del recurso:");
-        int capacidadRecurso = scanner.nextInt();
+        String idRecurso = ConsolaView.leerTexto("Introduce el código del recurso:");
+        String nombreRecurso = ConsolaView.leerTexto("Introduce el nombre del recurso:");
+        String descripcion = ConsolaView.leerTexto("Introduce la descripción del recurso:");
+        String ubicacionRecurso = ConsolaView.leerTexto("Introduce la ubicación del recurso:");
+        int capacidadRecurso = ConsolaView.leerEntero("Introduce la capacidad del recurso:");
 
         return new Recurso(idRecurso, nombreRecurso, descripcion, ubicacionRecurso, capacidadRecurso);
     }
 
     public String obtenerIdAEliminar() {
-        System.out.println("Introduce el ID del recurso a eliminar:");
-        return scanner.nextLine();
+        return ConsolaView.leerTexto("Introduce el ID del recurso a eliminar:");
     }
 
     public Recurso obtenerDatosActualizados(Recurso recurso) {
-        System.out.println("Introduce el nuevo nombre del recurso:");
-        String nombreRecurso = scanner.nextLine();
-        System.out.println("Introduce la nueva descripción del recurso:");
-        String descripcion = scanner.nextLine();
-        System.out.println("Introduce la nueva ubicación del recurso:");
-        String ubicacionRecurso = scanner.nextLine();
-        System.out.println("Introduce la nueva capacidad del recurso:");
-        int capacidadRecurso = scanner.nextInt();
+        String nombreRecurso = ConsolaView.leerTexto("Introduce el nuevo nombre del recurso:");
+        String descripcion = ConsolaView.leerTexto("Introduce la nueva descripción del recurso:");
+        String ubicacionRecurso = ConsolaView.leerTexto("Introduce la nueva ubicación del recurso:");
+        int capacidadRecurso = ConsolaView.leerEntero("Introduce la nueva capacidad del recurso:");
 
         return new Recurso(recurso.getIdRecurso(), nombreRecurso, descripcion, ubicacionRecurso, capacidadRecurso);
     }
 
-    public void mostrarMensaje(String mensaje) {
-        System.out.println(mensaje);
-    }
-
     public String obtenerIdRecurso() {
-        System.out.println("Introduce el ID del recurso:");
-        return scanner.nextLine();
+        return ConsolaView.leerTexto("Introduce el ID del recurso:");
     }
 
 
     public void mostrarRecurso(Recurso recurso) {
         if (recurso != null)
-            System.out.println(recurso.toString());
+            System.out.println(recurso);
         else
             System.out.println("El recurso no existe");
+    }
+
+    public DisponibleEn crearDisponibilidad(Recurso recurso) {
+        int horario = ConsolaView.leerEntero("Introduce el id del horario a asignar:");
+        return new DisponibleEn(recurso.getIdRecurso(), horario);
+    }
+
+    public void mostrarDisponiblesEn(List<Horario> horarios) {
+        System.out.println("Lista de horarios disponibles en el recurso:");
+
+        System.out.printf("%-15s %-30s %-25s %-25s\n", "ID de Horario", "Día de la Semana", "Hora Inicio", "Hora Fin");
+
+        System.out.println("-------------------------------------------------------------------------------------------------------------------");
+
+        horarios.forEach(System.out::println);
     }
 
     public void mostrarMenu() {
@@ -82,6 +79,7 @@ public class RecursoView {
         System.out.println("3. Modificar recurso");
         System.out.println("4. Listar todos los recursos");
         System.out.println("5. Mostrar recurso por id");
+        System.out.println("6. Mostrar cantidad de recursos.");
         System.out.println("0. Volver");
     }
 

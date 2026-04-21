@@ -25,7 +25,7 @@ public class HorarioDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM horario";
     private static final String SELECT_BY_DIA_QUERY = "SELECT * FROM horario WHERE diaSemana = ?";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM horario WHERE idHorario = ?";
-    private static final String UPDATE_QUERY = "UPDATE horario SET diaSemana = ?, horaInicio = ?, horaFin = ? FROM horario WHERE idHorario = ?";
+    private static final String UPDATE_QUERY = "UPDATE horario SET diaSemana = ?, horaInicio = ?, horaFin = ? WHERE idHorario = ?";
     private static final String DELETE_QUERY = "DELETE FROM horario WHERE idHorario = ?";
     private static final String TOTAL_HORARIOS_QUERY = "SELECT COUNT(*) FROM horario";
 

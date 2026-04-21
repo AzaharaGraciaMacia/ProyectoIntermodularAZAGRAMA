@@ -26,7 +26,7 @@ public class AdministradorDAO {
     private static final String INSERT_QUERY = "INSERT INTO administrador (idUsuario, telefonoGuardia) VALUES (?, ?)";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario";
     private static final String SELECT_BY_DNI_QUERY = "SELECT * FROM administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
-    private static final String UPDATE_QUERY = "UPDATE administrador SET telefonoGuardia = ? FROM Administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
+    private static final String UPDATE_QUERY = "UPDATE administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario  SET telefonoGuardia = ? WHERE dni = ?";
     private static final String DELETE_QUERY = "DELETE FROM administrador a INNER JOIN usuario u ON a.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String TOTAL_ADMINISTRADORES_QUERY = "SELECT COUNT(*) FROM administrador";
 

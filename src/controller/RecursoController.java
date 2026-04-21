@@ -1,11 +1,16 @@
 package controller;
 
+import dao.DisponibleEnDAO;
+import dao.HorarioDAO;
 import dao.RecursoDAO;
+import model.DisponibleEn;
+import model.Horario;
 import model.Recurso;
 import view.ConsolaView;
 import view.RecursoView;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecursoController {
@@ -13,6 +18,8 @@ public class RecursoController {
     private RecursoDAO recursoDAO;
     private RecursoView recursoView;
     private ConsolaView consolaView;
+    private HorarioDAO horarioDAO;
+    private DisponibleEnDAO disponibleEnDAO;
 
     public RecursoController() {
         // Crear conexión a la base de datos
@@ -20,6 +27,9 @@ public class RecursoController {
         recursoDAO = RecursoDAO.getInstance();
         recursoView = new RecursoView();
         consolaView = new ConsolaView();
+        horarioDAO = HorarioDAO.getInstance();
+        disponibleEnDAO = DisponibleEnDAO.getInstance();
+
     }
 
     public void mostrarTodosLosRecursos() {
@@ -45,6 +55,8 @@ public class RecursoController {
         try {
             Recurso recurso = recursoView.crearRecurso();
             recursoDAO.insertRecurso(recurso);
+            disponibleEnDAO.insertDisponibilidad(recursoView.crearDisponibilidad(recurso));
+            System.out.println("Recurso creado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
@@ -56,6 +68,8 @@ public class RecursoController {
             Recurso recurso = recursoDAO.getRecursoById(idRecurso);
             Recurso recursoActualizado = recursoView.obtenerDatosActualizados(recurso);
             recursoDAO.updateRecurso(recursoActualizado);
+            disponibleEnDAO.insertDisponibilidad(recursoView.crearDisponibilidad(recursoActualizado));
+            System.out.println("Recurso actualizado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
@@ -65,10 +79,38 @@ public class RecursoController {
         try {
             String idRecurso = recursoView.obtenerIdAEliminar();
             recursoDAO.deleteRecursoById(idRecurso);
+            System.out.println("Recurso eliminado correctamente.");
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
+
+    public List<Horario> mostrarDisponibilidad(String idRecurso) {
+        try{
+            List<DisponibleEn> disponibilidades = disponibleEnDAO.getDisponibilidadesByRecurso(idRecurso);
+            List<Horario> horarios = new ArrayList<>();
+            for(DisponibleEn disponibleEn : disponibilidades){
+                int idHorario = disponibleEn.getIdHorario();
+                horarios.add(horarioDAO.getHorarioById(idHorario));
+            }
+            return horarios;
+            }
+        catch(SQLException e){
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public int cantidadRecursos() {
+        try{
+            int cantidad = recursoDAO.totalRecursos();
+            return cantidad;
+        } catch (SQLException e) {
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return 0;
+    }
+
     public void iniciar() {
         int opcion;
 
@@ -83,6 +125,7 @@ public class RecursoController {
                     case 3 -> actualizarRecurso();
                     case 4 -> mostrarTodosLosRecursos();
                     case 5 -> mostrarRecursoID();
+                    case 6 -> System.out.println("En estos momentos hay registrados "+ cantidadRecursos() + " recursos.");
                     case 0 -> consolaView.mostrar("Volviendo...");
                     default -> consolaView.mostrar("Opción no válida.");
                 }

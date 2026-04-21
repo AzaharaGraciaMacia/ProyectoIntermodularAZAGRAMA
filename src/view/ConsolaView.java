@@ -1,37 +1,28 @@
 package view;
 
-import java.util.Scanner;
+import model.DiaSemana;
+import model.TipoUsuario;
 
-/**
- * Utilidad de entrada y salida por consola.
- *
- * <p>Centraliza la lectura segura de datos desde teclado y la impresión de mensajes,
- * de modo que la vista y los controladores no tengan que repetir lógica de validación.</p>
- */
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+
 public class ConsolaView {
 
-    /**
-     * Escáner compartido para leer datos del teclado.
-     */
     static private final Scanner scanner = new Scanner(System.in);
 
-    /**
-     * Muestra un mensaje y lee una línea de texto.
-     *
-     * @param mensaje texto que se mostrará al usuario
-     * @return texto introducido por el usuario
-     */
     static public String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return scanner.nextLine().trim();
     }
 
-    /**
-     * Lee un número entero desde consola con validación.
-     *
-     * @param mensaje texto que se mostrará al usuario
-     * @return número entero válido
-     */
+
     static public int leerEntero(String mensaje) {
         boolean valido = false;
         int numero = 0;
@@ -52,49 +43,127 @@ public class ConsolaView {
         return numero;
     }
 
-    /**
-     * Lee una opción de sí o no.
-     *
-     * @param mensaje pregunta a mostrar
-     * @return {@code true} si la respuesta es s, si o sí; {@code false} en otro caso
-     */
-    static public boolean leerSiNo(String mensaje) {
-        String respuesta = leerTexto(mensaje + " (s/n): ");
-        return respuesta.equalsIgnoreCase("s")
-                || respuesta.equalsIgnoreCase("si")
-                || respuesta.equalsIgnoreCase("sí");
+    static public double leerDouble(String mensaje) {
+        boolean valido = false;
+        double numero = 0.0;
+
+        while (!valido) {
+            try {
+                System.out.print(mensaje);
+                numero = Double.parseDouble(scanner.nextLine().trim());
+                if (numero >= 0.0) {
+                    valido = true;}
+                else {
+                    System.out.println("El número debe ser mayor o igual a 0");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: debes introducir un número entero.");
+            }
+        }
+        return numero;
     }
 
-    /**
-     * Imprime un mensaje con salto de línea.
-     *
-     * @param mensaje texto a mostrar
-     */
+    static public boolean comprobarDNI(String dni) {
+        try{
+        String LETRAS_CONTROL = "TRWAGMYFPDXBNJZSQVHLCKE";
+
+        if (dni == null || dni.isBlank()) return false;
+
+        String d = dni.toUpperCase();
+
+        if (!d.matches("[0-9]{8}[A-Z]")) return false;
+
+        int numeroDNI = Integer.parseInt(d.substring(0, 8));
+        char letraEsperada = LETRAS_CONTROL.charAt(numeroDNI % 23);
+
+        return d.charAt(8) == letraEsperada;
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error: debes introducir un dni válido." + e.getMessage());
+        }
+        return false;
+    }
+
+    static public Date validarYFormatearFecha(String fecha) {
+        if (fecha == null || fecha.isBlank()) return null;
+
+        DateTimeFormatter fechaIntroducida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalDate fechaFormateada = LocalDate.parse(fecha.trim(), fechaIntroducida);
+            return Date.valueOf(fechaFormateada);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    private static final DateTimeFormatter FORMATO_ENTRADA_HORA = DateTimeFormatter.ofPattern("HH:mm");
+
+    static public Time validarYFormatearHora(String hora) {
+        if (hora == null || hora.isBlank()) return null;
+
+        try {
+            LocalTime localTime = LocalTime.parse(hora.trim(), FORMATO_ENTRADA_HORA);
+            return Time.valueOf(localTime);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    static public boolean OmitirRespuesta(String respuesta) {
+        boolean omitirRespuesta = false;
+        if (respuesta.equals("OMITIR")) {
+            omitirRespuesta = true;
+        }
+        return omitirRespuesta;
+    }
+
+    static public TipoUsuario ComprobarTipoUsuario(String respuesta) {
+        if (respuesta == null || respuesta.isBlank()) return null;
+
+        for (TipoUsuario tipoUsuario : TipoUsuario.values()) {
+            if (tipoUsuario.name().equalsIgnoreCase(respuesta.trim())) {
+                return tipoUsuario;
+            }
+        }
+        return null;
+    }
+
+    static public DiaSemana ComprobarDiaSemana(String respuesta) {
+        if (respuesta == null || respuesta.isBlank()) return null;
+
+        for (DiaSemana diaSemana : DiaSemana.values()) {
+            if (diaSemana.name().equalsIgnoreCase(respuesta.trim())) {
+                return diaSemana;
+            }
+        }
+        return null;
+    }
+
+    private static final Pattern PATRON_EMAIL = Pattern.compile(
+            "^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
+    ); // Patrón validador de email
+
+    public static boolean validarEmail(String email) {
+        if (email == null || email.isBlank()) return false;
+        return PATRON_EMAIL.matcher(email.trim()).matches();
+    }
+
     static public void mostrar(String mensaje) {
         System.out.println(mensaje);
     }
 
-    /**
-     * Imprime una línea vacía.
-     */
+
     static public void saltoLinea() {
         System.out.println();
     }
-    /**
-     * Pausa la ejecución hasta que el usuario pulse Enter.
-     *
-     * @param mensaje mensaje que se mostrará antes de esperar
-     */
+
     static public void pausar(String mensaje) {
         System.out.println();
         System.out.print(mensaje);
         scanner.nextLine();
     }
-    /**
-     * Muestra una cabecera visual en consola.
-     *
-     * @param titulo título a mostrar
-     */
+
     static public void mostrarTitulo(String titulo) {
         int ancho = 48; // ancho total de la línea
         String linea = "=".repeat(ancho);
@@ -108,9 +177,6 @@ public class ConsolaView {
         System.out.println(linea);
     }
 
-    /**
-     * Limpia la pantalla
-     */
     public static void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();

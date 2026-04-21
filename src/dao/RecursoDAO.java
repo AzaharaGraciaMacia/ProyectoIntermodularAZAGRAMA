@@ -2,10 +2,7 @@ package dao;
 
 import model.Recurso;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +23,9 @@ public class RecursoDAO {
 
     private static final String INSERT_QUERY = "INSERT INTO recurso (idRecurso, nombre, descripcion, ubicacion, capacidad) VALUES (?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM recurso";
-    private static final String SELECT_BY_ID_QUERY = "SELECT * FROM Horario WHERE idRecurso = ?";
-    private static final String SELECT_BY_NOMBRE_QUERY = "SELECT * FROM Horario WHERE nombre = ?";
-    private static final String UPDATE_QUERY = "UPDATE recurso SET nombre = ?, descripcion = ?, ubicacion = ?, capacidad = ? FROM recurso WHERE idRecurso = ?";
+    private static final String SELECT_BY_ID_QUERY = "SELECT * FROM recurso WHERE idRecurso = ?";
+    private static final String SELECT_BY_NOMBRE_QUERY = "SELECT * FROM recurso WHERE nombre = ?";
+    private static final String UPDATE_QUERY = "UPDATE recurso SET nombre = ?, descripcion = ?, ubicacion = ?, capacidad = ? WHERE idRecurso = ?";
     private static final String DELETE_QUERY = "DELETE FROM recurso WHERE idRecurso = ?";
     private static final String TOTAL_RECURSOS_QUERY = "SELECT COUNT(*) FROM recurso";
 
@@ -44,7 +41,7 @@ public class RecursoDAO {
     }
 
     public void insertRecurso(Recurso recurso) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(INSERT_QUERY)) {
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, recurso.getIdRecurso());
             statement.setString(2, recurso.getNombreRecurso());
             statement.setString(3, recurso.getDescripcion());

@@ -8,6 +8,8 @@ public class UsuarioNormal extends Usuario {
     private String tlfMovil;
     private String fotografia;
 
+
+
     public UsuarioNormal(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario, Timestamp fechaRegistro, String direccion, String tlfMovil, String fotografia) {
         super(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento, idUsuario, fechaRegistro);
         this.direccion = direccion;
@@ -41,6 +43,6 @@ public class UsuarioNormal extends Usuario {
 
     @Override
     public String toString() {
-        return String.format("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-50s %-15s %-15s\n", super.getDni(), super.getNombre(), super.getEmail(), super.getFechaNacimiento(), super.getContrasena(), super.getDni(), super.getFechaRegistro(), direccion, tlfMovil, fotografia);
+        return String.format("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-50s %-15s %-15s\n", super.getIdUsuario(), super.getNombre(), super.getEmail(), super.getFechaNacimiento(), super.getContrasena(), super.getDni(), super.getFechaRegistro(), direccion, tlfMovil, fotografia);
     }
 }
