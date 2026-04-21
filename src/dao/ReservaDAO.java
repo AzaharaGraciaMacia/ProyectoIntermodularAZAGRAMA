@@ -26,7 +26,7 @@ public class ReservaDAO {
     `motivo` TEXT DEFAULT 'Cumpleaños' NOT NULL,
     `observaciones` TEXT,
                     primary key(`idReservaLocal`),
-                    foreign key(`idUsuario`) references `usuarioNormal`(`idUsuario`),
+                    foreign key(`idUsuario`) references `usuario`(`idUsuario`),
                     foreign key(`idRecurso`) references `recurso`(`idRecurso`),`
 );
 """;
@@ -35,7 +35,7 @@ public class ReservaDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM reserva";
     private static final String SELECT_BY_DNI_USUARIO_QUERY = "SELECT * FROM reserva r INNER JOIN usuario u ON r.idUsuario = u.idUsuario WHERE dni = ?";
     private static final String SELECT_BY_ID_RESERVA_QUERY = "SELECT * FROM reserva r WHERE idReservaLocal = ?";
-    private static final String UPDATE_QUERY = "UPDATE reserva SET idRecurso = ?, fecha = ?, horaInicio = ?, horaFin = ?, coste = ?, numeroPlazas = ?, motivo = ?, observaciones = ? WHERE idReservaLocal = ?";
+    private static final String UPDATE_QUERY = "UPDATE reserva SET idRecurso = ?, idUsuario = ?,fecha = ?, horaInicio = ?, horaFin = ?, coste = ?, numeroPlazas = ?, motivo = ?, observaciones = ? WHERE idReservaLocal = ?";
     private static final String DELETE_QUERY = "DELETE FROM reserva WHERE idReservaLocal = ?";
     private static final String TOTAL_RESERVAS_QUERY = "SELECT COUNT(*) FROM reserva";
 
@@ -103,14 +103,15 @@ public class ReservaDAO {
     public void updateReserva(Reserva reserva) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
             statement.setString(1, reserva.getIdRecurso());
-            statement.setDate(2, reserva.getFechaReserva());
-            statement.setTime(3, reserva.getHoraInicio());
-            statement.setTime(4, reserva.getHoraFin());
-            statement.setDouble(5, reserva.getCoste());
-            statement.setInt(6, reserva.getNumeroPlazas());
-            statement.setString(7, reserva.getMotivo());
-            statement.setString(8, reserva.getObservaciones());
-            statement.setInt(9, reserva.getIdReserva());
+            statement.setInt(2, reserva.getIdUsuario());
+            statement.setDate(3, reserva.getFechaReserva());
+            statement.setTime(4, reserva.getHoraInicio());
+            statement.setTime(5, reserva.getHoraFin());
+            statement.setDouble(6, reserva.getCoste());
+            statement.setInt(7, reserva.getNumeroPlazas());
+            statement.setString(8, reserva.getMotivo());
+            statement.setString(9, reserva.getObservaciones());
+            statement.setInt(10, reserva.getIdReserva());
             statement.executeUpdate();
         }
     }

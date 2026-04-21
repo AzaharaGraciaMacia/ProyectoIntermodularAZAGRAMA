@@ -83,7 +83,7 @@ CONSTRAINT PK_RESERVA PRIMARY KEY (idReservaLocal),
 CONSTRAINT FK_ID_REC_RES FOREIGN KEY (idRecurso) REFERENCES recurso(idRecurso)
 		ON DELETE NO ACTION
         ON UPDATE CASCADE,
-CONSTRAINT FK_ID_USUNOR FOREIGN KEY (idUsuario) REFERENCES usuarioNormal(idUsuario)
+CONSTRAINT FK_ID_USU FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 		ON DELETE NO ACTION 
         ON UPDATE CASCADE, -- En este caso, he creído conveniente que las modificaciones se propaguen pero los borrados no, ya que entiendo que se querrá guardar un registro de las reservas pasadas aunque el usuario se borre.
 CONSTRAINT RES_TIME CHECK (horaFin>horaInicio)

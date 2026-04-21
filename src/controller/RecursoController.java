@@ -101,6 +101,16 @@ public class RecursoController {
         return null;
     }
 
+    public int cantidadRecursos() {
+        try{
+            int cantidad = recursoDAO.totalRecursos();
+            return cantidad;
+        } catch (SQLException e) {
+            consolaView.mostrar("Error de base de datos: " + e.getMessage());
+        }
+        return 0;
+    }
+
     public void iniciar() {
         int opcion;
 
@@ -115,6 +125,7 @@ public class RecursoController {
                     case 3 -> actualizarRecurso();
                     case 4 -> mostrarTodosLosRecursos();
                     case 5 -> mostrarRecursoID();
+                    case 6 -> System.out.println("En estos momentos hay registrados "+ cantidadRecursos() + " recursos.");
                     case 0 -> consolaView.mostrar("Volviendo...");
                     default -> consolaView.mostrar("Opción no válida.");
                 }

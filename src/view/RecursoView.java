@@ -79,6 +79,7 @@ public class RecursoView {
         System.out.println("3. Modificar recurso");
         System.out.println("4. Listar todos los recursos");
         System.out.println("5. Mostrar recurso por id");
+        System.out.println("6. Mostrar cantidad de recursos.");
         System.out.println("0. Volver");
     }
 

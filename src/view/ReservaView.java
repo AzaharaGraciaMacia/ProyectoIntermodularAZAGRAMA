@@ -10,9 +10,12 @@ import model.Reserva;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.Normalizer;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 
 public class ReservaView {
     RecursoView recursoView = new RecursoView();
@@ -50,6 +53,8 @@ public class ReservaView {
 
         LocalDate fechaDia;
         DayOfWeek diaSemana;
+        String diaEspanol;
+        String diaLimpio;
         Date fechaReserva = null;
         do {
             boolean fechaValida = false;
@@ -63,7 +68,11 @@ public class ReservaView {
             }
             fechaDia = fechaReserva.toLocalDate();
             diaSemana = fechaDia.getDayOfWeek();
-        } while (DiaSemana.valueOf(diaSemana.toString())!=diaSemanaDisponible);
+            diaEspanol = diaSemana.getDisplayName(TextStyle.FULL, new Locale("es"));
+            diaLimpio = Normalizer.normalize(diaEspanol, Normalizer.Form.NFD)
+                    .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+                    .toLowerCase();
+        } while (DiaSemana.valueOf(diaLimpio.toLowerCase())!=diaSemanaDisponible);
 
         Time horaInicio = horario.getHoraInicio();
         Time horaFin = horario.getHoraFin();
@@ -106,6 +115,8 @@ public class ReservaView {
             throw new RuntimeException(e);
         }
 
+        String diaEspanol;
+        String diaLimpio;
         LocalDate fechaDia;
         DayOfWeek diaSemana;
         Date fechaReserva = null;
@@ -121,7 +132,11 @@ public class ReservaView {
             }
             fechaDia = fechaReserva.toLocalDate();
             diaSemana = fechaDia.getDayOfWeek();
-        } while (DiaSemana.valueOf(diaSemana.toString())!=diaSemanaDisponible);
+            diaEspanol = diaSemana.getDisplayName(TextStyle.FULL, new Locale("es"));
+            diaLimpio = Normalizer.normalize(diaEspanol, Normalizer.Form.NFD)
+                    .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+                    .toLowerCase();
+        } while (DiaSemana.valueOf(diaLimpio)!=diaSemanaDisponible);
 
         Time horaInicio = horario.getHoraInicio();
         Time horaFin = horario.getHoraFin();
@@ -140,7 +155,7 @@ public class ReservaView {
             observaciones = respuesta;
         }
 
-        return new Reserva(idRecurso, reserva.getIdUsuario(), fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
+        return new Reserva(idRecurso, reserva.getIdReserva(), reserva.getIdUsuario(), fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
     }
 
     public int obtenerIdReserva() {
@@ -150,7 +165,7 @@ public class ReservaView {
         String dni;
         do {
             dni = ConsolaView.leerTexto("Introduce el DNI del usuario:").toUpperCase();
-            System.out.println("Error: DNI incorrecto.");
+            if (!ConsolaView.comprobarDNI(dni)) System.out.println("Error: DNI incorrecto.");
         } while(!ConsolaView.comprobarDNI(dni));
         return dni;
     }
@@ -171,7 +186,9 @@ public class ReservaView {
         System.out.println("4. Listar todas las reservas");
         System.out.println("5. Mostrar reserva por id");
         System.out.println("6. Listar reservas por DNI de Usuario");
+        System.out.println("7. Cantidad de reservas registradas");
         System.out.println("0. Volver");
     }
+
 
 }

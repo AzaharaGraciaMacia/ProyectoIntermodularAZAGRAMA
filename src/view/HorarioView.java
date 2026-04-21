@@ -139,6 +139,7 @@ public class HorarioView {
         System.out.println("4. Listar todos los horarios");
         System.out.println("5. Mostrar horario por id");
         System.out.println("6. Listar horarios por día");
+        System.out.println("7. Mostrar número de horarios registrados");
         System.out.println("0. Volver");
     }
 }

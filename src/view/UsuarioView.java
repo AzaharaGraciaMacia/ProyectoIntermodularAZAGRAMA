@@ -231,6 +231,9 @@ public class UsuarioView {
         System.out.println("5. Listar todos los administradores");
         System.out.println("6. Listar todos los usuarios normales");
         System.out.println("7. Mostrar usuario por DNI");
+        System.out.println("8. Mostrar cantidad total de usuarios");
+        System.out.println("9. Mostrar cantidad total de administradores");
+        System.out.println("10. Mostrar cantidad total de usuarios normales");
         System.out.println("0. Volver");
     }
 
