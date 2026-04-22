@@ -18,9 +18,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class ReservaView {
-    RecursoView recursoView = new RecursoView();
-    RecursoController recursoController = new RecursoController();
-    HorarioDAO horarioDAO = HorarioDAO.getInstance();
+    private RecursoView recursoView;
+    private RecursoController recursoController;
+    private HorarioDAO horarioDAO;
+
+    public ReservaView() throws SQLException {
+        recursoView = new RecursoView();
+        recursoController = new RecursoController();
+        horarioDAO = HorarioDAO.getInstance();
+    }
 
     public void mostrarReservas(List<Reserva> reservas) {
         System.out.println("Lista de Reservas:");

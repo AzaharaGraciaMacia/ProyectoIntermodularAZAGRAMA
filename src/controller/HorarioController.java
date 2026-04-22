@@ -20,7 +20,7 @@ public class HorarioController {
     /**
      * Crea las conexiones con el resto de clases
      */
-    public HorarioController() {
+    public HorarioController() throws SQLException {
         horarioDAO = HorarioDAO.getInstance();
         horarioView = new HorarioView();
         consolaView = new ConsolaView();

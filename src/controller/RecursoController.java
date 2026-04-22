@@ -27,7 +27,7 @@ public class RecursoController {
     /**
      * Crea las conexiones con el resto de clases
      */
-    public RecursoController() {
+    public RecursoController() throws SQLException {
         recursoDAO = RecursoDAO.getInstance();
         recursoView = new RecursoView();
         consolaView = new ConsolaView();

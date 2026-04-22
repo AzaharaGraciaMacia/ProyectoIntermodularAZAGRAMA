@@ -6,7 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="Iniciamos View con usuario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HorarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HorarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/RecursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RecursoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/HorarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/HorarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/RecursoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/RecursoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ReservaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ReservaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ReservaView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,12 +34,12 @@
     &quot;assignee&quot;: &quot;AzaharaGraciaMacia&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AzaharaGraciaMacia/ProyectoIntermodularAZAGRAMA.git",
-    "accountId": "7d1ec59e-fd2d-45f5-a070-c5fa50663bef"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AzaharaGraciaMacia/ProyectoIntermodularAZAGRAMA.git&quot;,
+    &quot;accountId&quot;: &quot;7d1ec59e-fd2d-45f5-a070-c5fa50663bef&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3

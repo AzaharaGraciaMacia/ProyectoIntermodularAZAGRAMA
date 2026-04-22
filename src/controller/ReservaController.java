@@ -25,7 +25,7 @@ public class ReservaController{
     /**
      * Crea las conexiones con el resto de clases
      */
-    public ReservaController() {
+    public ReservaController() throws SQLException {
             reservaDAO = ReservaDAO.getInstance();
             reservaView = new ReservaView();
             consolaView = new ConsolaView();

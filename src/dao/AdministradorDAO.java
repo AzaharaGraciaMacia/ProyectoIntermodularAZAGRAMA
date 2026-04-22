@@ -72,6 +72,7 @@ public class AdministradorDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     * @throws SQLException si ocurre un error en la conexión
      */
     private AdministradorDAO() throws SQLException {
         this.connection = DBConnection.getConnection();
@@ -80,8 +81,9 @@ public class AdministradorDAO {
     /**
      * Devuelve la instancia única del DAO.
      * @return instancia de {@code AdministradorDAO}
+     * @throws SQLException si ocurre un error en la conexión
      */
-    public static synchronized AdministradorDAO getInstance() {
+    public static synchronized AdministradorDAO getInstance() throws  SQLException {
         if (instance == null) {
             instance = new AdministradorDAO();
         }
@@ -90,7 +92,7 @@ public class AdministradorDAO {
 
     /**
      * Inserta los datos de administrador en la BD
-     * @param administrador
+     * @param administrador administrador a insertar
      * @throws SQLException si ocurre un error en la inserción
      */
     public void insertAdministrador(Administrador administrador) throws SQLException {
@@ -119,7 +121,7 @@ public class AdministradorDAO {
 
     /**
      * Recupera los datos de un administrador por su DNI de la BD, uniendo la tabla con la tabla usuario
-     * @param dni
+     * @param dni dni a buscar para recibir los datos
      * @return Administrador encontrado o {@code null}
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -150,7 +152,7 @@ public class AdministradorDAO {
 
     /**
      * Elimina de la BD un administrador relacionado por DNI
-     * @param dni
+     * @param dni dni a buscar para eliminar
      * @throws SQLException si ocurre un error en la eliminación
      */
     public void deleteAdministradorByDni(String dni) throws SQLException {
@@ -161,10 +163,11 @@ public class AdministradorDAO {
     }
 
     /**
-     * Recibe los parámetros de la BD y los asigna a un objeto de la clase Administrador
-     * @param resultSet
-     * @return Administrador encontrado o {@code null}
-     * @throws SQLException si ocurre un error en la recuperación de datos
+     * Convierte una fila del {@link ResultSet} en un objeto {@link Administrador}.
+     *
+     * @param resultSet fila actual del result set
+     * @return objeto administrador construido a partir de la fila actual
+     * @throws SQLException si ocurre un error al leer columnas
      */
     private Administrador resultSetToAdministrador(ResultSet resultSet) throws SQLException {
         String valorDB = resultSet.getString("tipoUsuario");

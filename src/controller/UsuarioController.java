@@ -26,7 +26,7 @@ public class UsuarioController {
     /**
      * Crea las conexiones con el resto de clases
      */
-    public UsuarioController() {
+    public UsuarioController() throws SQLException {
         usuarioDAO = UsuarioDAO.getInstance();
         usuarioNormalDAO = UsuarioNormalDAO.getInstance();
         administradorDAO = AdministradorDAO.getInstance();
