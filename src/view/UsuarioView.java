@@ -1,48 +1,61 @@
 package view;
 
 import dao.UsuarioDAO;
-import model.Administrador;
-import model.TipoUsuario;
-import model.Usuario;
-import model.UsuarioNormal;
+import model.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Vista de consola para la gestión de usuarios.
+ */
 public class UsuarioView {
 
-
+    /**
+     * Muestra una tabla con los usuarios
+     *
+     * @param usuarios Lista de usuarios a mostrar
+     */
     public void mostrarUsuarios(List<Usuario> usuarios) {
-        System.out.println("Lista de Usuarios:");
+        System.out.println("Lista de Usuarios:\n");
 
-        System.out.printf("%-5s %-30s %-30s %-25s %-25s %-30s %-12s %-50s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Tipo de Usuario","Contraseña", "DNI", "Fecha de Registro" );
-
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        ConsolaView.mostrar(Usuario.CABECERA_LISTADO);
 
         usuarios.forEach(System.out::println);
     }
 
+    /**
+     * Muestra una tabla con los usuarios normales
+     *
+     * @param usuariosNormales Lista de usuarios normales a mostrar
+     */
     public void mostrarUsuariosNormales(List<UsuarioNormal> usuariosNormales) {
-        System.out.println("Lista de Usuarios Normales:");
+        System.out.println("Lista de Usuarios Normales:\n");
 
-        System.out.printf("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-50s %-15s %-15s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Dirección", "Teléfono Móvil", "Fotografía" );
-
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        ConsolaView.mostrar(UsuarioNormal.CABECERA_LISTADO);
 
         usuariosNormales.forEach(System.out::println);
     }
 
+    /**
+     * Muestra una tabla con los administradores
+     *
+     * @param administradores Lista de recursos a mostrar
+     */
     public void mostrarAdministradores(List<Administrador> administradores) {
-        System.out.println("Lista de Administradores:");
+        System.out.println("Lista de Administradores:\n");
 
-        System.out.printf("%-5s %-30s %-30s %-25s %-30s %-12s %-25s %-12s\n","ID","Nombre", "Email", "Fecha de Nacimiento", "Contraseña", "DNI", "Fecha de Registro", "Teléfono de Guardia" );
-
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        ConsolaView.mostrar(Administrador.CABECERA_LISTADO);
 
         administradores.forEach(System.out::println);
     }
 
+    /**
+     * Crea un objeto {@link Usuario} a partir de la lectura de datos por consola. Dependiendo del tipo de usuario llama a crear también sus correspondientes datos.
+     *
+     * @return objeto usuario
+     */
     public Usuario crearUsuario() throws SQLException {
         boolean entradaValida = false;
         //comprobamos que no exista un usuario con el mismo DNI
@@ -99,6 +112,12 @@ public class UsuarioView {
         return new Usuario(dni, nombre, email, contrasena, tipoUsuario, fechaNacimiento, 0, null);
     }
 
+    /**
+     * Crea un objeto {@link UsuarioNormal} a partir de la lectura de datos por consola
+     *
+     * @param usuario usuario asociado para coger los datos de la superclase
+     * @return objeto usuarioNormal
+     */
     public UsuarioNormal crearUsuarioNormal(Usuario usuario) {
         String direccion = null;
         String telefono = null;
@@ -128,6 +147,13 @@ public class UsuarioView {
         return new UsuarioNormal(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), direccion, telefono, fotografia);
 
     }
+
+    /**
+     * Crea un objeto {@link Administrador} a partir de la lectura de datos por consola
+     *
+     * @param usuario usuario asociado para coger los datos de la superclase
+     * @return objeto administrdor
+     */
     public Administrador crearAdministrador(Usuario usuario) {
         String telefonoGuardia = ConsolaView.leerTexto("Introduce el teléfono de guardia: ");
 
@@ -141,6 +167,12 @@ public class UsuarioView {
         return dni;
     }
 
+    /**
+     *Crea un nuevo objeto {@link Usuario} a partir de otro con los datos actualizados leídos por consola. Dependiendo del tipo de usuario llama a crear también sus correspondientes datos.
+     *
+     * @param usuario usuario que se desea actualizar
+     * @return objeto usuario actualizado
+     */
     public Usuario obtenerDatosActualizados(Usuario usuario) {
 
         String nombre = ConsolaView.leerTexto("Introduce el nombre completo:");
@@ -171,6 +203,13 @@ public class UsuarioView {
         return new Usuario(usuario.getDni(), nombre, email, contrasena, usuario.getTipoUsuario(), fechaNacimiento, usuario.getIdUsuario(), usuario.getFechaRegistro());
 
     }
+
+    /**
+     *Crea un nuevo objeto {@link UsuarioNormal} a partir de otro con los datos actualizados leídos por consola
+     *
+     * @param usuario usuario que se desea actualizar
+     * @return objeto usuarioNormal actualizado
+     */
     public UsuarioNormal obtenerDatosActualizadosUsuarioNormal(Usuario usuario) {
         String direccion = null;
         String telefono = null;
@@ -199,12 +238,24 @@ public class UsuarioView {
 
         return new UsuarioNormal(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), direccion, telefono, fotografia);
     }
+
+    /**
+     *Crea un nuevo objeto {@link Administrador} a partir de otro con los datos actualizados leídos por consola
+     *
+     * @param usuario usuario que se desea actualizar
+     * @return objeto administrador actualizado
+     */
     public Administrador obtenerDatosActualizadosAdministrador(Usuario usuario) {
         String telefonoGuardia = ConsolaView.leerTexto("Introduce el nuevo teléfono de guardia: ");
 
         return new Administrador(usuario.getDni(), usuario.getNombre(), usuario.getEmail(), usuario.getContrasena(), usuario.getTipoUsuario(),usuario.getFechaNacimiento(), usuario.getIdUsuario(), usuario.getFechaRegistro(), telefonoGuardia);
     }
 
+    /**
+     * Pide al usuario que introduzca por consola el DNI del usuario que desea recuperar y llama a su validación
+     *
+     * @return texto con el DNI
+     */
     public String obtenerDni() {
         String dni;
         do {
@@ -214,13 +265,48 @@ public class UsuarioView {
         return dni;
     }
 
+    /**
+     * Muestra una tabla con el usuario solicitado
+     *
+     * @param usuario usuario que se desea visualizar
+     */
     public void mostrarUsuario(Usuario usuario) {
-        if (usuario != null)
-            System.out.println(usuario);
+        if (usuario != null){
+            ConsolaView.mostrar(Usuario.CABECERA_LISTADO);
+            System.out.println(usuario);}
         else
             System.out.println("El usuario no existe");
     }
 
+    /**
+     * Muestra una tabla con el usuario normal solicitado
+     *
+     * @param usuarioNormal usuario normal que se desea visualizar
+     */
+    public void mostrarUsuarioNormal(UsuarioNormal usuarioNormal) {
+        if (usuarioNormal != null){
+            ConsolaView.mostrar(UsuarioNormal.CABECERA_LISTADO);
+            System.out.println(usuarioNormal);}
+        else
+            System.out.println("El usuario no existe");
+    }
+
+    /**
+     * Muestra una tabla con el administrador solicitado
+     *
+     * @param administrador administrador que se desea visualizar
+     */
+    public void mostrarAdministrador(Administrador administrador) {
+        if (administrador != null){
+            ConsolaView.mostrar(Administrador.CABECERA_LISTADO);
+            System.out.println(administrador);}
+        else
+            System.out.println("El usuario no existe");
+    }
+
+    /**
+     * Muestra el menú de usuarios
+     */
     public void mostrarMenu() {
         ConsolaView.limpiarPantalla();
         ConsolaView.mostrarTitulo("GESTIÓN DE USUARIOS");

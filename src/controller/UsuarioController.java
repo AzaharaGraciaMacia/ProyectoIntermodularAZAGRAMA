@@ -77,7 +77,13 @@ public class UsuarioController {
         try {
             String dni = usuarioView.obtenerDni();
             Usuario usuario = usuarioDAO.getUsuarioByDni(dni);
-            usuarioView.mostrarUsuario(usuario);
+            if (usuario.getTipoUsuario() == TipoUsuario.normal) {
+                UsuarioNormal usuarioNormal = usuarioNormalDAO.getUsuarioNormalByDni(dni);
+                usuarioView.mostrarUsuarioNormal(usuarioNormal);
+            } else  {
+                Administrador administrador = administradorDAO.getAdministradorByDni(dni);
+                usuarioView.mostrarAdministrador(administrador);
+            }
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }

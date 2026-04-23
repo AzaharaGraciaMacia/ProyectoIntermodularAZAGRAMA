@@ -6,19 +6,30 @@ import model.Horario;
 import java.sql.Time;
 import java.util.List;
 
+/**
+ * Vista de consola para la gestión de horarios.
+ */
 public class HorarioView {
 
+    /**
+     * Muestra una tabla con los horarios
+     *
+     * @param horarios Lista de horarios a mostrar
+     */
     public void mostrarHorarios(List<Horario> horarios) {
-        System.out.println("Lista de Horarios:");
+        System.out.println("Lista de Horarios:\n");
 
-        System.out.printf("%-15s %-30s %-25s %-25s\n", "ID del Horario" , "Día de la semana" , "Hora de Inicio" , "Hora de Fin");
-
-        System.out.println("---------------------------------------------------------------------------------------------------");
+        ConsolaView.mostrar(Horario.CABECERA_LISTADO);
 
         horarios.forEach(System.out::println);
 
     }
 
+    /**
+     * Crea un objeto {@link Horario} a partir de la lectura de datos por consola
+     *
+     * @return objeto horario
+     */
     public Horario crearHorario() {
 
         DiaSemana diaSemana = null;
@@ -61,10 +72,21 @@ public class HorarioView {
         return new Horario(diaSemana, horaInicio, horaFin);
     }
 
+    /**
+     * Pide al usuario que introduzca por consola el ID del horario que desea eliminar
+     *
+     * @return entero ID de horario
+     */
     public int obtenerIdAEliminar() {
         return ConsolaView.leerEntero("Introduce el ID del horario a eliminar:");
     }
 
+    /**
+     * Crea un nuevo objeto {@link Horario} a partir de otro con los datos actualizados leídos por consola
+     *
+     * @param horario horario que se desea actualizar
+     * @return objeto horario actualizado
+     */
     public Horario obtenerDatosActualizados(Horario horario) {
         DiaSemana diaSemana = null;
         boolean diaValido = false;
@@ -105,10 +127,20 @@ public class HorarioView {
         return new Horario(horario.getIdHorario(), diaSemana, horaInicio, horaFin);
     }
 
+    /**
+     * Pide al usuario que introduzca por consola el ID del horario que desea recuperar
+     *
+     * @return entero ID de horario
+     */
     public int obtenerIdHorario() {
         return ConsolaView.leerEntero("Introduce el ID del horario:");
     }
 
+    /**
+     * Pide al usuario que introduzca por consola el día de los horarios que desea recuperar
+     *
+     * @return texto con día de la semana validado
+     */
     public String obtenerDiaHorario() {
         DiaSemana diaSemana = null;
         boolean diaValido = false;
@@ -123,13 +155,22 @@ public class HorarioView {
         return String.valueOf(diaSemana);
     }
 
+    /**
+     * Muestra una tabla con el horario solicitado
+     *
+     * @param horario horario que se desea visualizar
+     */
     public void mostrarHorario(Horario horario) {
-        if (horario != null)
-            System.out.println(horario);
+        if (horario != null){
+            ConsolaView.mostrar(Horario.CABECERA_LISTADO);
+            System.out.println(horario);}
         else
             System.out.println("El horario no existe");
     }
 
+    /**
+     * Muestra el menú de horarios
+     */
     public void mostrarMenu() {
         ConsolaView.limpiarPantalla();
         ConsolaView.mostrarTitulo("GESTIÓN DE HORARIOS");

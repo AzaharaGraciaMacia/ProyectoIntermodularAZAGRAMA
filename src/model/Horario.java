@@ -8,6 +8,12 @@ public class Horario {
     private Time HoraInicio;
     private Time HoraFin;
 
+    public static final String FORMATO_IMPRESION="%-15s %-30s %-25s %-25s\n";
+    public static final String CABECERA_LISTADO= String.format(FORMATO_IMPRESION,
+            "ID de Horario", "Día de la Semana", "Hora Inicio", "Hora Fin" +
+            "\n-------------------------------------------------------------------------------------------------------------------");
+
+
     public Horario(int idHorario, DiaSemana diaSemana, Time horaInicio, Time horaFin) {
         this.idHorario = idHorario;
         this.diaSemana = diaSemana;
@@ -55,6 +61,6 @@ public class Horario {
 
     @Override
     public String toString() {
-        return String.format("%-15s %-30s %-25s %-25s\n", idHorario, diaSemana, HoraInicio, HoraFin);
+        return String.format(FORMATO_IMPRESION, idHorario, diaSemana, HoraInicio, HoraFin);
     }
 }

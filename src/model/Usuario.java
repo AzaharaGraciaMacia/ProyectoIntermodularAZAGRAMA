@@ -14,6 +14,11 @@ public class Usuario
     private int idUsuario;
     private Timestamp fechaRegistro;
 
+    public static final String FORMATO_IMPRESION="%-5s %-30s %-30s %-25s %-25s %-20s %-12s %-50s\n";
+    public static final String CABECERA_LISTADO= String.format(FORMATO_IMPRESION,
+            "ID","Nombre", "Email", "Fecha de Nacimiento", "Tipo de Usuario","Contraseña", "DNI", "Fecha de Registro" +
+                    "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
     public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario,  Timestamp fechaRegistro) {
         this.dni = dni;
         this.nombre = nombre;
@@ -91,6 +96,6 @@ public class Usuario
 
     @Override
 public String toString() {
-    return String.format("%-5s %-30s %-30s %-25s %-25s %-30s %-12s %-50s\n", idUsuario, nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni , fechaRegistro);
+    return String.format(FORMATO_IMPRESION, idUsuario, nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni , fechaRegistro);
 }
 }

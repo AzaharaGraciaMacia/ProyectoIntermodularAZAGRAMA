@@ -15,6 +15,12 @@ public class Reserva {
     private String motivo;
     private String observaciones;
 
+    public static final String FORMATO_IMPRESION="%-15s %-15s %-15s %-20s %-20s %-20s %-20s %-20s %-40s %-100s\n";
+    public static final String CABECERA_LISTADO= String.format(FORMATO_IMPRESION,
+            "ID de Reserva" , "ID de Recurso" , "ID de Usuario" , "Fecha de Reserva" , "Hora de Inicio", "Hora de Fin", "Coste (€)", "Número de Plazas", "Motivo", "Observaciones" +
+                    "\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+
     public Reserva(String idRecurso, int idReserva, int idUsuario, Date fechaReserva, Time horaInicio, Time horaFin, double coste, int numeroPlazas, String motivo, String observaciones) {
         this.idRecurso = idRecurso;
         this.idReserva = idReserva;
@@ -122,6 +128,6 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return String.format("%-15s %-15s %-15s %-15s %-10s %-10s %-10s %-15s %-50s %-100s\n", idReserva, idRecurso, idUsuario, fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
+        return String.format(FORMATO_IMPRESION, idReserva, idRecurso, idUsuario, fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
     }
 }

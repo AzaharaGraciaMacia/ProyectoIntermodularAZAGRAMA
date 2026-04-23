@@ -7,6 +7,11 @@ public class Recurso {
     private String ubicacionRecurso;
     private int capacidadRecurso;
 
+    public static final String FORMATO_IMPRESION="%-25s %-30s %-50s %-30s %-20s\n";
+    public static final String CABECERA_LISTADO= String.format(FORMATO_IMPRESION,
+            "ID de Recurso", "Nombre", "Descripción", "Ubicación", "Capacidad" +
+                    "\n------------------------------------------------------------------------------------------------------------------------------------------------------");
+
     public Recurso(String idRecurso, String nombreRecurso, String descripcion, String ubicacionRecurso, int capacidadRecurso) {
         this.idRecurso = idRecurso;
         this.nombreRecurso = nombreRecurso;
@@ -57,6 +62,6 @@ public class Recurso {
 
     @Override
     public String toString() {
-       return String.format("%-25s %-30s %-50s %-30s %-20s\n", idRecurso, nombreRecurso, descripcion, ubicacionRecurso, capacidadRecurso);
+       return String.format(FORMATO_IMPRESION, idRecurso, nombreRecurso, descripcion, ubicacionRecurso, capacidadRecurso);
     }
 }
