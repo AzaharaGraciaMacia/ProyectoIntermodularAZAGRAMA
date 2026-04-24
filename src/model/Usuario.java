@@ -3,6 +3,10 @@ package model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * La clase {@code Usuario} representa a un usuario "padre" en el sistema.
+ * Contiene información personal del usuario.
+ */
 public class Usuario
 {
     private String dni;
@@ -14,11 +18,25 @@ public class Usuario
     private int idUsuario;
     private Timestamp fechaRegistro;
 
+    /**
+     * Cabecera para imprimir listados
+     */
     public static final String FORMATO_IMPRESION="%-5s %-30s %-30s %-25s %-25s %-20s %-12s %-50s\n";
     public static final String CABECERA_LISTADO= String.format(FORMATO_IMPRESION,
             "ID","Nombre", "Email", "Fecha de Nacimiento", "Tipo de Usuario","Contraseña", "DNI", "Fecha de Registro" +
                     "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
+    /**
+     *
+     * @param dni
+     * @param nombre
+     * @param email
+     * @param contrasena
+     * @param tipoUsuario
+     * @param fechaNacimiento
+     * @param idUsuario
+     * @param fechaRegistro
+     */
     public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario,  Timestamp fechaRegistro) {
         this.dni = dni;
         this.nombre = nombre;
@@ -94,6 +112,12 @@ public class Usuario
         this.fechaRegistro = fechaRegistro;
     }
 
+    /**
+     * Devuelve una representación en cadena del objeto {@code Usuario}.
+     * Actualmente, devuelve una cadena con formato de tabla.
+     *
+     * @return Una cadena que representa el usuario.
+     */
     @Override
 public String toString() {
     return String.format(FORMATO_IMPRESION, idUsuario, nombre, email, fechaNacimiento, tipoUsuario, contrasena, dni , fechaRegistro);
