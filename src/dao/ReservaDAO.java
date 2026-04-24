@@ -9,10 +9,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO de la entidad {@link ReservaDAO}.
+ * <p>La clase encapsula las operaciones CRUD y consultas complementarias de la tabla
+ * {@code reserva}. La clase utiliza un patrón Singleton para trabajar con una única
+ * instancia y una única conexión compartida.</p>
+ */
 public class ReservaDAO {
+    /**
+     * Instancia única del DAO
+     */
     private static ReservaDAO instance;
+
+    /**
+     * Conexión compartida con la BD
+     */
     private Connection connection;
 
+    /**
+     * Crea la tabla en la BD si no existe
+     */
     public static final String CREATE_TABLE_RESERVA = """
     CREATE TABLE IF NOT EXISTS `reserva`(
     `idRecurso VARCHAR(10),
@@ -31,25 +47,69 @@ public class ReservaDAO {
 );
 """;
 
+    /**
+     * Consulta SQL para insertar una reserva
+     */
     private static final String INSERT_QUERY = "INSERT INTO reserva (idRecurso, idUsuario, fecha, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    /**
+     * Consulta SQL para recuperar todas las reservas
+     */
     private static final String SELECT_ALL_QUERY = "SELECT * FROM reserva";
+
+    /**
+     * Consulta SQL para recuperar las reservas de un usuario
+     */
     private static final String SELECT_BY_DNI_USUARIO_QUERY = "SELECT * FROM reserva r INNER JOIN usuario u ON r.idUsuario = u.idUsuario WHERE dni = ?";
+
+    /**
+     * Consulta SQL para recuperar una reserva por su ID
+     */
     private static final String SELECT_BY_ID_RESERVA_QUERY = "SELECT * FROM reserva r WHERE idReservaLocal = ?";
+
+    /**
+     * Consulta SQL para actualizar una reserva por su ID
+     */
     private static final String UPDATE_QUERY = "UPDATE reserva SET idRecurso = ?, idUsuario = ?,fecha = ?, horaInicio = ?, horaFin = ?, coste = ?, numeroPlazas = ?, motivo = ?, observaciones = ? WHERE idReservaLocal = ?";
+
+    /**
+     * Consulta SQL para eliminar una reserva por su ID
+     */
     private static final String DELETE_QUERY = "DELETE FROM reserva WHERE idReservaLocal = ?";
+
+    /**
+     * Consulta SQL para sumar el total de reservas
+     */
     private static final String TOTAL_RESERVAS_QUERY = "SELECT COUNT(*) FROM reserva";
 
-    private ReservaDAO() {
+    /**
+     * Constructor privado para aplicar Singleton.
+     *
+     * @throws SQLException si ocurre un error en la conexión
+     */
+    private ReservaDAO() throws SQLException {
         this.connection = DBConnection.getConnection();
     }
 
-    public static synchronized ReservaDAO getInstance() {
+    /**
+     *Devuelve la instancia única del DAO.
+     *
+     * @return instancia de {@code ReservaDAO}
+     * @throws SQLException si ocurre un error en la conexión
+     */
+    public static synchronized ReservaDAO getInstance() throws SQLException {
         if (instance == null) {
             instance = new ReservaDAO();
         }
         return instance;
     }
 
+    /**
+     * Inserta los datos de disponibilidades en la BD
+     *
+     * @param reserva reserva  a insertar
+     * @throws SQLException si ocurre un error en la inserción
+     */
     public void insertReserva(Reserva reserva) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(INSERT_QUERY)) {
             statement.setString(1, reserva.getIdRecurso());
@@ -65,6 +125,12 @@ public class ReservaDAO {
         }
     }
 
+    /**
+     * Recibe los datos de todas las reservas de la BD
+     *
+     * @return ArrayList de reservas
+     * @throws SQLException si ocurre un error en la búsqueda
+     */
     public List<Reserva> getAllReservas() throws SQLException {
         List<Reserva> reservas = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_QUERY)) {
@@ -76,6 +142,13 @@ public class ReservaDAO {
         return reservas;
     }
 
+    /**
+     * Recibe los datos de todas las reservas de un usuario
+     *
+     * @param dni dni del usuario solicitado
+     * @return ArrayList de reservas
+     * @throws SQLException si ocurre un error en la búsqueda
+     */
     public List<Reserva> getReservasByDni(String dni) throws SQLException {
         List<Reserva> reservas = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SELECT_BY_DNI_USUARIO_QUERY)) {
@@ -88,6 +161,13 @@ public class ReservaDAO {
         return reservas;
     }
 
+    /**
+     * Recibe los datos de una reserva concreta recuperada por su ID de la BD
+     *
+     * @param idReserva ID de la reserva solicitada
+     * @return objeto reserva con los datos recibidos
+     * @throws SQLException si ocurre un error en la búsqueda
+     */
     public Reserva getReservaById(int idReserva) throws SQLException {
         Reserva reserva = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID_RESERVA_QUERY)) {
@@ -100,6 +180,12 @@ public class ReservaDAO {
         return reserva;
     }
 
+    /**
+     * Actualiza los datos de disponibilidades en la BD
+     *
+     * @param reserva reserva actualizada
+     * @throws SQLException si ocurre un error en la actualización
+     */
     public void updateReserva(Reserva reserva) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
             statement.setString(1, reserva.getIdRecurso());
@@ -116,6 +202,12 @@ public class ReservaDAO {
         }
     }
 
+    /**
+     * Elimina de la BD una reserva concreta recuperada por su ID
+     *
+     * @param idReserva ID de la reserva a eliminar
+     * @throws SQLException si ocurre un error en la eliminación
+     */
     public void deleteReservaById(int idReserva) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(DELETE_QUERY)) {
             statement.setInt(1, idReserva);
@@ -123,6 +215,13 @@ public class ReservaDAO {
         }
     }
 
+    /**
+     * Convierte una fila del {@link ResultSet} en un objeto {@link Reserva}.
+     *
+     * @param resultSet fila actual del result set
+     * @return objeto reserva construido a partir de la fila actual
+     * @throws SQLException si ocurre un error al leer columnas
+     */
     private Reserva resultSetToReserva(ResultSet resultSet) throws SQLException {
         return new Reserva(
 
@@ -139,6 +238,12 @@ public class ReservaDAO {
         );
     }
 
+    /**
+     * Hace un recuento de las reservas registrados en la BD
+     *
+     * @return total de reservas
+     * @throws SQLException si ocurre un error en la recuperación de datos
+     */
     public int totalReservas() throws SQLException {
         int total = 0;
         try (PreparedStatement statement = connection.prepareStatement(TOTAL_RESERVAS_QUERY)) {

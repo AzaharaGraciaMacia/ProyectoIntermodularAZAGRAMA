@@ -13,25 +13,52 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controlador encargado de la lógica de negocio relacionada con los recursos.
+ *
+ * <p>Coordina la interacción entre la vista de recursos y la capa DAO del modelo.</p>
+ */
 public class RecursoController {
 
+    /**
+     * DAO de recursos
+     */
     private RecursoDAO recursoDAO;
+
+    /**
+     * Vista de recursos
+     */
     private RecursoView recursoView;
+
+    /**
+     * Utilidad de consola.
+     */
     private ConsolaView consolaView;
+
+    /**
+     * DAO de horarios
+     */
     private HorarioDAO horarioDAO;
+
+    /**
+     * DAO de disponibilidades
+     */
     private DisponibleEnDAO disponibleEnDAO;
 
-    public RecursoController() {
-        // Crear conexión a la base de datos
-
+    /**
+     * Construye el controlador con sus dependencias.
+     */
+    public RecursoController() throws SQLException {
         recursoDAO = RecursoDAO.getInstance();
         recursoView = new RecursoView();
         consolaView = new ConsolaView();
         horarioDAO = HorarioDAO.getInstance();
         disponibleEnDAO = DisponibleEnDAO.getInstance();
-
     }
 
+    /**
+     * Muestra todos los recursos
+     */
     public void mostrarTodosLosRecursos() {
         try {
             List<Recurso> recursos = recursoDAO.getAllRecursos();
@@ -41,6 +68,9 @@ public class RecursoController {
         }
     }
 
+    /**
+     * Muestra un recurso por ID
+     */
     public void mostrarRecursoID() {
         try {
             String idRecurso = recursoView.obtenerIdRecurso();
@@ -51,6 +81,9 @@ public class RecursoController {
         }
     }
 
+    /**
+     * Crea un recurso
+     */
     public void crearRecurso() {
         try {
             Recurso recurso = recursoView.crearRecurso();
@@ -62,6 +95,9 @@ public class RecursoController {
         }
     }
 
+    /**
+     * Actualiza un recurso existente
+     */
     public void actualizarRecurso() {
         try {
             String idRecurso = recursoView.obtenerIdRecurso();
@@ -75,6 +111,9 @@ public class RecursoController {
         }
     }
 
+    /**
+     * Elimina un recurso existente
+     */
     public void eliminarRecurso() {
         try {
             String idRecurso = recursoView.obtenerIdAEliminar();
@@ -85,6 +124,12 @@ public class RecursoController {
         }
     }
 
+    /**
+     * Muestra todos los horarios en los que está disponible un recurso, recuperado por su ID
+     *
+     * @param idRecurso
+     * @return ArrayList de todos los horarios disponibles
+     */
     public List<Horario> mostrarDisponibilidad(String idRecurso) {
         try{
             List<DisponibleEn> disponibilidades = disponibleEnDAO.getDisponibilidadesByRecurso(idRecurso);
@@ -101,6 +146,11 @@ public class RecursoController {
         return null;
     }
 
+    /**
+     * Suma la cantidad de recursos en el momento de la llamada
+     *
+     * @return int cantidad de recursos
+     */
     public int cantidadRecursos() {
         try{
             int cantidad = recursoDAO.totalRecursos();
@@ -111,6 +161,9 @@ public class RecursoController {
         return 0;
     }
 
+    /**
+     * Inicia el menú de recursos
+     */
     public void iniciar() {
         int opcion;
 

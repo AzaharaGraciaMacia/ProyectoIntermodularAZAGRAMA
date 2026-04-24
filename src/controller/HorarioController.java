@@ -8,20 +8,40 @@ import view.HorarioView;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Controlador encargado de la lógica de negocio relacionada con los horarios.
+ *
+ * <p>Coordina la interacción entre la vista de horarios y la capa DAO del modelo.</p>
+ */
 public class HorarioController {
 
+    /**
+     * DAO de horarios
+     */
     private HorarioDAO horarioDAO;
+
+    /**
+     * Vista de horarios
+     */
     private HorarioView horarioView;
+
+    /**
+     * Utilidad de consola.
+     */
     private ConsolaView consolaView;
 
-    public HorarioController() {
-        // Crear conexión a la base de datos
-
+    /**
+     * Construye el controlador con sus dependencias.
+     */
+    public HorarioController() throws SQLException {
         horarioDAO = HorarioDAO.getInstance();
         horarioView = new HorarioView();
         consolaView = new ConsolaView();
     }
 
+    /**
+     * Muestra todos los horarios
+     */
     public void mostrarTodosLosHorarios() {
         try {
             List<Horario> horarios = horarioDAO.getAllHorarios();
@@ -31,6 +51,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Muestra un horario por su ID
+     */
     public void mostrarHorarioID() {
         try {
             int idHorario = horarioView.obtenerIdHorario();
@@ -41,6 +64,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Muestra todos los horarios por día de la semana
+     */
     public void mostrarHorariosDia() {
         try {
             String diaSemana = horarioView.obtenerDiaHorario();
@@ -51,6 +77,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Crea un nuevo horario
+     */
     public void crearHorario() {
         try {
             Horario horario = horarioView.crearHorario();
@@ -61,6 +90,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Modifica un horario existente
+     */
     public void actualizarHorario() {
         try {
             int idHorario = horarioView.obtenerIdHorario();
@@ -73,6 +105,9 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Elimina un horario existente
+     */
     public void eliminarHorario() {
         try {
             int idHorario = horarioView.obtenerIdAEliminar();
@@ -83,6 +118,11 @@ public class HorarioController {
         }
     }
 
+    /**
+     * Suma la cantidad de horarios en el momento de la llamada
+     *
+     * @return int cantidad de horarios
+     */
     public int cantidadHorarios() {
         try{
             int cantidad = horarioDAO.totalHorarios();
@@ -93,6 +133,9 @@ public class HorarioController {
         return 0;
     }
 
+    /**
+     * Inicia el menú de horarios
+     */
     public void iniciar() {
         int opcion;
 

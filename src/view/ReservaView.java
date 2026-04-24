@@ -17,27 +17,62 @@ import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Vista de consola para la gestión de usuarios.
+ */
 public class ReservaView {
-    RecursoView recursoView = new RecursoView();
-    RecursoController recursoController = new RecursoController();
-    HorarioDAO horarioDAO = HorarioDAO.getInstance();
 
+    /**
+     * Vista de recursos
+     */
+    private RecursoView recursoView;
+
+    /**
+     * Controlador de recursos
+     */
+    private RecursoController recursoController;
+
+    /**
+     * DAO de Horario
+     */
+    private HorarioDAO horarioDAO;
+
+    /**
+     * Controlador de sus dependencias
+     *
+     * @throws SQLException si hay error de conexión con la BD
+     */
+    public ReservaView() throws SQLException {
+        recursoView = new RecursoView();
+        recursoController = new RecursoController();
+        horarioDAO = HorarioDAO.getInstance();
+    }
+
+    /**
+     * Muestra una tabla con las reservas
+     *
+     * @param reservas Lista de reservas a mostrar
+     */
     public void mostrarReservas(List<Reserva> reservas) {
-        System.out.println("Lista de Reservas:");
+        System.out.println("Lista de Reservas:\n");
 
-        System.out.printf("%-15s %-15s %-15s %-15s %-10s %-10s %-10s %-15s %-50s %-100s\n","ID de Reserva" , "ID de Recurso" , "ID de Usuario" , "Fecha de Reserva" , "Hora de Inicio", "Hora de Fin", "Coste (€)", "Número de Plazas", "Motivo", "Observaciones");
-
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        ConsolaView.mostrar(Reserva.CABECERA_LISTADO);
 
         reservas.forEach(System.out::println);
 
     }
 
+    /**
+     * Crea un objeto {@link Reserva} a partir de la lectura de datos por consola
+     *
+     * @return objeto reserva
+     */
     public Reserva crearReserva () {
 
         String idRecurso = ConsolaView.leerTexto("Introduce el código del recurso:");
         int idUsuario = ConsolaView.leerEntero("Introduce el id del usuario:");
 
+        //Muestra los horarios disponibles para el recurso
         List<Horario> horarios = recursoController.mostrarDisponibilidad(idRecurso);
         recursoView.mostrarDisponiblesEn(horarios);
         int idHorario = ConsolaView.leerEntero("Seleccione un horario disponible de los anteriores:");
@@ -51,6 +86,7 @@ public class ReservaView {
             throw new RuntimeException(e);
         }
 
+        //Pide una fecha, comprueba que es válida y que el día de la semana coincide con el horario seleccionado
         LocalDate fechaDia;
         DayOfWeek diaSemana;
         String diaEspanol;
@@ -94,14 +130,26 @@ public class ReservaView {
         return new Reserva(idRecurso, idUsuario, fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
     }
 
+    /**
+     * Pide al usuario que introduzca por consola el ID de la reserva que desea eliminar
+     *
+     * @return entero ID de reserva
+     */
     public int obtenerIdAEliminar() {
         return ConsolaView.leerEntero("Introduce el ID de la reserva a eliminar:");
     }
 
+    /**
+     * Crea un nuevo objeto {@link Reserva} a partir de otro con los datos actualizados leídos por consola.
+     *
+     * @param reserva reserva que se desea actualizar
+     * @return objeto reserva actualizado
+     */
     public Reserva obtenerDatosActualizados(Reserva reserva) {
 
         String idRecurso = ConsolaView.leerTexto("Introduce el nuevo código del recurso:");
 
+        //Muestra los horarios disponibles para el recurso
         List<Horario> horarios = recursoController.mostrarDisponibilidad(idRecurso);
         recursoView.mostrarDisponiblesEn(horarios);
         int idHorario = ConsolaView.leerEntero("Seleccione un horario disponible de los anteriores:");
@@ -115,6 +163,7 @@ public class ReservaView {
             throw new RuntimeException(e);
         }
 
+        //Pide una fecha, comprueba que es válida y que el día de la semana coincide con el horario seleccionado
         String diaEspanol;
         String diaLimpio;
         LocalDate fechaDia;
@@ -158,9 +207,20 @@ public class ReservaView {
         return new Reserva(idRecurso, reserva.getIdReserva(), reserva.getIdUsuario(), fechaReserva, horaInicio, horaFin, coste, numeroPlazas, motivo, observaciones);
     }
 
+    /**
+     * Pide al usuario que introduzca por consola el ID de la reserva que desea recuperar
+     *
+     * @return entero ID de reserva
+     */
     public int obtenerIdReserva() {
         return ConsolaView.leerEntero("Introduce el ID de la reserva:");
     }
+
+    /**
+     * Pide al usuario que introduzca por consola el DNI del usuario que desea recuperar y llama a su validación
+     *
+     * @return texto con el DNI
+     */
     public String obtenerDNIUsuario() {
         String dni;
         do {
@@ -170,13 +230,22 @@ public class ReservaView {
         return dni;
     }
 
+    /**
+     * Muestra una tabla con la reserva solicitada
+     *
+     * @param reserva reserva que se desea visualizar
+     */
     public void mostrarReserva(Reserva reserva) {
-        if (reserva != null)
-            System.out.println(reserva);
+        if (reserva != null){
+            ConsolaView.mostrar(Reserva.CABECERA_LISTADO);
+            System.out.println(reserva);}
         else
             System.out.println("La reserva no existe");
     }
 
+    /**
+     * Muestra el menú de reservas
+     */
     public void mostrarMenu() {
         ConsolaView.limpiarPantalla();
         ConsolaView.mostrarTitulo("GESTIÓN DE RESERVAS");

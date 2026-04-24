@@ -13,15 +13,42 @@ import view.UsuarioView;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Controlador encargado de la lógica de negocio relacionada con los usuarios.
+ *
+ * <p>Coordina la interacción entre la vista de usuarios y la capa DAO del modelo.</p>
+ */
 public class UsuarioController {
+
+    /**
+     * DAO de usuarios
+     */
     private UsuarioDAO usuarioDAO;
+
+    /**
+     * DAO de usuarios normales
+     */
     private UsuarioNormalDAO usuarioNormalDAO;
+
+    /**
+     * DAO de administradores
+     */
     private AdministradorDAO administradorDAO;
+
+    /**
+     * Vista de administradores
+     */
     private UsuarioView usuarioView;
+
+    /**
+     * Utilidad de consola.
+     */
     private ConsolaView consolaView;
 
-    public UsuarioController() {
-        // Crear conexión a la base de datos
+    /**
+     * Construye el controlador con sus dependencias.
+     */
+    public UsuarioController() throws SQLException {
         usuarioDAO = UsuarioDAO.getInstance();
         usuarioNormalDAO = UsuarioNormalDAO.getInstance();
         administradorDAO = AdministradorDAO.getInstance();
@@ -29,6 +56,9 @@ public class UsuarioController {
         consolaView = new ConsolaView();
     }
 
+    /**
+     * Muestra todos los usuarios
+     */
     public void mostrarTodosLosUsuarios() {
         try {
             List<Usuario> usuarios = usuarioDAO.getAllUsuarios();
@@ -37,6 +67,10 @@ public class UsuarioController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
+
+    /**
+     * Muestra todos los usuarios normales
+     */
     public void mostrarTodosLosUsuariosNormales() {
         try {
             List<UsuarioNormal> usuariosNormales = usuarioNormalDAO.getAllUsuariosNormales();
@@ -45,6 +79,10 @@ public class UsuarioController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
+
+    /**
+     * Muestra todos los usuarios administradores
+     */
     public void mostrarTodosLosAdministradores() {
         try {
             List<Administrador> administradores = administradorDAO.getAllAdministradores();
@@ -53,16 +91,29 @@ public class UsuarioController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
+
+    /**
+     * Muestra usuario por DNI
+     */
     public void mostrarUsuarioDNI() {
         try {
             String dni = usuarioView.obtenerDni();
             Usuario usuario = usuarioDAO.getUsuarioByDni(dni);
-            usuarioView.mostrarUsuario(usuario);
+            if (usuario.getTipoUsuario() == TipoUsuario.normal) {
+                UsuarioNormal usuarioNormal = usuarioNormalDAO.getUsuarioNormalByDni(dni);
+                usuarioView.mostrarUsuarioNormal(usuarioNormal);
+            } else  {
+                Administrador administrador = administradorDAO.getAdministradorByDni(dni);
+                usuarioView.mostrarAdministrador(administrador);
+            }
         } catch (SQLException e) {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
 
+    /**
+     * Crea un usuario y según su tipo lo divide en usuario normal o administrador
+     */
     public void crearUsuario() {
         try {
             Usuario usuario=usuarioView.crearUsuario();
@@ -79,6 +130,12 @@ public class UsuarioController {
         }
 
     }
+
+    /**
+     * Crea el usuario normal a partir de un usuario cuyo tipo haya sido marcado como normal
+     *
+     * @param usuario objeto {@link Usuario} marcado con {@link TipoUsuario} normal
+     */
     public void crearUsuarioNormal(Usuario usuario) {
         try {
             UsuarioNormal usuarioNormal=usuarioView.crearUsuarioNormal(usuario);
@@ -87,6 +144,12 @@ public class UsuarioController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
+
+    /**
+     * Crea el administrador a partir de un usuario cuyo tipo haya sido marcado como administrador
+     *
+     * @param usuario objeto {@link Usuario} marcado con {@link TipoUsuario} administrador
+     */
     public void crearAdministrador(Usuario usuario) {
         try {
             Administrador administrador=usuarioView.crearAdministrador(usuario);
@@ -95,6 +158,10 @@ public class UsuarioController {
             consolaView.mostrar("Error de base de datos: " + e.getMessage());
         }
     }
+
+    /**
+     * Actualiza los datos de un usuario y de las tablas usuario normal o administrador según su tipo
+     */
     public void actualizarUsuario() {
         try {
             String dni = usuarioView.obtenerDni();
@@ -114,6 +181,9 @@ public class UsuarioController {
         }
     }
 
+    /**
+     * Elimina un usuario (y por ende, su referencia en usuario normal o administrador)
+     */
     public void eliminarUsuario () {
         try {
             String dni=usuarioView.obtenerDniAEliminar();
@@ -124,6 +194,11 @@ public class UsuarioController {
         }
     }
 
+    /**
+     * Suma la cantidad de usuarios en el momento de la llamada
+     *
+     * @return int cantidad de usuarios
+     */
     public int cantidadUsuarios() {
         try{
             int cantidad = usuarioDAO.totalUsuarios();
@@ -134,6 +209,11 @@ public class UsuarioController {
         return 0;
     }
 
+    /**
+     * Suma la cantidad de usuarios administradores en el momento de la llamada
+     *
+     * @return int cantidad de administradores
+     */
     public int cantidadAdministradores() {
         try{
             int cantidad = administradorDAO.totalAdministradores();
@@ -144,6 +224,11 @@ public class UsuarioController {
         return 0;
     }
 
+    /**
+     * Suma la cantidad de usuarios normales en el momento de la llamada
+     *
+     * @return int cantidad de usuarios normales
+     */
     public int cantidadUsuariosNormales() {
         try{
             int cantidad = usuarioNormalDAO.totalUsuariosNormales();
@@ -154,6 +239,9 @@ public class UsuarioController {
         return 0;
     }
 
+    /**
+     * Inicia el menú de usuarios
+     */
     public void iniciar() {
         int opcion;
 

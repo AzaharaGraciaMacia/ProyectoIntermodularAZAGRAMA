@@ -5,12 +5,30 @@ import view.ConsolaView;
 
 /**
  * Controlador principal de la aplicación.
+ *
+ * <p>Presenta el menú general y delega la ejecución en los controladores específicos
+ * de usuarios, recursos, horarios y reservas.</p>
  */
 public class AppController {
 
+    /**
+     * Controlador de usuarios
+     */
     private UsuarioController usuarioController;
+
+    /**
+     * Controlador de horarios
+     */
     private HorarioController horarioController;
+
+    /**
+     * Controlador de recursos
+     */
     private RecursoController recursoController;
+
+    /**
+     * Controlador de reservas
+     */
     private ReservaController reservaController;
 
     /**

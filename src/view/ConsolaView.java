@@ -12,17 +12,36 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-
+/**
+ * Utilidad de entrada y salida por consola.
+ *
+ * <p>Centraliza la lectura segura de datos desde teclado y la impresión de mensajes,
+ * de modo que la vista y los controladores no tengan que repetir lógica de validación.</p>
+ */
 public class ConsolaView {
 
+    /**
+     * Escáner compartido para leer datos del teclado.
+     */
     static private final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Muestra un mensaje y lee una línea de texto.
+     *
+     * @param mensaje texto que se mostrará al usuario
+     * @return texto introducido por el usuario
+     */
     static public String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return scanner.nextLine().trim();
     }
 
-
+    /**
+     * Lee un número entero desde consola con validación.
+     *
+     * @param mensaje texto que se mostrará al usuario
+     * @return número entero válido introducido por el usuario
+     */
     static public int leerEntero(String mensaje) {
         boolean valido = false;
         int numero = 0;
@@ -43,6 +62,12 @@ public class ConsolaView {
         return numero;
     }
 
+    /**
+     * Lee un número con decimales desde consola con validación.
+     *
+     * @param mensaje texto que se mostrará al usuario
+     * @return número con decimales válido introducido por el usuario
+     */
     static public double leerDouble(String mensaje) {
         boolean valido = false;
         double numero = 0.0;
@@ -63,6 +88,12 @@ public class ConsolaView {
         return numero;
     }
 
+    /**
+     * Valida un DNI leído previamente
+     *
+     * @param dni DNI a comprobar
+     * @return true si el DNI es válido
+     */
     static public boolean comprobarDNI(String dni) {
         try{
         String LETRAS_CONTROL = "TRWAGMYFPDXBNJZSQVHLCKE";
@@ -84,6 +115,12 @@ public class ConsolaView {
         return false;
     }
 
+    /**
+     * Valida una fecha leída previamente y le da formato para MySQL/MariaDB
+     *
+     * @param fecha fecha que queremos validar
+     * @return true si la fecha es válida
+     */
     static public Date validarYFormatearFecha(String fecha) {
         if (fecha == null || fecha.isBlank()) return null;
 
@@ -97,8 +134,22 @@ public class ConsolaView {
         }
     }
 
+    /**
+     * Formateador para horas en formato de 24 horas (HH:mm).
+     *
+     * <p>
+     * Se utiliza para parsear y formatear horas de entrada
+     * del usuario. Ejemplo de formato aceptado: {@code 08:30}, {@code 23:45}.
+     * </p>
+     */
     private static final DateTimeFormatter FORMATO_ENTRADA_HORA = DateTimeFormatter.ofPattern("HH:mm");
 
+    /**
+     * Valida una hora leída previamente y le da formato para MySQL/MariaDB
+     *
+     * @param hora hora que queremos validar
+     * @return true si la hora es válida
+     */
     static public Time validarYFormatearHora(String hora) {
         if (hora == null || hora.isBlank()) return null;
 
@@ -110,6 +161,12 @@ public class ConsolaView {
         }
     }
 
+    /**
+     * Comprueba si se ha introducido la palabra "omitir" leída previamente (usado para las columnas que pueden ser null)
+     *
+     * @param respuesta texto leído previamente
+     * @return true si se ha introducido "omitir"
+     */
     static public boolean OmitirRespuesta(String respuesta) {
         boolean omitirRespuesta = false;
         if (respuesta.equals("OMITIR")) {
@@ -118,6 +175,12 @@ public class ConsolaView {
         return omitirRespuesta;
     }
 
+    /**
+     * Valida si el texto leído previamente encaja en {@link TipoUsuario} y lo convierte de String a Enum
+     *
+     * @param respuesta texto proporcionado leído previamente
+     * @return objeto tipoUsuario
+     */
     static public TipoUsuario ComprobarTipoUsuario(String respuesta) {
         if (respuesta == null || respuesta.isBlank()) return null;
 
@@ -129,6 +192,12 @@ public class ConsolaView {
         return null;
     }
 
+    /**
+     * Valida si el texto leído previamente encaja en {@link DiaSemana} y lo convierte de String a Enum
+     *
+     * @param respuesta texto proporcionado leído previamente
+     * @return objeto diaSemana
+     */
     static public DiaSemana ComprobarDiaSemana(String respuesta) {
         if (respuesta == null || respuesta.isBlank()) return null;
 
@@ -140,30 +209,56 @@ public class ConsolaView {
         return null;
     }
 
+    /**
+     * Patrón validador de email
+     */
     private static final Pattern PATRON_EMAIL = Pattern.compile(
             "^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
-    ); // Patrón validador de email
+    );
 
+    /**
+     * Valida el formato de email del String leído previamente
+     *
+     * @param email texto proporcionado leído previamente
+     * @return true si el email es válido
+     */
     public static boolean validarEmail(String email) {
         if (email == null || email.isBlank()) return false;
         return PATRON_EMAIL.matcher(email.trim()).matches();
     }
 
+    /**
+     * Imprime un mensaje en consola
+     *
+     * @param mensaje texto a mostrar
+     */
     static public void mostrar(String mensaje) {
         System.out.println(mensaje);
     }
 
-
+    /**
+     * Imprime una línea vacía.
+     */
     static public void saltoLinea() {
         System.out.println();
     }
 
+    /**
+     * Pausa la ejecución hasta que el usuario pulse Enter.
+     *
+     * @param mensaje mensaje que se mostrará antes de esperar
+     */
     static public void pausar(String mensaje) {
         System.out.println();
         System.out.print(mensaje);
         scanner.nextLine();
     }
 
+    /**
+     * Muestra una cabecera visual en consola.
+     *
+     * @param titulo título a mostrar
+     */
     static public void mostrarTitulo(String titulo) {
         int ancho = 48; // ancho total de la línea
         String linea = "=".repeat(ancho);
@@ -177,6 +272,9 @@ public class ConsolaView {
         System.out.println(linea);
     }
 
+    /**
+     * Limpia la pantalla
+     */
     public static void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
