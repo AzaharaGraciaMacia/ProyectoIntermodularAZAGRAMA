@@ -75,6 +75,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     *
      * @throws SQLException si ocurre un error en la conexión
      */
     private UsuarioNormalDAO() throws SQLException {
@@ -83,6 +84,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Devuelve la instancia única del DAO.
+     *
      * @return instancia de {@code UsuarioNormalDAO}
      * @throws SQLException si ocurre un error en la conexión
      */
@@ -95,6 +97,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Inserta los datos de un usuario normal en la BD
+     *
      * @param usuarioNormal usuario normal a insertar
      * @throws SQLException SQLException si ocurre un error en la inserción
      */
@@ -110,6 +113,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Recibe los datos de todos los usuarios normales de la BD
+     *
      * @return ArrayList de usuarios normales
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -126,6 +130,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Recupera los datos de un usuario normal por su DNI de la BD, uniendo la tabla con la tabla usuario
+     *
      * @param dni dni a buscar para recibir los datos
      * @return UsuarioNormal encontrado o {@code null}
      * @throws SQLException si ocurre un error en la búsqueda
@@ -144,6 +149,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Actualiza los datos de un usuario normal en la BD
+     *
      * @param usuarioNormal usuario normal con los nuevos datos
      * @throws SQLException si ocurre un error en la actualización
      */
@@ -159,6 +165,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Elimina de la BD un usuario normal concreto relacionado por DNI
+     *
      * @param dni dni a buscar para eliminar
      * @throws SQLException SQLException si ocurre un error en la eliminación
      */
@@ -196,6 +203,7 @@ public class UsuarioNormalDAO {
 
     /**
      * Hace un recuento de los usuarios normales registrados en la BD
+     *
      * @return total de usuarios normales
      * @throws SQLException si ocurre un error en la recuperación de datos
      */

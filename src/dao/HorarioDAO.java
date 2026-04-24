@@ -74,6 +74,7 @@ public class HorarioDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     *
      * @throws SQLException si ocurre un error en la conexión
      */
     private HorarioDAO() throws SQLException {
@@ -82,6 +83,7 @@ public class HorarioDAO {
 
     /**
      *Devuelve la instancia única del DAO.
+     *
      * @return instancia de {@code HorarioDAO}
      * @throws SQLException si ocurre un error en la conexión
      */
@@ -94,6 +96,7 @@ public class HorarioDAO {
 
     /**
      * Inserta los datos de horario en la BD
+     *
      * @param horario horario a insertar
      * @return int del id autogenerado (auto_increment)
      * @throws SQLException si ocurre un error en la inserción
@@ -122,6 +125,7 @@ public class HorarioDAO {
 
     /**
      * Recibe los datos de todas los horarios de la BD
+     *
      * @return ArrayList de horarios
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -138,6 +142,7 @@ public class HorarioDAO {
 
     /**
      * Recibe los datos de todas los horarios disponibles por día de la semana de la BD
+     *
      * @param diaSemana día de la semana a encontrar
      * @return ArrayList de horarios
      * @throws SQLException si ocurre un error en la búsqueda
@@ -156,6 +161,7 @@ public class HorarioDAO {
 
     /**
      * Recibe los datos de todas los horarios disponibles por día de la semana de la BD
+     *
      * @param idHorario id del horario concreto
      * @return objeto horario con los datos recibidos
      * @throws SQLException si ocurre un error en la búsqueda
@@ -174,6 +180,7 @@ public class HorarioDAO {
 
     /**
      * Actualiza los datos de horario en la BD
+     *
      * @param horario horario a actualizar
      * @throws SQLException si ocurre un error en la actualización
      */
@@ -189,6 +196,7 @@ public class HorarioDAO {
 
     /**
      * Elimina de la BD un horario concreto
+     *
      * @param idHorario id del horario a eliminar
      * @throws SQLException si ocurre un error en la eliminación
      */
@@ -219,6 +227,7 @@ public class HorarioDAO {
 
     /**
      * Hace un recuento de los horarios registrados en la BD
+     *
      * @return total de horarios
      * @throws SQLException si ocurre un error en la recuperación de datos
      */

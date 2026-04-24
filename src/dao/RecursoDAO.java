@@ -74,6 +74,7 @@ public class RecursoDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     *
      * @throws SQLException si ocurre un error en la conexión
      */
     private RecursoDAO() throws SQLException {
@@ -82,6 +83,7 @@ public class RecursoDAO {
 
     /**
      * Devuelve la instancia única del DAO.
+     *
      * @return instancia de {@code RecursoDAO}
      * @throws SQLException si ocurre un error en la conexión
      */
@@ -94,6 +96,7 @@ public class RecursoDAO {
 
     /**
      * Inserta los datos de recurso en la BD
+     *
      * @param recurso recurso a insertar
      * @throws SQLException si ocurre un error en la inserción
      */
@@ -110,6 +113,7 @@ public class RecursoDAO {
 
     /**
      * Recibe los datos de todos los recursos de la BD
+     *
      * @return ArrayList de administradores
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -126,6 +130,7 @@ public class RecursoDAO {
 
     /**
      * Recupera los datos de un administrador por su DNI de la BD, uniendo la tabla con la tabla usuario
+     *
      * @param idRecurso id del recurso a encontrar
      * @return Recurso encontrado o {@code null}
      * @throws SQLException si ocurre un error en la búsqueda
@@ -144,6 +149,7 @@ public class RecursoDAO {
 
     /**
      * Recupera los datos de un administrador por su DNI de la BD, uniendo la tabla con la tabla usuario
+     *
      * @param nombre nombre del recurso a encontrar
      * @return Recurso encontrado o {@code null}
      * @throws SQLException si ocurre un error en la búsqueda
@@ -162,6 +168,7 @@ public class RecursoDAO {
 
     /**
      * Actualiza los datos de un administrador en la BD
+     *
      * @param recurso administrador con los nuevos datos
      * @throws SQLException si ocurre un error en la actualización
      */
@@ -178,6 +185,7 @@ public class RecursoDAO {
 
     /**
      * Elimina de la BD un recurso
+     *
      * @param idRecurso id del recurso a buscar para eliminar
      * @throws SQLException si ocurre un error en la eliminación
      */
@@ -207,6 +215,7 @@ public class RecursoDAO {
 
     /**
      * Hace un recuento de los recursos registrados en la BD
+     *
      * @return total de recursos
      * @throws SQLException si ocurre un error en la recuperación de datos
      */

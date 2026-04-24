@@ -13,17 +13,34 @@ import java.time.LocalTime;
 import java.util.List;
 
 /**
- * Controlador de la tabla reservas
+ * Controlador encargado de la lógica de negocio relacionada con las reservas.
+ *
+ * <p>Coordina la interacción entre la vista de reservas y la capa DAO del modelo.</p>
  */
 public class ReservaController{
 
-        private ReservaDAO reservaDAO;
-        private ReservaView reservaView;
-        private ConsolaView consolaView;
-        private RecursoDAO recursoDAO;
+    /**
+     * DAO de reservas
+     */
+    private ReservaDAO reservaDAO;
 
     /**
-     * Crea las conexiones con el resto de clases
+     * Vista de reservas
+     */
+    private ReservaView reservaView;
+
+    /**
+     * Utilidad de consola.
+     */
+    private ConsolaView consolaView;
+
+    /**
+     * DAO de recursos
+     */
+    private RecursoDAO recursoDAO;
+
+    /**
+     * Construye el controlador con sus dependencias.
      */
     public ReservaController() throws SQLException {
             reservaDAO = ReservaDAO.getInstance();
@@ -72,14 +89,16 @@ public class ReservaController{
 
     /**
      * Comprueba si hay solapamiento en los horarios, o si se salen de la franja horaria establecida
-     * @param ini1
-     * @param fin1
-     * @param ini2
-     * @param fin2
+     *
+     * @param ini1 hora inicial de la reserva registrada en la BD
+     * @param fin1 hora final de la reserva registrada en la BD
+     * @param ini2 hora inicial de la nueva reserva a comprobar
+     * @param fin2 hora final de la nueva reserva a comprobar
      * @return true si hay solapamiento
      */
     private boolean horasSolapadas(Time ini1, Time fin1,
                                    Time ini2, Time fin2) {
+            //Convertimos formato de hora SQL a formato LocalTime para poder comparar
             LocalTime horaInicio1 = ini1.toLocalTime();
             LocalTime horaInicio2 = ini2.toLocalTime();
             LocalTime horaFin1 = fin1.toLocalTime();
@@ -88,9 +107,10 @@ public class ReservaController{
     }
 
     /**
-     * Comrpueba si hay reservas duplicadas
-     * @param reservas
-     * @param nuevaReserva
+     * Comprueba si hay reservas duplicadas
+     *
+     * @param reservas Listado de las reservas registradas en la BD
+     * @param nuevaReserva reserva de la que comprobamos la duplicidad
      * @return true si ya existe una reserva en misma fecha y horario
      */
     public boolean reservaDuplicada(List<Reserva> reservas, Reserva nuevaReserva) {
@@ -158,6 +178,7 @@ public class ReservaController{
 
     /**
      * Suma la cantidad de reservas en el momento de la llamada
+     *
      * @return int cantidad de reservas
      */
     public int cantidadReservas() {

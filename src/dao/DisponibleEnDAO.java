@@ -76,6 +76,7 @@ public class DisponibleEnDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     *
      * @throws SQLException si ocurre un error en la conexión
      */
     private DisponibleEnDAO() throws SQLException {
@@ -84,6 +85,7 @@ public class DisponibleEnDAO {
 
     /**
      *Devuelve la instancia única del DAO.
+     *
      * @return instancia de {@code DisponibleEnDAO}
      * @throws SQLException si ocurre un error en la conexión
      */
@@ -96,6 +98,7 @@ public class DisponibleEnDAO {
 
     /**
      * Inserta los datos de disponibilidades en la BD
+     *
      * @param disponibleEn disponibilidad a insertar
      * @throws SQLException si ocurre un error en la inserción
      */
@@ -109,6 +112,7 @@ public class DisponibleEnDAO {
 
     /**
      * Recibe los datos de todas las disponibilidades de la BD
+     *
      * @return ArrayList de disponibilidades
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -125,6 +129,7 @@ public class DisponibleEnDAO {
 
     /**
      * Recibe los datos de todas las disponibilidades de un recurso en la BD
+     *
      * @param idRecurso id del recurso a buscar
      * @return ArrayList de disponibilidades
      * @throws SQLException si ocurre un error en la búsqueda
@@ -143,6 +148,7 @@ public class DisponibleEnDAO {
 
     /**
      * Recibe los datos de todas las disponibilidades en un horario concreto de la BD
+     *
      * @param idHorario id del horario a buscar
      * @return ArrayList de disponibilidades
      * @throws SQLException si ocurre un error en la búsqueda
@@ -161,6 +167,7 @@ public class DisponibleEnDAO {
 
     /**
      * Actualiza los datos de disponibilidades en la BD
+     *
      * @param disponibleEn disponibilidad actualizada
      * @throws SQLException si ocurre un error en la actualización
      */
@@ -174,6 +181,7 @@ public class DisponibleEnDAO {
 
     /**
      * Elimina de la BD una disponibilidad concreta, pk compuesta de:
+     *
      * @param idRecurso id del recurso asociado a la disponibilidad
      * @param idHorario id del horario asociado a la disponibilidad
      * @throws SQLException si ocurre un error en la eliminación
@@ -202,6 +210,7 @@ public class DisponibleEnDAO {
 
     /**
      * Hace un recuento de las disponibilidades registrados en la BD
+     *
      * @return total de disponibilidades
      * @throws SQLException si ocurre un error en la recuperación de datos
      */

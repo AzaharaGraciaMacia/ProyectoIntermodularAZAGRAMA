@@ -9,16 +9,29 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Controlador de la tabla horarios
+ * Controlador encargado de la lógica de negocio relacionada con los horarios.
+ *
+ * <p>Coordina la interacción entre la vista de horarios y la capa DAO del modelo.</p>
  */
 public class HorarioController {
 
+    /**
+     * DAO de horarios
+     */
     private HorarioDAO horarioDAO;
+
+    /**
+     * Vista de horarios
+     */
     private HorarioView horarioView;
+
+    /**
+     * Utilidad de consola.
+     */
     private ConsolaView consolaView;
 
     /**
-     * Crea las conexiones con el resto de clases
+     * Construye el controlador con sus dependencias.
      */
     public HorarioController() throws SQLException {
         horarioDAO = HorarioDAO.getInstance();
@@ -107,6 +120,7 @@ public class HorarioController {
 
     /**
      * Suma la cantidad de horarios en el momento de la llamada
+     *
      * @return int cantidad de horarios
      */
     public int cantidadHorarios() {

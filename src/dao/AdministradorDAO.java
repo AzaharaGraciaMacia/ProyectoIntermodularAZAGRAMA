@@ -72,6 +72,7 @@ public class AdministradorDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     *
      * @throws SQLException si ocurre un error en la conexión
      */
     private AdministradorDAO() throws SQLException {
@@ -80,6 +81,7 @@ public class AdministradorDAO {
 
     /**
      * Devuelve la instancia única del DAO.
+     *
      * @return instancia de {@code AdministradorDAO}
      * @throws SQLException si ocurre un error en la conexión
      */
@@ -92,6 +94,7 @@ public class AdministradorDAO {
 
     /**
      * Inserta los datos de administrador en la BD
+     *
      * @param administrador administrador a insertar
      * @throws SQLException si ocurre un error en la inserción
      */
@@ -105,6 +108,7 @@ public class AdministradorDAO {
 
     /**
      * Recibe los datos de todos los administradores de la BD
+     *
      * @return ArrayList de administradores
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -121,6 +125,7 @@ public class AdministradorDAO {
 
     /**
      * Recupera los datos de un administrador por su DNI de la BD, uniendo la tabla con la tabla usuario
+     *
      * @param dni dni a buscar para recibir los datos
      * @return Administrador encontrado o {@code null}
      * @throws SQLException si ocurre un error en la búsqueda
@@ -139,6 +144,7 @@ public class AdministradorDAO {
 
     /**
      * Actualiza los datos de un administrador en la BD
+     *
      * @param administrador administrador con los nuevos datos
      * @throws SQLException si ocurre un error en la actualización
      */
@@ -152,6 +158,7 @@ public class AdministradorDAO {
 
     /**
      * Elimina de la BD un administrador relacionado por DNI
+     *
      * @param dni dni a buscar para eliminar
      * @throws SQLException si ocurre un error en la eliminación
      */
@@ -187,6 +194,7 @@ public class AdministradorDAO {
 
     /**
      * Hace un recuento de los administradores registrados en la BD
+     *
      * @return total de administradores
      * @throws SQLException si ocurre un error en la recuperación de datos
      */

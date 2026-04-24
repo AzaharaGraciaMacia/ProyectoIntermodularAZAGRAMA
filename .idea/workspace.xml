@@ -6,9 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="5e339f31-074e-47e8-a3d6-6f849719cf03" name="Changes" comment="JavaDoc de todos los dao y corrección del manejo de errores SQLException de las conexiones">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/HorarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HorarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/RecursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RecursoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AdministradorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DisponibleEnDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/HorarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/HorarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/RecursoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/RecursoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ReservaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UsuarioNormalDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DiaSemana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiaSemana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DisponibleEn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DisponibleEn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Horario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Horario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Recurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Recurso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TipoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TipoUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/UsuarioNormal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/UsuarioNormal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

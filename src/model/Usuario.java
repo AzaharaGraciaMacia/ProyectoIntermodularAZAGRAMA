@@ -27,15 +27,17 @@ public class Usuario
                     "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
     /**
+     * Constructor para crear una nueva instancia de la clase {@code Usuario}.
+     * Inicializa el dni, nombre, email, la contraseña, el tipo de usuario, la fecha de nacimiento, el ID del usuario y la fecha de registro..
      *
-     * @param dni
-     * @param nombre
-     * @param email
-     * @param contrasena
-     * @param tipoUsuario
-     * @param fechaNacimiento
-     * @param idUsuario
-     * @param fechaRegistro
+     * @param dni el DNI de usuario, parámetro único.
+     * @param nombre el nombre completo del usuario
+     * @param email el email del usuario
+     * @param contrasena la contraseña del usuario
+     * @param tipoUsuario el tipo de usuario, dentro del enum {@link TipoUsuario}
+     * @param fechaNacimiento fecha de nacimiento del usuario
+     * @param idUsuario código único del usuario, autogenerado por la BD
+     * @param fechaRegistro fecha de registro del usuario, autogenerado en forma de Timestamp por la BD
      */
     public Usuario(String dni, String nombre, String email, String contrasena, TipoUsuario tipoUsuario, Date fechaNacimiento, int idUsuario,  Timestamp fechaRegistro) {
         this.dni = dni;
@@ -48,66 +50,146 @@ public class Usuario
         this.fechaRegistro = fechaRegistro;
     }
 
+    /**
+     * Obtiene el DNI del usuario
+     *
+     * @return texto con DNI
+     */
     public String getDni() {
         return dni;
     }
 
+    /**
+     * Establece el DNI del usuario
+     *
+     * @param dni texto con el nuevo DNI
+     */
     public void setDni(String dni) {
         this.dni = dni;
     }
 
+    /**
+     * Obtiene el nombre completo del usuario
+     *
+     * @return texto con el nombre del usuario
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Establece el nombre completo del usuario
+     *
+     * @param nombre texto con el nuevo nombre del usuario
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Obtiene el tipo de usuario
+     *
+     * @return Enum {@link TipoUsuario} con el tipo de usuario
+     */
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
 
+    /**
+     * Establece el tipo de usuario
+     *
+     * @param tipoUsuario Enum {@link TipoUsuario} con el nuevo tipo de usuario
+     */
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
+    /**
+     * Obtiene el email del usuario
+     *
+     * @return texto con el email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Establece el email del usuario
+     *
+     * @param email texto con el nuevo email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Obtiene la contraseña del usuario
+     *
+     * @return texto con la contraseña
+     */
     public String getContrasena() {
         return contrasena;
     }
 
+    /**
+     * Establece la contraseña del usuario
+     *
+     * @param contrasena texto con la nueva contraseña
+     */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
 
+    /**
+     * Obtiene la fecha de nacimiento del usuario
+     *
+     * @return fecha formato SQL de nacimiento
+     */
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
+    /**
+     * Establece la fecha de nacimiento del usuario
+     *
+     * @param fechaNacimiento nueva fecha formato SQL de nacimiento
+     */
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    /**
+     * Obtiene el ID del usuario
+     *
+     * @return ID entero autogenerado
+     */
     public int getIdUsuario() {
         return idUsuario;
     }
 
+    /**
+     * Establece el ID del usuario
+     *
+     * @param idUsuario nuevo ID entero autogenerado
+     */
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
+    /**
+     * Obtiene la fecha de registro del usuario
+     *
+     * @return Timestamp con la fecha de registro
+     */
     public Timestamp getFechaRegistro() {
         return fechaRegistro;
     }
 
+    /**
+     * Establece la fecha de registro del usuario
+     *
+     * @param fechaRegistro Timestamp con la fecha de registro
+     */
     public void setFechaRegistro(Timestamp fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }

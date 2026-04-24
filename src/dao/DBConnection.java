@@ -42,6 +42,7 @@ public class DBConnection {
 
     /**
      * Devuelve la conexión activa a la base de datos.
+     *
      * @return conexión JDBC compartida
      */
     public static Connection getConnection() {

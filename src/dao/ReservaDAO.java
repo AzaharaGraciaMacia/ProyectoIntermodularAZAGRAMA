@@ -84,6 +84,7 @@ public class ReservaDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     *
      * @throws SQLException si ocurre un error en la conexión
      */
     private ReservaDAO() throws SQLException {
@@ -92,6 +93,7 @@ public class ReservaDAO {
 
     /**
      *Devuelve la instancia única del DAO.
+     *
      * @return instancia de {@code ReservaDAO}
      * @throws SQLException si ocurre un error en la conexión
      */
@@ -104,6 +106,7 @@ public class ReservaDAO {
 
     /**
      * Inserta los datos de disponibilidades en la BD
+     *
      * @param reserva reserva  a insertar
      * @throws SQLException si ocurre un error en la inserción
      */
@@ -124,6 +127,7 @@ public class ReservaDAO {
 
     /**
      * Recibe los datos de todas las reservas de la BD
+     *
      * @return ArrayList de reservas
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -140,6 +144,7 @@ public class ReservaDAO {
 
     /**
      * Recibe los datos de todas las reservas de un usuario
+     *
      * @param dni dni del usuario solicitado
      * @return ArrayList de reservas
      * @throws SQLException si ocurre un error en la búsqueda
@@ -158,6 +163,7 @@ public class ReservaDAO {
 
     /**
      * Recibe los datos de una reserva concreta recuperada por su ID de la BD
+     *
      * @param idReserva ID de la reserva solicitada
      * @return objeto reserva con los datos recibidos
      * @throws SQLException si ocurre un error en la búsqueda
@@ -176,6 +182,7 @@ public class ReservaDAO {
 
     /**
      * Actualiza los datos de disponibilidades en la BD
+     *
      * @param reserva reserva actualizada
      * @throws SQLException si ocurre un error en la actualización
      */
@@ -197,6 +204,7 @@ public class ReservaDAO {
 
     /**
      * Elimina de la BD una reserva concreta recuperada por su ID
+     *
      * @param idReserva ID de la reserva a eliminar
      * @throws SQLException si ocurre un error en la eliminación
      */
@@ -232,6 +240,7 @@ public class ReservaDAO {
 
     /**
      * Hace un recuento de las reservas registrados en la BD
+     *
      * @return total de reservas
      * @throws SQLException si ocurre un error en la recuperación de datos
      */

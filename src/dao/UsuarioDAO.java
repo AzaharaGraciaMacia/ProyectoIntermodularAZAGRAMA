@@ -75,6 +75,7 @@ public class UsuarioDAO {
 
     /**
      * Constructor privado para aplicar Singleton.
+     *
      * @throws SQLException si ocurre un error en la conexión
      */
     private UsuarioDAO() throws SQLException {
@@ -83,6 +84,7 @@ public class UsuarioDAO {
 
     /**
      * Devuelve la instancia única del DAO.
+     *
      * @return instancia de {@code UsuarioDAO}
      * @throws SQLException si ocurre un error en la conexión
      */
@@ -95,6 +97,7 @@ public class UsuarioDAO {
 
     /**
      * Inserta los datos de un usuario en la BD
+     *
      * @param usuario usuario a insertar
      * @return int del id autogenerado (auto_increment)
      * @throws SQLException si ocurre un error en la inserción
@@ -126,6 +129,7 @@ public class UsuarioDAO {
 
     /**
      * Recibe los datos de todos los usuarios de la BD
+     *
      * @return ArrayList de usuarios
      * @throws SQLException si ocurre un error en la búsqueda
      */
@@ -142,6 +146,7 @@ public class UsuarioDAO {
 
     /**
      * Recupera los datos de un usuario por su DNI de la BD
+     *
      * @param dni dni a buscar para recibir los datos
      * @return Usuario encontrado o {@code null}
      * @throws SQLException si ocurre un error en la búsqueda
@@ -160,6 +165,7 @@ public class UsuarioDAO {
 
     /**
      * Actualiza los datos de un usuario en la BD
+     *
      * @param usuario usuario con los nuevos datos
      * @throws SQLException si ocurre un error en la actualización
      */
@@ -176,6 +182,7 @@ public class UsuarioDAO {
 
     /**
      * Elimina de la BD un usuario concreto por DNI
+     *
      * @param dni dni a buscar para eliminar
      * @throws SQLException si ocurre un error en la eliminación
      */
@@ -211,6 +218,7 @@ public class UsuarioDAO {
 
     /**
      * Hace un recuento de los usuarios registrados en la BD
+     *
      * @return total de usuarios
      * @throws SQLException si ocurre un error en la recuperación de datos
      */

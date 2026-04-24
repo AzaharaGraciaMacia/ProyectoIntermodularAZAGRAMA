@@ -14,17 +14,39 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Controlador de la tabla usuarios
+ * Controlador encargado de la lógica de negocio relacionada con los usuarios.
+ *
+ * <p>Coordina la interacción entre la vista de usuarios y la capa DAO del modelo.</p>
  */
 public class UsuarioController {
+
+    /**
+     * DAO de usuarios
+     */
     private UsuarioDAO usuarioDAO;
+
+    /**
+     * DAO de usuarios normales
+     */
     private UsuarioNormalDAO usuarioNormalDAO;
+
+    /**
+     * DAO de administradores
+     */
     private AdministradorDAO administradorDAO;
+
+    /**
+     * Vista de administradores
+     */
     private UsuarioView usuarioView;
+
+    /**
+     * Utilidad de consola.
+     */
     private ConsolaView consolaView;
 
     /**
-     * Crea las conexiones con el resto de clases
+     * Construye el controlador con sus dependencias.
      */
     public UsuarioController() throws SQLException {
         usuarioDAO = UsuarioDAO.getInstance();
@@ -111,7 +133,8 @@ public class UsuarioController {
 
     /**
      * Crea el usuario normal a partir de un usuario cuyo tipo haya sido marcado como normal
-     * @param usuario
+     *
+     * @param usuario objeto {@link Usuario} marcado con {@link TipoUsuario} normal
      */
     public void crearUsuarioNormal(Usuario usuario) {
         try {
@@ -124,7 +147,8 @@ public class UsuarioController {
 
     /**
      * Crea el administrador a partir de un usuario cuyo tipo haya sido marcado como administrador
-     * @param usuario
+     *
+     * @param usuario objeto {@link Usuario} marcado con {@link TipoUsuario} administrador
      */
     public void crearAdministrador(Usuario usuario) {
         try {
@@ -158,7 +182,7 @@ public class UsuarioController {
     }
 
     /**
-     * Elimina un usuario (y por ende su referencia en usuario normal o administrador)
+     * Elimina un usuario (y por ende, su referencia en usuario normal o administrador)
      */
     public void eliminarUsuario () {
         try {
@@ -172,6 +196,7 @@ public class UsuarioController {
 
     /**
      * Suma la cantidad de usuarios en el momento de la llamada
+     *
      * @return int cantidad de usuarios
      */
     public int cantidadUsuarios() {
@@ -186,6 +211,7 @@ public class UsuarioController {
 
     /**
      * Suma la cantidad de usuarios administradores en el momento de la llamada
+     *
      * @return int cantidad de administradores
      */
     public int cantidadAdministradores() {
@@ -200,6 +226,7 @@ public class UsuarioController {
 
     /**
      * Suma la cantidad de usuarios normales en el momento de la llamada
+     *
      * @return int cantidad de usuarios normales
      */
     public int cantidadUsuariosNormales() {
