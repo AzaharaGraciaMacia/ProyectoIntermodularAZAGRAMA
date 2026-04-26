@@ -2,9 +2,18 @@
 
 Azahara Gracia Maciá, 1ªDAW
 
+
 ## Descripción
 
 Sistema de reservas genérico.
+
+
+## Qué es y para qué sirve
+
+Este proyecto es un CRUD con JDBC para una base de datos MariaDB.
+
+Con la aplicación de consola se pueden insertar, modificar o eliminar usuarios, horarios, recursos, disponibilidades y reservas, así como consultar los datos de los mismos.
+
 
 ## Estructura del Proyecto
 
@@ -12,11 +21,13 @@ Sistema de reservas genérico.
 - `docs/`: Documentación del proyecto.
 - `src/`: Código fuente de la aplicación.
 
+
 ## Decisiones y problemas encontrados en html consultora
 
 - El type="email" en los input solo valida que haya un @, pero no que ponga el '.com' u otro dominio, asi que intenté añadir el pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" para una validación más estricta, pero no funciona, al parecer está roto. Podría quitar el type y dejar el pattern, pero como en el ejercicio especificaba que pusiéramos el type, lo he dejado así.
 - He hecho dos páginas con textos legales generados por IA para tener enlaces a sitios propios también en el footer.
 - Para intentar que la web sea lo más accesible posible, decidí dejar la tabla de la cronología con sus etiquetas html (y maquetar con flexbox), y a cambio he hecho una tabla con grid en la página de política de privacidad.
+
 
 ## Decisiones y problemas CSS consultora
 
@@ -28,3 +39,23 @@ Sistema de reservas genérico.
 - Maqueté el formulario de contacto siguiendo el estilo del resto de páginas.
 - Cambié a distintos tamaños de pantalla y empecé a arreglar cada página para que fuera todo lo responsive posible y se viera bien tanto en vertical como en horizontal.
 - Por último maqueté de forma más plana las dos páginas de textos legales, y probé el CSS grid en una tabla improvisada dentro de la política de privacidad. No me acaba de gustar CSS grid, en general, prefiero flexbox. Es cierto que quizás con CSS grid hacer una tabla responsive habría sido más fácil, pero creo que sería menos accesible.
+
+
+## Diseño
+
+La aplicación está diseñada con un patrón modelo, vista, controlador para una vista desde consola
+
+
+## Estructura del proyecto
+
+```
+app/            -> Capa donde se sitúa la clase Main, que inicia la aplicación.
+
+controller/     -> Capa de controladores, que se encarga de unir y controlar al resto
+
+dao/            -> Capa de "Data Access Object", que interactúa directamente con la BD
+
+model/          -> Capa de declaración de entidades
+
+view/           -> Capa de vistas, donde están los métodos para interactuar con la consola
+```
