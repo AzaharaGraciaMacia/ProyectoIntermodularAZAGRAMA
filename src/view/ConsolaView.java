@@ -260,7 +260,7 @@ public class ConsolaView {
      * @param titulo título a mostrar
      */
     static public void mostrarTitulo(String titulo) {
-        int ancho = 48; // ancho total de la línea
+        int ancho = 70; // ancho total de la línea
         String linea = "=".repeat(ancho);
 
         int espacios = (ancho - titulo.length()) / 2;
