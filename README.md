@@ -46,7 +46,7 @@ Con la aplicación de consola se pueden insertar, modificar o eliminar usuarios,
 La aplicación está diseñada con un patrón modelo, vista, controlador para una vista desde consola
 
 
-## Estructura del proyecto
+## Estructura del código fuente
 
 ```
 app/            -> Capa donde se sitúa la clase Main, que inicia la aplicación.
